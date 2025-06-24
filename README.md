@@ -19,6 +19,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [1.2 PDK Setup](#12-pdk-setup)
 - [2. Linear Elements](#2-linear-elements)
   - [2.1 Resistors](#21-resistors)
+  - [2.2 Capacitors](#22-capacitors)
 
 ## 1. Tools and PDK setup
 
@@ -61,11 +62,12 @@ Steps to be written
 - In the **Skywater SKY130 PDK**, multiple resistor types are available for analog and digital IC design, offering different resistance values, temperature characteristics, and area trade-offs.
 
 #### Types of Resistors available :
-- ``sky130_fd_pr__res_high_po.model``
-- ``sky130_fd_pr__res_xhigh_po.model``
-- ``sky130_fd_pr__res_generic_nd.model``
-- ``sky130_fd_pr__res_generic_pd.model``
+- ``sky130_fd_pr__res_high_po.model`` has base models with *0.35u, 0.69u, 1.41u, 2.85u, 5.73u* as **bin width** (fixed) with changable lengths. 
+- ``sky130_fd_pr__res_xhigh_po.model`` also has base models with *0.35u, 0.69u, 1.41u, 2.85u, 5.73u* as **bin width** (fixed) with changable lengths.
+- ``sky130_fd_pr__res_generic_nd.model`` is a Generic N-diff type resister.
+- ``sky130_fd_pr__res_generic_pd.model`` is a Generic P-diff type resister.
 
+![image](docs/Resistor.JPG)
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
@@ -75,3 +77,17 @@ Steps to be written
 | sky130_fd_pr_res_high_po_1p41 | 3.89k | 3.40k | 2.91k | 3.99k | 3.49k | 2.99k | 4.22k | 3.70k | 3.17k | 
 | sky130_fd_pr_res_high_po_2p85 | 3.73k | 3.27k | 2.81k | 3.83k | 3.36k | 2.89k | 4.06k | 3.57k | 3.07k |
 | sky130_fd_pr_res_high_po_5p73 | 3.65k | 3.20k | 2.76k | 3.75k | 3.30k | 2.84k | 3.99k | 3.50k | 3.01k |
+
+### 2.2 Capacitors
+
+- A **capacitor** is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where `C` is the capacitance in Farads.
+
+- In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs, each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
+
+#### Types of Capacitors available:
+- ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and Metal2**, suitable for analog precision applications.
+- ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and parasitic trade-offs.
+- ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
+- ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS structure, useful for RF tuning.
+- ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and leakage behavior.
+
