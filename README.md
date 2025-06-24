@@ -58,7 +58,7 @@ Steps to be written
 ## Resistor in SKY130 PDK
 
 A **resistor** is a passive electrical component that resists the flow of electric current, producing a voltage drop across its terminals according to **Ohm's Law**: 
-$$ V = I/R $$
+$$ R = \frac{V}{I} $$
 
 
 In the **Skywater SKY130 PDK**, multiple resistor types are available for analog and digital IC design, offering different resistance values, temperature characteristics, and area trade-offs.
