@@ -34,10 +34,28 @@ For the simulation of circuits we will need the following tools.
 [Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
 
 **Steps to install Ngspice** - 
-Open the terminal and type the following to install Ngspice
+- Change directory ```cd``` to install directory <INSTALL_DIR> e.g. ```/home/user/cad```
+- To download from the ```git``` repository:
+  - ```git clone https://github.com/silicon-vlsi-org/eda-ngspice```
+- Change directory to the installed ngspice directory eg. ```cd eda-ngspice```
+- Checkout the desired version: eg. ```git checkout v44.2.1```
+  - To make sure you are on the right version type ```git branch``` and your output should have a line like this :
+  - ```* (HEAD detached at v44.2.1)```
+  - **NOTE** The revision history is maintained in [VERSIONS.md](VERSIONS.md)
+
+- Add the following environment variables in your `~/.bashrc` ($CAD_DIR must be set in .bashrc)
+```bash
+export  SPICE_LIB_DIR=$CAD_DIR/eda-ngspice/glnxa64/share/ngspice
+export  SPICE_EXEC_DIR=$CAD_DIR/eda-ngspice/glnxa64/bin
+export  PATH=$PATH:$SPICE_EXEC_DIR
 ```
-$  sudo apt-get install ngspice
-```
+**NOTE** The file `bashrc-ngspice` in this repo can be sourced in `.bashrc`  
+
+Use the apporpriate locations for CentOS-7
+
+There is a initialization script in `$SPICE_LIB_DIR/scripts/spinit`. You can overwrite any of the initilization by adding commands to a local `~/.spiceinit` .
+
+The Spice model files are located in the ```https://github.com/silicon-vlsi-org/eda-technology``` repository.
 
 ### 1.2 PDK setup
 
