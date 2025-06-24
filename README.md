@@ -17,9 +17,10 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [1. Tool and PDK Setup](#1-tools-and-pdk-setup)
   - [1.1 Tools Setup](#11-tools-setup)
   - [1.2 PDK Setup](#12-pdk-setup)
-- [2. Linear Elements](#2-linear-elements)
-  - [2.1 Resistors](#21-resistors)
-  - [2.2 Capacitors](#22-capacitors)
+- [2. Writing a Netlist](#2-writing-a-netlist)
+- [3. Linear Elements](#3-linear-elements)
+  - [3.1 Resistors](#31-resistors)
+  - [3.2 Capacitors](#32-capacitors)
 
 ## 1. Tools and PDK setup
 
@@ -28,7 +29,7 @@ For the simulation of circuits we will need the following tools.
 - Spice netlist simulation - [[Ngspice](https://ngspice.sourceforge.io/)]
 - Schematic Editor - [[Xschem](https://xschem.sourceforge.io/stefan/index.html)]
 
-#### 1.1.1 Ngspice
+#### Ngspice
 ![image](https://user-images.githubusercontent.com/49194847/138070431-d95ce371-db3b-43a1-8dbe-fa85bff53625.png)
 
 [Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
@@ -53,9 +54,18 @@ The PDK we are going to use is [Google Skywater 130nm PDK](https://skywater-pdk.
 Steps to be written
 ```
 
-## 2. Linear Elements
+## 2. Writing a Netlist
+- To write a netlist in ``Ngspice`` we need to follow these steps.
+- Open terminal and enter your working directory and type the following code:
+```
+mkdir IC_Char
+cd IC_Char
+```
+- Make a new file ``vim file_name.sp`` to open a spice file (`.sp` is the file extension) with ``vim`` as a **Text Editor**. 
 
-### 2.1 Resistors
+## 3. Linear Elements
+
+### 3.1 Resistors
 
 - A **resistor** is a passive electrical component that resists the flow of electric current, producing a voltage drop across its terminals according to **Ohm's Law**:   `` V = I * R ``
 
@@ -78,7 +88,7 @@ Steps to be written
 | sky130_fd_pr_res_high_po_2p85 | 3.73k | 3.27k | 2.81k | 3.83k | 3.36k | 2.89k | 4.06k | 3.57k | 3.07k |
 | sky130_fd_pr_res_high_po_5p73 | 3.65k | 3.20k | 2.76k | 3.75k | 3.30k | 2.84k | 3.99k | 3.50k | 3.01k |
 
-### 2.2 Capacitors
+### 3.2 Capacitors
 
 - A **capacitor** is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where `C` is the capacitance in Farads.
 
