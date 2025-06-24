@@ -61,5 +61,6 @@ A **resistor** is a passive electrical component that resists the flow of electr
 
 In the **Skywater SKY130 PDK**, multiple resistor types are available for analog and digital IC design, offering different resistance values, temperature characteristics, and area trade-offs.
 
-| Temperature | -40 &#8451; | 25 &#8451; | 125 &#8451; |
+| Temperature | -40 &#8451; | 25 &#8451; | 125 &#8451; | - | - | - | - | - | - |
+| - | - | - | - | - | - | - | - | - | - |
 | Process | hh | tt | ll | hh | tt | ll | hh | tt | ll |
