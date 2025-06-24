@@ -17,7 +17,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [1. Tool and PDK Setup](#1-tools-and-pdk-setup)
   - [1.1 Tools Setup](#11-tools-setup)
   - [1.2 PDK Setup](#12-pdk-setup)
-
+- [2. Linear Elements](#2-linear-elements)
 
 ## 1. Tools and PDK setup
 
@@ -51,3 +51,6 @@ The PDK we are going to use is [Google Skywater 130nm PDK](https://skywater-pdk.
 Steps to be written
 ```
 
+## 2. Linear Elements
+
+### 2.2 Resistors
