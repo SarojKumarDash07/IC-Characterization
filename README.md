@@ -18,6 +18,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [1.1 Tools Setup](#11-tools-setup)
   - [1.2 PDK Setup](#12-pdk-setup)
 - [2. Linear Elements](#2-linear-elements)
+  - [2.1 Resistors](#21-resistors)
 
 ## 1. Tools and PDK setup
 
@@ -53,4 +54,4 @@ Steps to be written
 
 ## 2. Linear Elements
 
-### 2.2 Resistors
+### 2.1 Resistors
