@@ -1,1 +1,1 @@
-# Analog IC-Characterization
+# IC-Characterization
