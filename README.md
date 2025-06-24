@@ -55,11 +55,17 @@ Steps to be written
 ## 2. Linear Elements
 
 ### 2.1 Resistors
-## Resistor in SKY130 PDK
 
-A **resistor** is a passive electrical component that resists the flow of electric current, producing a voltage drop across its terminals according to **Ohm's Law**:   `` V = I * R ``
+- A **resistor** is a passive electrical component that resists the flow of electric current, producing a voltage drop across its terminals according to **Ohm's Law**:   `` V = I * R ``
 
-In the **Skywater SKY130 PDK**, multiple resistor types are available for analog and digital IC design, offering different resistance values, temperature characteristics, and area trade-offs.
+- In the **Skywater SKY130 PDK**, multiple resistor types are available for analog and digital IC design, offering different resistance values, temperature characteristics, and area trade-offs.
+
+#### Types of Resistors available :
+- ``sky130_fd_pr__res_high_po.model``
+- ``sky130_fd_pr__res_xhigh_po.model``
+- ``sky130_fd_pr__res_generic_nd.model``
+- ``sky130_fd_pr__res_generic_pd.model``
+
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
