@@ -15,17 +15,29 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
 ## Contents
 - [1. Tool and PDK Setup](#1-Tools-and-PDK-setup)
-  - [1.1 Tools Setup](#1.1-Tools-setup)
-  - [1.2 PDK Setup](#1.2-PDK-setup)
+  - [1.1 Tools Setup](##1.1-Tools-setup)
+  - [1.2 PDK Setup](##1.2-PDK-setup)
 
 
 ## 1. Tools and PDK setup
 
 ### 1.1 Tools setup
-For the design and simulation of the BGR circuit we will need the following tools.
-- Spice netlist simulation - [Ngspice]
-- Layout Design and DRC - [Magic]
-- LVS - [Netgen]
+For the simulation of circuits we will need the following tools.
+- Spice netlist simulation - [[Ngspice](https://ngspice.sourceforge.io/)]
+- Schematic Editor - [[Xschem](https://xschem.sourceforge.io/stefan/index.html)]
+
+#### 1.1.1 Ngspice
+![image](https://user-images.githubusercontent.com/49194847/138070431-d95ce371-db3b-43a1-8dbe-fa85bff53625.png)
+
+[Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
+
+[Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
+
+**Steps to install Ngspice** - 
+Open the terminal and type the following to install Ngspice
+```
+$  sudo apt-get install ngspice
+```
 
 ### 1.2 PDK setup
 
