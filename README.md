@@ -16,7 +16,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 ## Contents
 - [1. Tool and PDK Setup](#1-Tools-and-PDK-setup)
   - [1.1 Tools Setup](#11-tools-setup)
-  - [1.2 PDK Setup](##1.2-PDK-setup)
+  - [1.2 PDK Setup](#12-pdk-setup)
 
 
 ## 1. Tools and PDK setup
