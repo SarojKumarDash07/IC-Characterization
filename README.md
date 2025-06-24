@@ -15,7 +15,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 
 ## Contents
 - [1. Tool and PDK Setup](#1-Tools-and-PDK-setup)
-  - [1.1 Tools Setup](##1.1-Tools-setup)
+  - [1.1 Tools Setup](#11-tools-setup)
   - [1.2 PDK Setup](##1.2-PDK-setup)
 
 
@@ -34,31 +34,20 @@ For the simulation of circuits we will need the following tools.
 [Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
 
 **Steps to install Ngspice** - 
-- Change directory ```cd``` to install directory <INSTALL_DIR> e.g. ```/home/user/cad```
-- To download from the ```git``` repository:
-  - ```git clone https://github.com/silicon-vlsi-org/eda-ngspice```
-- Change directory to the installed ngspice directory eg. ```cd eda-ngspice```
-- Checkout the desired version: eg. ```git checkout v44.2.1```
-  - To make sure you are on the right version type ```git branch``` and your output should have a line like this :
-  - ```* (HEAD detached at v44.2.1)```
-  - **NOTE** The revision history is maintained in [VERSIONS.md](VERSIONS.md)
-
-- Add the following environment variables in your `~/.bashrc` ($CAD_DIR must be set in .bashrc)
-```bash
-export  SPICE_LIB_DIR=$CAD_DIR/eda-ngspice/glnxa64/share/ngspice
-export  SPICE_EXEC_DIR=$CAD_DIR/eda-ngspice/glnxa64/bin
-export  PATH=$PATH:$SPICE_EXEC_DIR
 ```
-**NOTE** The file `bashrc-ngspice` in this repo can be sourced in `.bashrc`  
-
-Use the apporpriate locations for CentOS-7
-
-There is a initialization script in `$SPICE_LIB_DIR/scripts/spinit`. You can overwrite any of the initilization by adding commands to a local `~/.spiceinit` .
-
-The Spice model files are located in the ```https://github.com/silicon-vlsi-org/eda-technology``` repository.
+Steps to be written
+```
 
 ### 1.2 PDK setup
 
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
 
-The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
+The PDK we are going to use is [Google Skywater 130nm PDK](https://skywater-pdk.readthedocs.io/en/main/).
+
+![image](https://user-images.githubusercontent.com/49194847/138075630-d1bdacac-d37b-45d3-88b5-80f118af37cd.png)
+
+**Steps to install SKY130 PDK** - 
+```
+Steps to be written
+```
+
