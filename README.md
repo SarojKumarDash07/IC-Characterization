@@ -67,7 +67,7 @@ Steps to be written
 - ``sky130_fd_pr__res_generic_nd.model`` is a Generic N-diff type resister.
 - ``sky130_fd_pr__res_generic_pd.model`` is a Generic P-diff type resister.
 
-![image](docs/Resistor.JPG)
+![Diagram](docs/Resistor.JPG)
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
@@ -90,4 +90,6 @@ Steps to be written
 - ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
 - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS structure, useful for RF tuning.
 - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and leakage behavior.
+
+![Diagram](docs/Capacitor.JPG)
 
