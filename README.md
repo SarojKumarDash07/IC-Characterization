@@ -14,7 +14,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - Temperature Corners: Measuring across temperature range (e.g., -40°C to 125°C).
 
 ## Contents
-- [1. Tool and PDK Setup](#1-Tools-and-PDK-setup)
+- [1. Tool and PDK Setup](#1-tools-and-pdk-setup)
   - [1.1 Tools Setup](#11-tools-setup)
   - [1.2 PDK Setup](#12-pdk-setup)
 
