@@ -21,6 +21,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [3. Linear Elements](#3-linear-elements)
   - [3.1 Resistors](#31-resistors)
   - [3.2 Capacitors](#32-capacitors)
+  - [3.3 RC Circuits](#33-rc-circuits)
 
 ## 1. Tools and PDK setup
 
@@ -152,5 +153,14 @@ plot v(in) v(out)
 | sky130_fd_pr_cap_mim_m3_1 | 3.35f | 2.76f | 2.11f | 3.31f | 2.76f | 2.14f | 3.30f | 2.76f | 2.11f |
 | sky130_fd_pr_cap_mim_m3_2 | 3.52f | 2.96f | 2.29f | 3.43f | 2.96f | 2.29f | 3.52f | 2.96f | 2.29f |
 
-### RC Circuits
+### 3.3 RC Circuits
+
+- An **RC circuit** is an electric circuit composed of **resistors (R)** and **capacitors (C)**, which exhibit a time-dependent response to voltage or current changes. The fundamental time constant is defined as:  
+`τ = R * C`,
+where `τ` (tau) represents the **time constant** in seconds, indicating how quickly the circuit charges or discharges.
+
+- In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g., `sky130_fd_pr__res_high_po`) and capacitors (e.g., `sky130_fd_pr__cap_mim_m3_1`). These are critical in analog and mixed-signal design applications such as filters, timing circuits, and analog front ends.
+
+![Diagram](docs/RC.JPG)
+
 
