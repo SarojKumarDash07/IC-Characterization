@@ -77,6 +77,30 @@ cd IC_Char
 - ``sky130_fd_pr__res_generic_nd.model`` is a Generic N-diff type resister.
 - ``sky130_fd_pr__res_generic_pd.model`` is a Generic P-diff type resister.
 
+```
+Title: Resistor Simulation
+
+.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+
+Vin     in      0       DC 1.8
+Vm      in      1       0V
+X1      1       0       vdd     sky130_fd_pr__res_high_po_0p35 L=3.5
+vsup    vdd     gnd     DC 1.8
+
+.op
+
+.control
+run
+print v(in)             ; Voltage at 'in'
+print abs(i(Vm))            ; Current through Vin
+let RES = v(in)/abs(i(Vm))       ; Compute Resistance
+print RES
+.endc
+
+.end
+```
+
 ![Diagram](docs/Resistor.JPG)
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
@@ -101,10 +125,32 @@ cd IC_Char
 - ``sky130_fd_pr__cap_var_lvt.model`` is a **MOS varactor** (voltage-dependent capacitor) built using LVT NMOS structure, useful for RF tuning.
 - ``sky130_fd_pr__cap_var_hvt.model`` is a similar **varactor** using HVT device for different threshold and leakage behavior.
 
+```
+* RC Charging Circuit with Pulse Input
+.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+
+V1      in      0       pulse(0 1.8 0 1p 1p 100p 200p)
+R1      in      out     4.45k
+XC1     out     0       sky130_fd_pr__cap_mim_m3_1 w=1 l=1
+
+.tran 0.1n 1n
+
+.control
+run
+plot v(in) v(out)
+.endc
+
+.end
+```
+
 ![Diagram](docs/Capacitor.JPG)
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
 | **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll | - | - |
 | sky130_fd_pr_cap_mim_m3_1 | 3.35f | 2.76f | 2.11f | 3.31f | 2.76f | 2.14f | 3.30f | 2.76f | 2.11f |
-| sky130_fd_pr_cap_mim_m3_2 |  |  |  |  |  |  |  |  |  |
+| sky130_fd_pr_cap_mim_m3_2 | 3.52f | 2.96f | 2.29f | 3.43f | 2.96f | 2.29f | 3.52f | 2.96f | 2.29f |
+
+### RC Circuits
+
