@@ -103,3 +103,8 @@ cd IC_Char
 
 ![Diagram](docs/Capacitor.JPG)
 
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
+| - | - | - | - | - | - | - | - | - | - | - | - |
+| **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll | - | - |
+| sky130_fd_pr_cap_mim_m3_1 | 3.35f | 2.76f | 2.11f | 3.31f | 2.76f | 2.14f | 3.30f | 2.76f | 2.11f |
+| sky130_fd_pr_cap_mim_m3_2 |  |  |  |  |  |  |  |  |  |
