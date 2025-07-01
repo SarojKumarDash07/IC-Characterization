@@ -312,3 +312,50 @@ where `τ` (tau) represents the **time constant** in seconds, indicating how qui
 | - | - | - | - | - | - | - | - | - | - |
 | **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll |
 | sky130_fd_pr__res_high_po_0p35 & sky130_fd_pr_cap_mim_m3_1 |  |  |  |  |  |  |  |  |  |
+
+## 4. MOSFET Circuits
+
+- A MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a three-terminal active device used for switching and amplification. Its current is controlled by the voltage applied to the gate terminal.
+- The MOSFET operates in three regions: cutoff, linear, and saturation, depending on gate-source (V<sub>GS</sub>) and drain-source (V<sub>DS</sub>) voltages.
+- In the Skywater SKY130 PDK, MOSFETs like `sky130_fd_pr__nfet_01v8` (NMOS) and `sky130_fd_pr__pfet_01v8` (PMOS) are commonly used. These are essential in digital logic, analog amplifiers, and switching applications.
+
+### 4.1 NMOS Analysis
+
+- A **NMOS** (N-type MOSFET) is a majority-carrier device where current flows between the drain and source when a positive voltage is applied to the gate. It acts as a voltage-controlled current source.
+- The drain current (I<sub>D</sub>) depends on the gate-to-source voltage (V<sub>GS</sub>), and its behavior changes across three regions:
+  - Cutoff: V<sub>GS</sub> < V<sub>th</sub>, I<sub>D</sub> ≈ 0
+  - Linear: V<sub>GS</sub> > V<sub>th</sub> and V<sub>DS</sub> < V<sub>GS</sub> − V<sub>th</sub>
+  - Saturation: V<sub>DS</sub> ≥ V<sub>GS</sub> − V<sub>th</sub>
+- The I<sub>D</sub>-V<sub>GS</sub> curve shows how the drain current increases with gate voltage (at constant V<sub>DS</sub>), helping identify the threshold voltage (V<sub>th</sub>), where the transistor starts conducting. This curve is essential for characterizing the device and is often used in DC sweep simulations.
+- In the Skywater SKY130 PDK, NMOS devices like `sky130_fd_pr__nfet_01v8` are used in logic gates, analog blocks, and current sources.
+
+```
+* nmos analysis
+
+.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.include "/home/sdash/share/pdk/sky130A/libs.ref/sky130_fd_pr/spice"
+.temp 25
+
+Vd      1       0       DC 1.8
+Vid     1       d       DC 0
+Vg      g       0       DC 0
+
+* NMOS: D G S B
+X1      d       g       0       0       sky130_fd_pr__nfet_01v8 w=0.42 l=1
+
+.control
+run
+save all
+
+*Uncomment these 2 lines for ID vs VGS Curve
+*dc vg 0 1.8 0.001 vd 0 1.8 0.1
+*plot  I(vid) xlabel "VGS (V)"  ylabel "ID (A)" title "ID vs VGS"
+
+*Uncomment these 2 lines for ID vs VDS Curve
+*dc vd 0 1.8 0.001 vg 0 1.8 0.1
+*plot  I(vid) xlabel "VDS (V)"  ylabel "ID (A)" title "ID vs VDS"
+
+.endc
+
+.end
+```
