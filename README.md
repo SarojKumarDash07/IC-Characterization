@@ -259,3 +259,10 @@ plot vdb(out)
 ```
 
 ![Diagram](docs/RC_ac.JPG)
+
+## Calculation of Cutoff Frequency (Hz)
+
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> |
+| - | - | - | - | - | - | - | - | - | - |
+| **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll |
+| sky130_fd_pr__res_high_po_0p35 (R) and sky130_fd_pr_cap_mim_m3_1 (C) | 7.32G | 10.05G | 16.91G | 7.39G | 10.57G | 16.66G | 7.37G | 10.37G | 15.99G |
