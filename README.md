@@ -235,3 +235,27 @@ plot v(in) v(out)
 ![Diagram](docs/RC_tran_PVT.JPG)
 
 ## 3.3.2 AC Analysis
+
+```
+* RC circuit AC analysis
+.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+V1      in      0       AC 1
+XR1     in      out     0       sky130_fd_pr__res_high_po_0p35  l=3.5
+XC1     out     0       sky130_fd_pr__cap_mim_m3_1 w=1 l=1
+
+* AC Simulation
+.ac dec 10 1 15g
+
+* Output commands
+.control
+run
+.meas ac f3db WHEN VDB(out) = -3 ; –3 dB cutoff frequency
+plot vdb(out)
+.endc
+
+.end
+```
+
+![Diagram](docs/RC_ac.JPG)
