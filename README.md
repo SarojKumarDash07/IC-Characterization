@@ -28,6 +28,9 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [3.4 CR Circuits](#34-cr-circuits)
      - [3.4.1 Transient Analysis](#341-transient-analysis)
      - [3.4.2 AC Analysis](#342-ac-analysis)
+- [4. MOSFET Circuits](#4-mosfet-circuits)
+  - [4.1 NMOS Analysis](#41-nmos-analysis)
+  - [4.2 PMOS Analysis](#42-pmos-analysis)
 
 ## 1. Tools and PDK setup
 
@@ -359,3 +362,10 @@ save all
 
 .end
 ```
+## I<sub>D</sub>-V<sub>GS</sub> curve
+![Diagram](docs/nmos_id_vgs.JPG)
+
+## I<sub>D</sub>-V<sub>DS</sub> curve
+![Diagram](docs/nmos_id_vds.JPG)
+
+### 4.2 PMOS Analysis
