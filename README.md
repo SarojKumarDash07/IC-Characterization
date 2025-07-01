@@ -380,7 +380,34 @@ save all
 - In the Skywater SKY130 PDK, PMOS devices like `sky130_fd_pr__pfet_01v8` are widely used in CMOS logic, analog switches, and current mirrors.
 
 ```
+* pmos analysis
 
+.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+* Bias sources
+VS      s       0       1.8 ; Source at 1.8 V 
+VG      g       0       0   ; Gate 
+VD      d       0       0   ; Drain at 0 V
+
+* PMOS: D  G  S  B
+X1 d g s s sky130_fd_pr__pfet_01v8 w=1 l=0.15
+
+.control
+run
+save all
+
+*Uncomment these 2 lines for ID vs VGS Curve
+*dc VG 0 1.8 0.01 VD 0 1.8 0.1
+*plot I(VD) xlabel "VGS (V)" ylabel "ID (A)" title "PMOS ID vs VGS"
+
+*Uncomment these 2 lines for ID vs VDS Curve
+*dc VD 0 1.8 0.01 VG 0 1.8 0.1
+*plot I(VD) xlabel "VDS (V)" ylabel "ID (A)" title "PMOS ID vs VDS"
+
+.endc
+
+.end
 ```
 ## I<sub>D</sub>-V<sub>GS</sub> curve
 ![Diagram](docs/pmos_id_vgs.JPG)
