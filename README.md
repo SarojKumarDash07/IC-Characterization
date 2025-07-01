@@ -138,6 +138,8 @@ print RES                             ; Print calculated resistance
 
 ![Diagram](docs/Resistor.JPG)
 
+## Calculation of Resistance Values
+
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
 | Types | hh | tt | ll | hh | tt | ll | hh | tt | ll | - | - |
@@ -182,6 +184,8 @@ plot v(in) v(out)
 - We manually calculated the cap values using `C = τ / R`, where `τ` is 63% of V(output).
 
 ![Diagram](docs/Capacitor.JPG)
+
+## Calculation of Resistance Values
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
