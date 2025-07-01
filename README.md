@@ -24,6 +24,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [3.2 Capacitors](#32-capacitors)
   - [3.3 RC Circuits](#33-rc-circuits)
      - [3.3.1 Transient Analysis](#331-transient-analysis)
+     - [3.3.2 AC Analysis](#332-ac-analysis)
 
 ## 1. Tools and PDK setup
 
@@ -230,5 +231,7 @@ plot v(in) v(out)
 ```
 
 ![Diagram](docs/RC_tran.JPG)
+
+![Diagram](docs/RC_tran_PVT.JPG)
 
 ## 3.3.2 AC Analysis
