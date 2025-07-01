@@ -219,13 +219,13 @@ plot v(in) v(out)
 .endc
 
 *Measure Time delays
-.meas tran rise TRIG V(out) VAL=0.18 RISE=1 TARG V(out) VAL=1.62 RISE=1
-.meas tran fall TRIG V(out) VAL=1.62 FALL=1 TARG V(out) VAL=0.18 FALL=1
-.meas tran rise_delay TRIG V(in) VAL=0.9 RISE=1 TARG V(out) VAL=0.9 RISE=1
-.meas tran fall_delay TRIG V(in) VAL=0.9 FALL=1 TARG V(out) VAL=0.9 FALL=1
+.meas tran rise        TRIG V(out) VAL=0.18 RISE=1 TARG V(out) VAL=1.62 RISE=1 ; rise‑time 10 % → 90 % at V(out)
+.meas tran fall        TRIG V(out) VAL=1.62 FALL=1 TARG V(out) VAL=0.18 FALL=1 ; fall‑time 90 % → 10 % at V(out)
+.meas tran rise_delay  TRIG V(in)  VAL=0.9  RISE=1 TARG V(out) VAL=0.9  RISE=1 ; tpd (low→high) 50 % V(in) → 50 % V(out)
+.meas tran fall_delay  TRIG V(in)  VAL=0.9  FALL=1 TARG V(out) VAL=0.9  FALL=1 ; tpd (high→low) 50 % V(in) → 50 % V(out)
 
 *Measure Max Voltage
-.meas tran VMAX MAX V(out)
+.meas tran VMAX MAX V(out) ; peak V(out) during transient
 
 .end
 ```
