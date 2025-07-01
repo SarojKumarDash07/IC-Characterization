@@ -314,7 +314,7 @@ where `τ` (tau) represents the **time constant** in seconds, indicating how qui
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> |
 | - | - | - | - | - | - | - | - | - | - |
 | **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll |
-| sky130_fd_pr__res_high_po_0p35 & sky130_fd_pr_cap_mim_m3_1 |  |  |  |  |  |  |  |  |  |
+| sky130_fd_pr_cap_mim_m3_1 & sky130_fd_pr__res_high_po_0p35 |  |  |  |  |  |  |  |  |  |
 
 ## 4. MOSFET Circuits
 
