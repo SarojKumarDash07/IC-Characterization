@@ -37,11 +37,6 @@ For the simulation of circuits we will need the following tools.
 
 [Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
 
-**Steps to install Ngspice** - 
-```
-Steps to be written
-```
-
 ### 1.2 PDK setup
 
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
@@ -52,11 +47,45 @@ Device Details: [docs](https://skywater-pdk.readthedocs.io/en/main/rules/device-
 
 ![image](https://user-images.githubusercontent.com/49194847/138075630-d1bdacac-d37b-45d3-88b5-80f118af37cd.png)
 
-**Steps to install SKY130 PDK** - 
+### 1.3 Install and Setup EDA Tools
+- Launch Ubuntu 24.04. `Press Windows Key → select Ubuntu 24.04.`
+- Update the system
 ```
-Steps to be written
+  sudo apt update && sudo apt upgrade -y
 ```
+- Clone the Github Repository
+```
+cd ~
+git clone https://github.com/silicon-vlsi/SI-2025-AnalogIC.git
 
+```
+- Copy & make install scripts executable
+```
+cp ~/SI-2025-AnalogIC/install*.sh .
+chmod +x install*.sh
+```
+- Install dependencies & EDA tools
+```
+./install-libs.sh
+./install-eda.sh
+```
+- Add EDA environment variables
+```
+cat ~/SI-2025-AnalogIC/bashrc-eda >> ~/.bashrc
+source ~/.bashrc
+```
+**Directory Structure** after installation should look like this:
+```bash
+share
+└── pdk
+cad
+├── eda-ngspice
+└── eda-xschem
+work
+└── xschem
+.xschem/
+└── simulations
+```
 ## 2. Writing a Netlist
 - To write a netlist in ``Ngspice`` we need to follow these steps.
 - Open terminal and enter your working directory and type the following code:
