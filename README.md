@@ -185,7 +185,7 @@ plot v(in) v(out)
 
 ![Diagram](docs/Capacitor.JPG)
 
-## Calculation of Resistance Values
+## Calculation of Capacitance Values
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
@@ -235,6 +235,8 @@ plot v(in) v(out)
 ```
 
 ![Diagram](docs/RC_tran.JPG)
+
+## Calculation of Rise, Fall and Propagation Delay
 
 ![Diagram](docs/RC_tran_PVT.JPG)
 
