@@ -17,6 +17,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [1. Tool and PDK Setup](#1-tools-and-pdk-setup)
   - [1.1 Tools Setup](#11-tools-setup)
   - [1.2 PDK Setup](#12-pdk-setup)
+  - [1.3 Install and Setup EDA Tools](#13-install-and-setup-eda-tools)
 - [2. Writing a Netlist](#2-writing-a-netlist)
 - [3. Linear Elements](#3-linear-elements)
   - [3.1 Resistors](#31-resistors)
