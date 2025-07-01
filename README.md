@@ -113,22 +113,22 @@ cd IC_Char
 ```
 Title: Resistor Simulation
 
-.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
-.temp 25
+.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt  ; Load SKY130 PDK model at typical corner
+.temp 25                                                                     ; Set simulation temperature to 25°C
 
-Vin     in      0       DC 1.8
-Vm      in      1       0V
-X1      1       0       vdd     sky130_fd_pr__res_high_po_0p35 L=3.5
-vsup    vdd     gnd     DC 1.8
+Vin     in      0       DC 1.8        ; Apply 1.8V to the resistor input
+Vm      in      1       0V            ; Zero-volt source used to measure current
+X1      1       0       vdd   sky130_fd_pr__res_high_po_0p35 L=3.5   ; Resistor instance (high-poly) with L=3.5µm
+vsup    vdd     gnd     DC 1.8        ; Body terminal of resistor tied to 1.8V supply
 
-.op
+.op                                   ; Perform DC operating point analysis
 
 .control
-run
-print v(in)             ; Voltage at 'in'
-print abs(i(Vm))            ; Current through Vin
-let RES = v(in)/abs(i(Vm))       ; Compute Resistance
-print RES
+run                                   ; Run the simulation
+print v(in)                           ; Display input voltage
+print abs(i(Vm))                      ; Display current through resistor (via Vm)
+let RES = v(in)/abs(i(Vm))           ; Calculate resistance using Ohm's Law
+print RES                             ; Print calculated resistance
 .endc
 
 .end
