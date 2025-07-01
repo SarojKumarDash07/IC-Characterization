@@ -368,4 +368,24 @@ save all
 ## I<sub>D</sub>-V<sub>DS</sub> curve
 ![Diagram](docs/nmos_id_vds.JPG)
 
+## Parameters across PVT
+
 ### 4.2 PMOS Analysis
+- A **PMOS** (P-type MOSFET) is a majority-carrier device where current flows between the source and drain when a negative voltage is applied to the gate. Like NMOS, it behaves as a voltage-controlled current source but with opposite polarity.
+- The drain current (I<sub>D</sub>) depends on the gate-to-source voltage (V<sub>GS</sub>), and its behavior changes across three regions:
+  - Cutoff: V<sub>GS</sub> > V<sub>th</sub>, I<sub>D</sub> ≈ 0
+  - Linear: V<sub>GS</sub> < V<sub>th</sub> and V<sub>SD</sub> < V<sub>SG</sub> − |V<sub>th</sub>|
+  - Saturation: V<sub>SD</sub> ≥ V<sub>SG</sub> − |V<sub>th</sub>|
+- The I<sub>D</sub>-V<sub>GS</sub> curve for a PMOS shows how drain current increases as gate voltage becomes more negative (at constant V<sub>DS</sub>), and helps extract the threshold voltage (V<sub>th</sub>), where the PMOS starts to conduct.
+- In the Skywater SKY130 PDK, PMOS devices like `sky130_fd_pr__pfet_01v8` are widely used in CMOS logic, analog switches, and current mirrors.
+
+```
+
+```
+## I<sub>D</sub>-V<sub>GS</sub> curve
+![Diagram](docs/pmos_id_vgs.JPG)
+
+## I<sub>D</sub>-V<sub>DS</sub> curve
+![Diagram](docs/pmos_id_vds.JPG)
+
+## Parameters across PVT
