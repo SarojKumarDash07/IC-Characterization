@@ -23,6 +23,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [3.1 Resistors](#31-resistors)
   - [3.2 Capacitors](#32-capacitors)
   - [3.3 RC Circuits](#33-rc-circuits)
+     - [3.3.1 Transient Analysis](#331-transient-analysis)
 
 ## 1. Tools and PDK setup
 
@@ -101,7 +102,7 @@ cd IC_Char
 ### 3.1 Resistors
 
 - A **resistor** is a passive electrical component that resists the flow of electric current, producing a voltage drop across its terminals according to **Ohm's Law**:   `` V = I * R ``
-
+- The resistance R of a material depends on its physical properties and geometry, given by the formula: `` R = ρL / A ``
 - In the **Skywater SKY130 PDK**, multiple resistor types are available for analog and digital IC design, offering different resistance values, temperature characteristics, and area trade-offs.
 
 #### Types of Resistors available :
@@ -148,6 +149,7 @@ print RES                             ; Print calculated resistance
 ### 3.2 Capacitors
 
 - A **capacitor** is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where `C` is the capacitance in Farads.
+- The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the plates, given by the formula: `` C = εA / d ``
 
 - In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs, each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
 
@@ -176,6 +178,7 @@ plot v(in) v(out)
 
 .end
 ```
+- We manually calculated the cap values using `C = τ / R`, where `τ` is 63% of V(output).
 
 ![Diagram](docs/Capacitor.JPG)
 
@@ -194,6 +197,8 @@ where `τ` (tau) represents the **time constant** in seconds, indicating how qui
 - In the **Skywater SKY130 PDK**, **RC circuits** are implemented using integrated resistors (e.g., `sky130_fd_pr__res_high_po`) and capacitors (e.g., `sky130_fd_pr__cap_mim_m3_1`). These are critical in analog and mixed-signal design applications such as filters, timing circuits, and analog front ends.
 
 ![Diagram](docs/RC.JPG)
+
+## 3.3.1 Transient Analysis
 
 ```
 Title: RC Ckt Simulation using SKY130 model
@@ -225,3 +230,5 @@ plot v(in) v(out)
 ```
 
 ![Diagram](docs/RC_tran.JPG)
+
+## 3.3.2 AC Analysis
