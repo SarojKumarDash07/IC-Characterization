@@ -416,3 +416,73 @@ save all
 ![Diagram](docs/pmos_id_vds.JPG)
 
 ## Parameters across PVT
+```
+* common source
+
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" sf
+.temp 125
+
+Vdd n1 0 dc 1.8
+R1 n1 n2 1k
+V1 n2 n3 dc 0
+XM1 n3  gate 0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42
+vg gate 0 dc 1.8
+
+.control
+run
+* high input impedence infinite between gate and source
+*dc Vg 0 1.8 0.01
+*plot i(Vg)
+*high output impedence between drain and source
+*dc Vdd 0 1.8 0.01
+*plot  i(V1)
+.endc
+.end
+```
+
+```
+* common drain
+
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 25
+
+Vdd drain 0 dc 1.8
+Vg gate 0 dc 1.8
+XM1 drain  gate n1 0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42
+R1 n1 0 1k
+V1 drain n1 dc 0
+
+.control
+run
+* high input impedence infinite between gate and drain
+*dc Vg 0 1.8 0.01
+*plot  i(Vg)
+*low output impedence between source and drain
+*dc Vdd 0 1.8 0.01
+*plot i(V1)
+.endc
+.end
+```
+
+```
+* common gate
+
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 25
+
+Vdd drain 0 dc 1.8
+Vg gate 0 dc 1.8
+XM1 drain  gate 0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42
+*V1 n1 0  dc 1.8
+
+.control
+run
+* low input impedence between source and gate
+*dc V1 0 1.8 0.01
+*plot  i(V1)
+*high output impedence infinite between drain and gate
+*dc Vdd 0 1.8 0.01
+*plot i(Vg)
+.endc
+.end
+```
