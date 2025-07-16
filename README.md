@@ -416,6 +416,10 @@ save all
 ![Diagram](docs/pmos_id_vds.JPG)
 
 ## Parameters across PVT
+
+## Amplifiers
+
+### Common Source
 ```
 * common source
 
@@ -439,11 +443,12 @@ run
 .endc
 .end
 ```
-### input impedence
+### Input impedence
 ![Diagram](docs/inputimpedencecs.png)
-### output impedence
+### Output impedence
 ![Diagram](docs/outputimpedencecs.png)
 
+### Common Drain
 ```
 * common drain
 
@@ -467,11 +472,12 @@ run
 .endc
 .end
 ```
-### input impedence
+### Input impedence
 ![Diagram](docs/inputimpedencecd.png)
-### output impedence
+### Output impedence
 ![Diagram](docs/outputimpedencecd.png)
 
+### Common Gate
 ```
 * common gate
 
@@ -494,7 +500,7 @@ run
 .endc
 .end
 ```
-### input impedence
+### Input impedence
 ![Diagram](docs/inputimpedencecg.png)
-### output impedence
+### Output impedence
 ![Diagram](docs/outputimpedencecg.png)
