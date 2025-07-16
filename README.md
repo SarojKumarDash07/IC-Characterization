@@ -486,3 +486,4 @@ run
 .endc
 .end
 ```
+![Diagram](docs/outputimpedencecg.png)
