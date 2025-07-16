@@ -439,6 +439,8 @@ run
 .endc
 .end
 ```
+![Diagram](docs/inputimpedencecs.png)
+![Diagram](docs/outputimpedencecs.png)
 
 ```
 * common drain
@@ -463,6 +465,8 @@ run
 .endc
 .end
 ```
+![Diagram](docs/inputimpedencecd.png)
+![Diagram](docs/outputimpedencecd.png)
 
 ```
 * common gate
@@ -486,4 +490,5 @@ run
 .endc
 .end
 ```
+![Diagram](docs/inputimpedencecg.png)
 ![Diagram](docs/outputimpedencecg.png)
