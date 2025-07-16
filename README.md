@@ -439,7 +439,9 @@ run
 .endc
 .end
 ```
+### input impedence
 ![Diagram](docs/inputimpedencecs.png)
+### output impedence
 ![Diagram](docs/outputimpedencecs.png)
 
 ```
@@ -465,7 +467,9 @@ run
 .endc
 .end
 ```
+### input impedence
 ![Diagram](docs/inputimpedencecd.png)
+### output impedence
 ![Diagram](docs/outputimpedencecd.png)
 
 ```
@@ -490,5 +494,7 @@ run
 .endc
 .end
 ```
+### input impedence
 ![Diagram](docs/inputimpedencecg.png)
+### output impedence
 ![Diagram](docs/outputimpedencecg.png)
