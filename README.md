@@ -419,7 +419,7 @@ save all
 
 ## Amplifiers
 
-### Common Source
+## Common Source
 ```
 * common source
 
@@ -434,7 +434,7 @@ vg gate 0 dc 1.8
 
 .control
 run
-* high input impedence infinite between gate and source
+* high input impedence infinity between gate and source
 *dc Vg 0 1.8 0.01
 *plot i(Vg)
 *high output impedence between drain and source
@@ -443,12 +443,20 @@ run
 .endc
 .end
 ```
+### Calculation of input and output impedence
+
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
+| - | - | - | - | - | - | - | - | - | - | 
+| Types | ss | tt | ff | ss | tt | ff | ss | tt | ff | 
+| Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+| Output Impedence | 289.49k | 278.26k | 266.32k | 395.56k | 198.03k | 156.9k | 492.17k | 326.21k | 285.06k |
+
 ### Input impedence
 ![Diagram](docs/inputimpedencecs.png)
 ### Output impedence
 ![Diagram](docs/outputimpedencecs.png)
 
-### Common Drain
+## Common Drain
 ```
 * common drain
 
@@ -463,7 +471,7 @@ V1 drain n1 dc 0
 
 .control
 run
-* high input impedence infinite between gate and drain
+* high input impedence infinity between gate and drain
 *dc Vg 0 1.8 0.01
 *plot  i(Vg)
 *low output impedence between source and drain
@@ -472,12 +480,20 @@ run
 .endc
 .end
 ```
+### Calculation of input and output impedence
+
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
+| - | - | - | - | - | - | - | - | - | - | 
+| Types | ss | tt | ff | ss | tt | ff | ss | tt | ff | 
+| Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+| Output Impedence | 1.006k | 1.027k | 0.99k | 1.018k | 0.995k | 0.999k | 1.003k | 1.028k | 1.014k |
+
 ### Input impedence
 ![Diagram](docs/inputimpedencecd.png)
 ### Output impedence
 ![Diagram](docs/outputimpedencecd.png)
 
-### Common Gate
+## Common Gate
 ```
 * common gate
 
@@ -494,12 +510,20 @@ run
 * low input impedence between source and gate
 *dc V1 0 1.8 0.01
 *plot  i(V1)
-*high output impedence infinite between drain and gate
+*high output impedence infinity between drain and gate
 *dc Vdd 0 1.8 0.01
 *plot i(Vg)
 .endc
 .end
 ```
+### Calculation of input and output impedence
+
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
+| - | - | - | - | - | - | - | - | - | - | 
+| Types | ss | tt | ff | ss | tt | ff | ss | tt | ff |
+| Input Impedence | 13.28k | 10.94k | 9.08k | 16.43k | 12.73k | 9.938k | 25.94k | 20.12k | 15.36k |
+| Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+
 ### Input impedence
 ![Diagram](docs/inputimpedencecg.png)
 ### Output impedence
