@@ -31,24 +31,31 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [4. MOSFET Circuits](#4-mosfet-circuits)
   - [4.1 NMOS Analysis](#41-nmos-analysis)
   - [4.2 PMOS Analysis](#42-pmos-analysis)
-- [5. Current Mirror](#5-current-mirror)
-  - [5.1 Simple Current Mirror](#51-simple-current-mirror)
+- [6. Current Mirror](#5-current-mirror)
+  - [6.1 Simple Current Mirror](#61-simple-current-mirror)
+  - [6.2 Cascode Current Mirror](#62-cascode-current-mirror)
+  - [6.3 Wide Swing Cascode Current Mirror](#63-wide-swing-cascode-current-mirror)
+  - [6.4 Self Biased Wide Swing Cascode Current Mirror](#64-self-biased-wide-swing-cascode-current-mirror)
+- [7. Single Stage Amplifiers](#7-single-stage-amplifiers)
+  - [7.1 Common Source Amplifier](#71-common-source-amplifier)
+  - [7.2 Common Drain Amplifier](#72-common-drain-amplifier)
+  - [7.3 Common Gate Amplifier](#73-common-gate-amplifier)
+  
+# 1. Tools and PDK setup
 
-## 1. Tools and PDK setup
-
-### 1.1 Tools setup
+## 1.1 Tools setup
 For the simulation of circuits we will need the following tools.
 - Spice netlist simulation - [[Ngspice](https://ngspice.sourceforge.io/)]
 - Schematic Editor - [[Xschem](https://xschem.sourceforge.io/stefan/index.html)]
 
-#### Ngspice
+### Ngspice
 ![image](https://user-images.githubusercontent.com/49194847/138070431-d95ce371-db3b-43a1-8dbe-fa85bff53625.png)
 
 [Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
 
 [Ngspice Reference Manual](https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml): Complete reference manual in HTML format.
 
-### 1.2 PDK setup
+## 1.2 PDK setup
 
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
 
@@ -58,7 +65,7 @@ Device Details: [docs](https://skywater-pdk.readthedocs.io/en/main/rules/device-
 
 ![image](https://user-images.githubusercontent.com/49194847/138075630-d1bdacac-d37b-45d3-88b5-80f118af37cd.png)
 
-### 1.3 Install and Setup EDA Tools
+## 1.3 Install and Setup EDA Tools
 - Launch Ubuntu 24.04. `Press Windows Key → select Ubuntu 24.04.`
 - Update the system
 ```
@@ -97,7 +104,7 @@ work
 .xschem/
 └── simulations
 ```
-## 2. Writing a Netlist
+# 2. Writing a Netlist
 - To write a netlist in ``Ngspice`` we need to follow these steps.
 - Open terminal and enter your working directory and type the following code:
 ```
@@ -108,13 +115,13 @@ cd IC_Char
 
 ## 3. Linear Elements
 
-### 3.1 Resistors
+## 3.1 Resistors
 
 - A **resistor** is a passive electrical component that resists the flow of electric current, producing a voltage drop across its terminals according to **Ohm's Law**:   `` V = I * R ``
 - The resistance R of a material depends on its physical properties and geometry, given by the formula: `` R = ρL / A ``
 - In the **Skywater SKY130 PDK**, multiple resistor types are available for analog and digital IC design, offering different resistance values, temperature characteristics, and area trade-offs.
 
-#### Types of Resistors available :
+### Types of Resistors available :
 - ``sky130_fd_pr__res_high_po.model`` has base models with *0.35u, 0.69u, 1.41u, 2.85u, 5.73u* as **bin width** (fixed) with changable lengths. 
 - ``sky130_fd_pr__res_xhigh_po.model`` also has base models with *0.35u, 0.69u, 1.41u, 2.85u, 5.73u* as **bin width** (fixed) with changable lengths.
 - ``sky130_fd_pr__res_generic_nd.model`` is a Generic N-diff type resister.
@@ -146,7 +153,7 @@ print RES                             ; Print calculated resistance
 
 ![Diagram](docs/Resistor.JPG)
 
-## Calculation of Resistance Values
+### Calculation of Resistance Values
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
@@ -157,14 +164,14 @@ print RES                             ; Print calculated resistance
 | sky130_fd_pr_res_high_po_2p85 | 3.73k | 3.27k | 2.81k | 3.83k | 3.36k | 2.89k | 4.06k | 3.57k | 3.07k |
 | sky130_fd_pr_res_high_po_5p73 | 3.65k | 3.20k | 2.76k | 3.75k | 3.30k | 2.84k | 3.99k | 3.50k | 3.01k |
 
-### 3.2 Capacitors
+## 3.2 Capacitors
 
 - A **capacitor** is a passive electrical component that stores energy in the form of an electric field, defined by the relation: `` Q = C * V ``, where `C` is the capacitance in Farads.
 - The capacitance C of a parallel-plate capacitor depends on its physical structure and the material between the plates, given by the formula: `` C = εA / d ``
 
 - In the **Skywater SKY130 PDK**, various capacitor types are available for use in analog, RF, and digital designs, each offering trade-offs in capacitance density, linearity, voltage rating, and temperature stability.
 
-#### Types of Capacitors available:
+### Types of Capacitors available:
 - ``sky130_fd_pr__cap_mim_m3_1.model`` is a **Metal-Insulator-Metal (MIM)** capacitor between **Metal3 and Metal2**, suitable for analog precision applications.
 - ``sky130_fd_pr__cap_mim_m3_2.model`` is another **MIM** capacitor variant with different area usage and parasitic trade-offs.
 - ``sky130_fd_pr__cap_mim_m2_1.model`` defines a MIM capacitor between **Metal2 and Metal1** layers.
@@ -193,7 +200,7 @@ plot v(in) v(out)
 
 ![Diagram](docs/Capacitor.JPG)
 
-## Calculation of Capacitance Values
+### Calculation of Capacitance Values
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | Process Variation | TempCo |
 | - | - | - | - | - | - | - | - | - | - | - | - |
@@ -201,7 +208,7 @@ plot v(in) v(out)
 | sky130_fd_pr_cap_mim_m3_1 | 3.35f | 2.76f | 2.11f | 3.31f | 2.76f | 2.14f | 3.30f | 2.76f | 2.11f |
 | sky130_fd_pr_cap_mim_m3_2 | 3.52f | 2.96f | 2.29f | 3.43f | 2.96f | 2.29f | 3.52f | 2.96f | 2.29f |
 
-### 3.3 RC Circuits
+## 3.3 RC Circuits
 
 - An **RC circuit** is an electric circuit composed of **resistors (R)** and **capacitors (C)**, which exhibit a time-dependent response to voltage or current changes. The fundamental time constant is defined as:  
 `τ = R * C`,
@@ -244,7 +251,7 @@ plot v(in) v(out)
 
 ![Diagram](docs/RC_tran.JPG)
 
-## Calculation of Rise, Fall and Propagation Delay
+### Calculation of Rise, Fall and Propagation Delay
 
 ![Diagram](docs/RC_tran_PVT.JPG)
 
@@ -274,14 +281,14 @@ plot vdb(out)
 
 ![Diagram](docs/RC_ac.JPG)
 
-## Calculation of Cutoff Frequency (Hz)
+### Calculation of Cutoff Frequency (Hz)
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> |
 | - | - | - | - | - | - | - | - | - | - |
 | **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll |
 | sky130_fd_pr__res_high_po_0p35 & sky130_fd_pr_cap_mim_m3_1 | 7.32G | 10.05G | 16.91G | 7.39G | 10.57G | 16.66G | 7.37G | 10.37G | 15.99G |
 
-### 3.4 CR Circuits
+## 3.4 CR Circuits
 
 - A **Cr circuit** is essentially the same as an RC circuit, but with the capacitor (C) placed before the resistor (R) in the signal path. While electrically the time constant remains the same, the circuit response differs, especially in transient analysis. The fundamental time constant is defined as:  
 `τ = R * C`,
@@ -299,7 +306,7 @@ where `τ` (tau) represents the **time constant** in seconds, indicating how qui
 
 ![Diagram](docs/CR_tran.JPG)
 
-## Calculation of Rise, Fall and Propagation Delay
+### Calculation of Rise, Fall and Propagation Delay
 
 ![Diagram](docs/CR_tran_PVT.JPG)
 
@@ -311,20 +318,20 @@ where `τ` (tau) represents the **time constant** in seconds, indicating how qui
 
 ![Diagram](docs/CR_ac.JPG)
 
-## Calculation of Cutoff Frequency (Hz)
+### Calculation of Cutoff Frequency (Hz)
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> |
 | - | - | - | - | - | - | - | - | - | - |
 | **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll |
 | sky130_fd_pr_cap_mim_m3_1 & sky130_fd_pr__res_high_po_0p35 |  |  |  |  |  |  |  |  |  |
 
-## 4. MOSFET Circuits
+# 4. MOSFET Circuits
 
 - A MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a three-terminal active device used for switching and amplification. Its current is controlled by the voltage applied to the gate terminal.
 - The MOSFET operates in three regions: cutoff, linear, and saturation, depending on gate-source (V<sub>GS</sub>) and drain-source (V<sub>DS</sub>) voltages.
 - In the Skywater SKY130 PDK, MOSFETs like `sky130_fd_pr__nfet_01v8` (NMOS) and `sky130_fd_pr__pfet_01v8` (PMOS) are commonly used. These are essential in digital logic, analog amplifiers, and switching applications.
 
-### 4.1 NMOS Analysis
+## 4.1 NMOS Analysis
 
 - A **NMOS** (N-type MOSFET) is a majority-carrier device where current flows between the drain and source when a positive voltage is applied to the gate. It acts as a voltage-controlled current source.
 - The drain current (I<sub>D</sub>) depends on the gate-to-source voltage (V<sub>GS</sub>), and its behavior changes across three regions:
@@ -364,15 +371,15 @@ save all
 
 .end
 ```
-## I<sub>D</sub>-V<sub>GS</sub> curve
+### I<sub>D</sub>-V<sub>GS</sub> curve
 ![Diagram](docs/nmos_id_vgs.JPG)
 
-## I<sub>D</sub>-V<sub>DS</sub> curve
+### I<sub>D</sub>-V<sub>DS</sub> curve
 ![Diagram](docs/nmos_id_vds.JPG)
 
-## Parameters across PVT
+### Parameters across PVT
 
-### 4.2 PMOS Analysis
+## 4.2 PMOS Analysis
 - A **PMOS** (P-type MOSFET) is a majority-carrier device where current flows between the source and drain when a negative voltage is applied to the gate. Like NMOS, it behaves as a voltage-controlled current source but with opposite polarity.
 - The drain current (I<sub>D</sub>) depends on the gate-to-source voltage (V<sub>GS</sub>), and its behavior changes across three regions:
   - Cutoff: V<sub>GS</sub> > V<sub>th</sub>, I<sub>D</sub> ≈ 0
@@ -411,23 +418,23 @@ save all
 
 .end
 ```
-## I<sub>D</sub>-V<sub>GS</sub> curve
+### I<sub>D</sub>-V<sub>GS</sub> curve
 ![Diagram](docs/pmos_id_vgs.JPG)
 
-## I<sub>D</sub>-V<sub>DS</sub> curve
+### I<sub>D</sub>-V<sub>DS</sub> curve
 ![Diagram](docs/pmos_id_vds.JPG)
 
-## Parameters across PVT
+### Parameters across PVT
 
-# 5 Current Mirror
+# 6. Current Mirror
 
-## 5.1 Simple Current Mirror
+## 6.1 Simple Current Mirror
 ![Diagram](docs/Simp_nmos.JPG)
-## 5.2 Cascode Current Mirror
+## 6.2 Cascode Current Mirror
 ![Diagram](docs/cascode_nmos.JPG)
-## 5.3 Wide Swing Cascode Current Mirror
+## 6.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
-## 5.4 Self Biased Wide Swing Current Mirror
+## 6.4 Self Biased Wide Swing Cascode Current Mirror
 ![Diagram](docs/SelfBias_nmos.JPG)
 
 # 6 Amplifiers
