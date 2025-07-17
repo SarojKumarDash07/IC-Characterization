@@ -417,24 +417,20 @@ save all
 
 ## Parameters across PVT
 
-# Current Mirror
+# 5 Current Mirror
 
-## Parameters across PVT
-
-# 5.1 Current Mirror
-
-## 5.1.1 Simple Current Mirror
+## 5.1 Simple Current Mirror
 ![Diagram](docs/Simp_nmos.JPG)
-## 5.1.2 Cascode Current Mirror
+## 5.2 Cascode Current Mirror
 ![Diagram](docs/cascode_nmos.JPG)
-## 5.1.3 Wide Swing Cascode Current Mirror
+## 5.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
-## 5.1.4 Self Biased Wide Swing Current Mirror
+## 5.4 Self Biased Wide Swing Current Mirror
 ![Diagram](docs/SelfBias_nmos.JPG)
 
-## Amplifiers
+# 6 Amplifiers
 
-## Common Source
+## 6.1 Common Source Amplifier
 ```
 * common source
 
@@ -471,7 +467,7 @@ run
 ### Output impedence
 ![Diagram](docs/outputimpedencecs.png)
 
-## Common Drain
+## 6.2 Common Drain Amplifier
 ```
 * common drain
 
@@ -508,7 +504,7 @@ run
 ### Output impedence
 ![Diagram](docs/outputimpedencecd.png)
 
-## Common Gate
+## 6.3 Common Gate Amplifier
 ```
 * common gate
 
