@@ -31,6 +31,8 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [4. MOSFET Circuits](#4-mosfet-circuits)
   - [4.1 NMOS Analysis](#41-nmos-analysis)
   - [4.2 PMOS Analysis](#42-pmos-analysis)
+- [5. Current Mirror](#5-current-mirror)
+  - [5.1 Simple Current Mirror](#51-simple-current-mirror)
 
 ## 1. Tools and PDK setup
 
