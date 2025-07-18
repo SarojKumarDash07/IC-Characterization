@@ -430,12 +430,207 @@ save all
 
 ## 6.1 Simple Current Mirror
 ![Diagram](docs/Simp_nmos.JPG)
+```
+* To find the input impedence ofcurrent mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Iref drain n1 dc 100u
+Vdd drain 0 dc 1.8
+XM1 n1 n1  0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc Iref 0 100u 0.01u
+run
+plot  v(n1)
+.endc
+.end
+```
+```
+* Output impedence of current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vgs n1 0 dc 1.042 ;1.042 comes from Vinmin+Vt
+Vd drain1 0 dc 1.8
+XM12 drain1  n1  0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc Vd 0 1.8 0.01
+run
+plot  -i(Vd)
+.endc
+.end
+```
+```
+*gain of current mirror
+
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+I1 0 n1 100u
+V1 n2 0 1.8
+X1 n1 n1 0 0  sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+X2 n2 n1 0 0  sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+
+.control
+dc I1 0 100u 0.01u
+run
+plot abs(i(V1))
+.endc
+.end
+```
 ## 6.2 Cascode Current Mirror
 ![Diagram](docs/cascode_nmos.JPG)
+```
+*input impedence of cascode current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Iref drain n1 dc 100u
+Vdd drain 0 dc 1.8
+XM1 n1  n1  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM12 n2 n2   0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc Iref 0 100u 0.01u
+plot  v(n1) v(n2)
+.endc
+.end
+```
+```
+* output impedence of cascode current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd drain 0 dc 1.8
+Vgs1 n1 0 2.029
+Vgs2 n2 0 1.208
+XM2 drain n1  n3  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM21 n3  n2  0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc Vdd 0 1.8 0.01
+plot  abs(i(Vdd))
+.endc
+.end
+```
+```
+* gain of cascode current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Iref drain n1 dc 100u
+Vdd drain 0 dc 1.8
+XM1 n1  n1  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM12 n2 n2   0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+Vd drain1 0 dc 1.8
+XM2 drain1 n1  n3  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM21 n3  n2  0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc Iref 0 100u 0.01u
+plot  abs(i(Vd))
+.endc
+.end
+```
 ## 6.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
+```
+*input impedence of wide swing current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+I1      0       n1      50u
+X1      n1      n1      0       0       sky130_fd_pr__nfet_01v8_lvt l=4 w=0.42 m=10
+I2      0       n2      50u
+X2      n2      n1      n3      0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+X3      n3      n2      0       0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+.control
+run
+dc I1 0 50u 0.01u
+plot v(n1)
+dc I2 0 50u 0.01u
+plot v(n2)
+.endc
+.end
+```
+```
+* output impedence of wide swing current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vgs1    n1      0       2.491
+Vgs2    n2      0       1.254
+X4      n4      n1      n5      0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+X5      n5      n2      0       0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+Vt      n4      0       1.8
+.control
+run
+dc Vt 0 1.8 0.01
+plot abs(i(Vt))
+.endc
+.end
+```
+```
+* gain of wide swing current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+I1      0       n1      50u
+X1      n1      n1      0       0       sky130_fd_pr__nfet_01v8_lvt l=4 w=0.42 m=10
+I2      0       n2      50u
+X2      n2      n1      n3      0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+X3      n3      n2      0       0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+X4      n4      n1      n5      0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+X5      n5      n2      0       0       sky130_fd_pr__nfet_01v8_lvt l=1 w=0.42 m=10
+Vt      n4      0       1.8
+.control
+run
+dc I1 0 50u 0.01u
+dc I2 0 50u 0.01u
+plot abs(i(Vt))
+.endc
+.end
+```
 ## 6.4 Self Biased Wide Swing Cascode Current Mirror
 ![Diagram](docs/SelfBias_nmos.JPG)
+```
+* input impedence of self bias current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+I1      0       n1      100u
+R1      n1      n2      2k
+XM1     n2      n1      n3      0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM2     n3      n2      0       0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc I1  0 100u  0.01u
+run
+plot  v(n2) v(n1)
+.endc
+.end
+```
+```
+* output impedence of self bias current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vm      n5      0       1.8
+Vgs1    n1      0       2.059
+Vgs2    n2      0       1.232
+XM3     n5      n1      n6       0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM4     n6      n2      0       0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc Vm 0 1.8 0.01
+run
+plot  abs(i(Vm))
+.endc
+.end
+```
+```
+* gain of self bias current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" sf
+.temp 25
+I1      0       n1      100u
+R1      n1      n2      2k
+Vm      n5      0       1.8
+XM1     n2      n1      n3      0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM2     n3      n2      0       0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM3     n5      n1      n6       0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+XM4     n6      n2      0       0       sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42 m=10
+.control
+dc I1  0 100u  0.01u
+run
+plot  -i(Vm)
+.endc
+.end
+```
 
 # 6 Amplifiers
 
