@@ -444,6 +444,7 @@ plot  v(n1)
 .endc
 .end
 ```
+![Diagram](docs/input_cm.png)
 ```
 * Output impedence of current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -458,6 +459,7 @@ plot  -i(Vd)
 .endc
 .end
 ```
+![Diagram](docs/output_cm.png)
 ```
 *gain of current mirror
 
@@ -492,6 +494,7 @@ plot  v(n1) v(n2)
 .endc
 .end
 ```
+![Diagram](docs/inputimpedencecascode.png)
 ```
 * output impedence of cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -507,6 +510,7 @@ plot  abs(i(Vdd))
 .endc
 .end
 ```
+![Diagram](docs/outputimpedencecadcode.png)
 ```
 * gain of cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -524,6 +528,7 @@ plot  abs(i(Vd))
 .endc
 .end
 ```
+![Diagram](docs/gain_cascode.png)
 ## 6.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
 ```
@@ -544,6 +549,9 @@ plot v(n2)
 .endc
 .end
 ```
+![Diagram](docs/inputimpedencewideswing.png)
+
+![Diagram](docs/ipimpedencewideswing.png)
 ```
 * output impedence of wide swing current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -560,6 +568,7 @@ plot abs(i(Vt))
 .endc
 .end
 ```
+![Diagram](docs/outputimpedencewideswing.png)
 ```
 * gain of wide swing current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -580,6 +589,7 @@ plot abs(i(Vt))
 .endc
 .end
 ```
+![Diagram](docs/wideswinggain.png)
 ## 6.4 Self Biased Wide Swing Cascode Current Mirror
 ![Diagram](docs/SelfBias_nmos.JPG)
 ```
@@ -597,6 +607,7 @@ plot  v(n2) v(n1)
 .endc
 .end
 ```
+![Diagram](docs/inputimpedenceselfbias.png)
 ```
 * output impedence of self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -613,6 +624,7 @@ plot  abs(i(Vm))
 .endc
 .end
 ```
+![Diagram](docs/outputimpedenceselfbias.png)
 ```
 * gain of self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" sf
@@ -631,6 +643,7 @@ plot  -i(Vm)
 .endc
 .end
 ```
+![Diagram](docs/selfbiasgain.png)
 
 # 6 Amplifiers
 
