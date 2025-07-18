@@ -430,6 +430,7 @@ save all
 
 ## 6.1 Simple Current Mirror
 ![Diagram](docs/Simp_nmos.JPG)
+### Input Impedence
 ```
 * To find the input impedence ofcurrent mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -445,6 +446,7 @@ plot  v(n1)
 .end
 ```
 ![Diagram](docs/input_cm.png)
+### Output Impedence
 ```
 * Output impedence of current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -460,6 +462,7 @@ plot  -i(Vd)
 .end
 ```
 ![Diagram](docs/output_cm.png)
+### Gain
 ```
 *gain of current mirror
 
@@ -478,8 +481,10 @@ plot abs(i(V1))
 .endc
 .end
 ```
+![Diagram](docs/gain_scm.png)
 ## 6.2 Cascode Current Mirror
 ![Diagram](docs/cascode_nmos.JPG)
+### Input Impedence
 ```
 *input impedence of cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -495,6 +500,7 @@ plot  v(n1) v(n2)
 .end
 ```
 ![Diagram](docs/inputimpedencecascode.png)
+### Output Impedence
 ```
 * output impedence of cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -511,6 +517,7 @@ plot  abs(i(Vdd))
 .end
 ```
 ![Diagram](docs/outputimpedencecadcode.png)
+### Gain
 ```
 * gain of cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -531,6 +538,7 @@ plot  abs(i(Vd))
 ![Diagram](docs/gain_cascode.png)
 ## 6.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
+### Input Impedence
 ```
 *input impedence of wide swing current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -552,6 +560,7 @@ plot v(n2)
 ![Diagram](docs/inputimpedencewideswing.png)
 
 ![Diagram](docs/ipimpedencewideswing.png)
+### Output Impedence
 ```
 * output impedence of wide swing current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -569,6 +578,7 @@ plot abs(i(Vt))
 .end
 ```
 ![Diagram](docs/outputimpedencewideswing.png)
+### Gain
 ```
 * gain of wide swing current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -592,6 +602,7 @@ plot abs(i(Vt))
 ![Diagram](docs/wideswinggain.png)
 ## 6.4 Self Biased Wide Swing Cascode Current Mirror
 ![Diagram](docs/SelfBias_nmos.JPG)
+### Input Impedence
 ```
 * input impedence of self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -608,6 +619,7 @@ plot  v(n2) v(n1)
 .end
 ```
 ![Diagram](docs/inputimpedenceselfbias.png)
+### Output Impedence
 ```
 * output impedence of self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -625,6 +637,7 @@ plot  abs(i(Vm))
 .end
 ```
 ![Diagram](docs/outputimpedenceselfbias.png)
+### Gain
 ```
 * gain of self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" sf
