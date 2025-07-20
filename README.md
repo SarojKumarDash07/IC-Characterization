@@ -113,7 +113,7 @@ cd IC_Char
 ```
 - Make a new file ``vim file_name.sp`` to open a spice file (`.sp` is the file extension) with ``vim`` as a **Text Editor**. 
 
-## 3. Linear Elements
+# 3. Linear Elements
 
 ## 3.1 Resistors
 
@@ -218,7 +218,7 @@ where `τ` (tau) represents the **time constant** in seconds, indicating how qui
 
 ![Diagram](docs/RC.JPG)
 
-## 3.3.1 Transient Analysis
+### 3.3.1 Transient Analysis
 
 ```
 Title: RC Ckt Simulation using SKY130 model
@@ -430,6 +430,7 @@ save all
 
 ## 6.1 Simple Current Mirror
 ![Diagram](docs/Simp_nmos.JPG)
+
 ### Input Impedence
 ```
 * To find the input impedence ofcurrent mirror
@@ -446,6 +447,7 @@ plot  v(n1)
 .end
 ```
 ![Diagram](docs/input_cm.png)
+
 ### Output Impedence
 ```
 * Output impedence of current mirror
@@ -462,6 +464,7 @@ plot  -i(Vd)
 .end
 ```
 ![Diagram](docs/output_cm.png)
+
 ### Gain
 ```
 *gain of current mirror
@@ -482,8 +485,10 @@ plot abs(i(V1))
 .end
 ```
 ![Diagram](docs/gain_scm.png)
+
 ## 6.2 Cascode Current Mirror
 ![Diagram](docs/cascode_nmos.JPG)
+
 ### Input Impedence
 ```
 *input impedence of cascode current mirror
@@ -500,6 +505,7 @@ plot  v(n1) v(n2)
 .end
 ```
 ![Diagram](docs/inputimpedencecascode.png)
+
 ### Output Impedence
 ```
 * output impedence of cascode current mirror
@@ -517,6 +523,7 @@ plot  abs(i(Vdd))
 .end
 ```
 ![Diagram](docs/outputimpedencecadcode.png)
+
 ### Gain
 ```
 * gain of cascode current mirror
@@ -536,8 +543,10 @@ plot  abs(i(Vd))
 .end
 ```
 ![Diagram](docs/gain_cascode.png)
+
 ## 6.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
+
 ### Input Impedence
 ```
 *input impedence of wide swing current mirror
@@ -557,9 +566,9 @@ plot v(n2)
 .endc
 .end
 ```
+![Diagram](docs/ipimpedencewideswing.png)
 ![Diagram](docs/inputimpedencewideswing.png)
 
-![Diagram](docs/ipimpedencewideswing.png)
 ### Output Impedence
 ```
 * output impedence of wide swing current mirror
@@ -578,6 +587,7 @@ plot abs(i(Vt))
 .end
 ```
 ![Diagram](docs/outputimpedencewideswing.png)
+
 ### Gain
 ```
 * gain of wide swing current mirror
@@ -600,8 +610,10 @@ plot abs(i(Vt))
 .end
 ```
 ![Diagram](docs/wideswinggain.png)
+
 ## 6.4 Self Biased Wide Swing Cascode Current Mirror
 ![Diagram](docs/SelfBias_nmos.JPG)
+
 ### Input Impedence
 ```
 * input impedence of self bias current mirror
@@ -619,6 +631,7 @@ plot  v(n2) v(n1)
 .end
 ```
 ![Diagram](docs/inputimpedenceselfbias.png)
+
 ### Output Impedence
 ```
 * output impedence of self bias current mirror
@@ -637,6 +650,7 @@ plot  abs(i(Vm))
 .end
 ```
 ![Diagram](docs/outputimpedenceselfbias.png)
+
 ### Gain
 ```
 * gain of self bias current mirror
@@ -658,9 +672,9 @@ plot  -i(Vm)
 ```
 ![Diagram](docs/selfbiasgain.png)
 
-# 6 Amplifiers
+# 7. Amplifiers
 
-## 6.1 Common Source Amplifier
+## 7.1 Common Source Amplifier
 ```
 * common source
 
@@ -684,6 +698,12 @@ run
 .endc
 .end
 ```
+
+### Input impedence
+![Diagram](docs/inputimpedencecs.png)
+### Output impedence
+![Diagram](docs/outputimpedencecs.png)
+
 ### Calculation of input and output impedence
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
@@ -692,12 +712,7 @@ run
 | Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 | Output Impedence | 289.49k | 278.26k | 266.32k | 395.56k | 198.03k | 156.9k | 492.17k | 326.21k | 285.06k |
 
-### Input impedence
-![Diagram](docs/inputimpedencecs.png)
-### Output impedence
-![Diagram](docs/outputimpedencecs.png)
-
-## 6.2 Common Drain Amplifier
+## 7.2 Common Drain Amplifier
 ```
 * common drain
 
@@ -721,6 +736,12 @@ run
 .endc
 .end
 ```
+
+### Input impedence
+![Diagram](docs/inputimpedencecd.png)
+### Output impedence
+![Diagram](docs/outputimpedencecd.png)
+
 ### Calculation of input and output impedence
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
@@ -729,12 +750,7 @@ run
 | Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 | Output Impedence | 1.006k | 1.027k | 0.99k | 1.018k | 0.995k | 0.999k | 1.003k | 1.028k | 1.014k |
 
-### Input impedence
-![Diagram](docs/inputimpedencecd.png)
-### Output impedence
-![Diagram](docs/outputimpedencecd.png)
-
-## 6.3 Common Gate Amplifier
+## 7.3 Common Gate Amplifier
 ```
 * common gate
 
@@ -757,6 +773,12 @@ run
 .endc
 .end
 ```
+
+### Input impedence
+![Diagram](docs/inputimpedencecg.png)
+### Output impedence
+![Diagram](docs/outputimpedencecg.png)
+
 ### Calculation of input and output impedence
 
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
@@ -764,8 +786,3 @@ run
 | Types | ss | tt | ff | ss | tt | ff | ss | tt | ff |
 | Input Impedence | 13.28k | 10.94k | 9.08k | 16.43k | 12.73k | 9.938k | 25.94k | 20.12k | 15.36k |
 | Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
-
-### Input impedence
-![Diagram](docs/inputimpedencecg.png)
-### Output impedence
-![Diagram](docs/outputimpedencecg.png)
