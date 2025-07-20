@@ -672,7 +672,7 @@ plot  -i(Vm)
 ```
 ![Diagram](docs/selfbiasgain.png)
 
-# 7. Amplifiers
+# 7. Single Stage Amplifiers
 
 ## 7.1 Common Source Amplifier
 ```
