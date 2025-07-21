@@ -485,6 +485,14 @@ plot abs(i(V1))
 .end
 ```
 ![Diagram](docs/gain_scm.png)
+### Calculation of input and output impedence
+
+| Temperature | <-- | <-- | 25 &#8451; | --> | --> | 
+| - | - | - | - | - | - |
+| Types | ss | tt | ff | fs | sf | 
+| Input Impedence |  3.22k  |  2.86k  |  2.63k  |  3.38k  |  2.55k  |
+| Output Impedence | 140.16k | 124.35k | 97.48k | 121.08k | 94.89k |
+
 
 ## 6.2 Cascode Current Mirror
 ![Diagram](docs/cascode_nmos.JPG)
@@ -543,6 +551,14 @@ plot  abs(i(Vd))
 .end
 ```
 ![Diagram](docs/gain_cascode.png)
+
+### Calculation of input and output impedence
+
+| Temperature | <-- | <-- | 25 &#8451; | --> | --> | 
+| - | - | - | - | - | - |
+| Types | ss | tt | ff | fs | sf | 
+| Input Impedence |  10.5k  |  8.73k  |  7.75k  |  10.3k  |  7.84k  |
+| Output Impedence | 230.65k | 130.67k | 81.66k | 159.34k | 157.08k |
 
 ## 6.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
@@ -611,6 +627,15 @@ plot abs(i(Vt))
 ```
 ![Diagram](docs/wideswinggain.png)
 
+### Calculation of input and output impedence
+
+| Temperature | <-- | <-- | 25 &#8451; | --> | --> | 
+| - | - | - | - | - | - |
+| Types | ss | tt | ff | fs | sf | 
+| Input Impedence |  9.93k  |  8.79k  |  7.61k  |  10.28k  |  7.94k  |
+| Output Impedence | 130.27k | 83.31k | 101.45k | 69.18k | 124.86k |
+
+
 ## 6.4 Self Biased Wide Swing Cascode Current Mirror
 ![Diagram](docs/SelfBias_nmos.JPG)
 
@@ -671,6 +696,15 @@ plot  -i(Vm)
 .end
 ```
 ![Diagram](docs/selfbiasgain.png)
+
+### Calculation of input and output impedence
+
+| Temperature | <-- | <-- | 25 &#8451; | --> | --> | 
+| - | - | - | - | - | - |
+| Types | ss | tt | ff | fs | sf | 
+| Input Impedence |  8.71k  |  7.46k  |  6.67k  |  8.86k  |  6.58k  |
+| Output Impedence | 102.79k | 84.82k | 82.11k | 92.34k | 128.03k |
+
 
 # 7. Single Stage Amplifiers
 
