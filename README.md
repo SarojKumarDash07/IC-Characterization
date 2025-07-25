@@ -820,3 +820,93 @@ run
 | Types | ss | tt | ff | ss | tt | ff | ss | tt | ff |
 | Input Impedence | 13.28k | 10.94k | 9.08k | 16.43k | 12.73k | 9.938k | 25.94k | 20.12k | 15.36k |
 | Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+
+# 7. Differential Amplifier
+
+## DC Analysis
+```
+*dc analysis differntial amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d 0 1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+XM4 n1  n3  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+Vn  n3 0 1.25 ac
+Iref 0 n4  50u
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+C1 n1 0 500f
+V1 n2 n6 0
+V2 n7 n6 0
+V3 n6 n8 0
+.op
+.control
+run
+*dc Vn 0 1.8 0.01
+*plot v(n1)
+print v(n2)
+print v(g1)
+print v(n1)
+print i(vdd)
+print i(V1)
+print i(V2)
+print i(v3)
+.endc
+.end
+```
+## AC Analysis
+```
+* ac analysis differntial amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d 0 1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+Vn  n3 0 1.25 ac 0.5
+Vp  n5 0 1.25 ac -0.5
+Iref 0 n4  50u
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+C1 n1 0 500f
+V1 n2 n6 0
+V2 n7 n6 0
+V3 n6 n8 0
+.ac dec 10 1 15meg
+.control
+run
+plot (180/3.141)*ph(n1)
+plot vdb(n1)
+.endc
+.end
+```
+## Transient Analysis
+```
+* differntial amplifier transient analysis
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d 0 1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+Vn  n3 0 sin(1.25 5m 10k)
+Vp  n5 0 sin(1.25 5m 10k 0 0 180)
+Iref 0 n4  50u
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+C1 n1 0 500f
+V1 n2 n6 0
+V2 n7 n6 0
+V3 n6 n8 0
+.tran 0.1u 100u
+.control
+run
+plot v(n3) v(n5)
+plot v(n1)
+.endc
+.end
+```
