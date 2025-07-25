@@ -856,6 +856,7 @@ print i(v3)
 .endc
 .end
 ```
+![Diagram](docs/dc_diffential.png)
 ## AC Analysis
 ```
 * ac analysis differntial amplifier
@@ -883,6 +884,8 @@ plot vdb(n1)
 .endc
 .end
 ```
+![Diagram](docs/ip_ac_differ.png)
+![Diagram](docs/op_ac_differn.png)
 ## Transient Analysis
 ```
 * differntial amplifier transient analysis
@@ -910,3 +913,5 @@ plot v(n1)
 .endc
 .end
 ```
+![Diagram](docs/gain_differ.png)
+![Diagram](docs/phase_differ.png)
