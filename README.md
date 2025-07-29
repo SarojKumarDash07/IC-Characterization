@@ -856,6 +856,7 @@ print i(v3)
 .endc
 .end
 ```
+### DC output of differntial amplifier
 ![Diagram](docs/DC_diff.png)
 ## AC Analysis
 ```
@@ -884,7 +885,9 @@ plot vdb(n1)
 .endc
 .end
 ```
+### Gain of differntial amplifier
 ![Diagram](docs/gain_diff.png)
+### Phase of differntial amplifier
 ![Diagram](docs/phase_differ.png)
 ## Transient Analysis
 ```
@@ -913,10 +916,16 @@ plot v(n1)
 .endc
 .end
 ```
+### Input of differntial amplifier
 ![Diagram](docs/ip_ac_differ.png)
+### Amplified output of differntial amplifier
 ![Diagram](docs/op_ac_differn.png)
 # 8. Common mode feedback Amplifier
-### Circuit Diagram
+- A Common Mode Feedback (CMFB) amplifier is used in fully differential amplifiers to control the common mode output voltage ensuring it stays at a desired level (typically mid supply) while allowing differential signals to pass.
+- Why it's needed: In fully differential amplifiers, there are two outputs (Vout1 and Vout2). The differential signal is the difference between them but without feedback their common mode level can drift due to mismatches or noise.
+- CMFB keeps: (Vout1 + Vout2)/2 = Vref (a stable reference)
+  
+## Circuit Diagram
 ![Diagram](docs/cktdesign_cmfb.jpeg)
 ## DC Analysis
 ```
