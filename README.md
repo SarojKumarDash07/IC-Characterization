@@ -895,7 +895,7 @@ Vdd d 0 1.8
 XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
 XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
 XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
-XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=.42
+XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
 Vn  n3 0 sin(1.25 5m 10k)
 Vp  n5 0 sin(1.25 5m 10k 0 0 180)
 Iref 0 n4  50u
@@ -915,3 +915,135 @@ plot v(n1)
 ```
 ![Diagram](docs/ip_ac_differ.png)
 ![Diagram](docs/op_ac_differn.png)
+
+```
+* DC analysis of common mode feedback amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+*CMFB block netlist
+Vdd  d 0  1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g2  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+R1 n3 out1 4Meg
+R2 n3 out2 4Meg
+V1 n2 n6 0
+XM4 g2  n4  n5  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+Vref n4 0 1
+V2 n5 n6 0
+V3 n6 n9 0
+XM6 n9  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+*control block netlist
+Vs s 0 1.8
+XM7 out1  g2 s  s sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM8 out2  g2 s  s sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM9 out1  i1  i2  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM10 out2  i1  i3  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+Vn  i1 0 1.5
+V4 i2 i4 0
+V5 i3 i4 0
+Ic 0 i6  50u
+V6 i4 i5 0
+XM11 i6  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM12 i5  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+.op
+.control
+run
+dc Vn 0 1.8 0.01
+plot v(out1)
+plot v(out2)
+print v(n6)
+print v(g1)
+print v(g2)
+print i(Vdd)
+print i(V1)
+print i(V2)
+print i(V3)
+print v(i4)
+print v(out2)
+print v(out1)
+print i(V4)
+print i(V5)
+print i(V6)
+.endc
+.end
+```
+![Diagram](docs/DC_cmfb.png)
+```
+*AC analysis of common mode feedback amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+*CMFB block netlist
+Vdd  d 0  1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g2  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+R1 n3 out1 4MEG
+R2 n3 out2 4MEG
+V1 n2 n6 0
+XM4 g2  n4  n5  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+Vref n4 0 1
+V2 n5 n6 0
+V3 n6 n9 0
+XM6 n9  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+*control block netlist
+Vs s 0 1.8
+XM7 out1  g2 s  s sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM8 out2  g2 s  s sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM9 out1  i1  i2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM10 out2  i0  i3  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+Vn  i1 0 1.25 ac 0.5
+Vp  i0 0 1.25 ac -0.5
+V4 i2 i4 0
+V5 i3 i4 0
+Ic 0 i6  50u
+V6 i4 i5 0
+XM11 i6  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM12 i5  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+.ac dec 10 1 200meg
+.control
+run
+plot (180/3.141)*ph(out1) (180/3.141)*ph(out2)
+plot vdb(out1) vdb(out2)
+plot vdb(out1) - vdb(out2)
+.endc
+.end
+```
+![Diagram](docs/phase_cmfb.png)
+![Diagram](docs/gain_cmfb.png)
+![Diagram](docs/diff_gain_cmfb.png)
+```
+*Trnasient analysis of common mode feedback amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+*CMFB block netlist
+Vdd  d 0  1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g2  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 g1  n3  n9  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+R1 n3 out1 4Meg
+R2 n3 out2 4Meg
+XM4 g2  n4  n9  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+Vref n4 0 1
+XM6 n9  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+*control block netlist
+Vs s 0 1.8
+XM7 out1  g2 s  s sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM8 out2  g2 s  s sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM9 out1  i1  i2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM10 out2  i0  i2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+Vn  i1 0  sin(1.25 10m 10k)
+Vp  i0 0  sin(1.25 10m 10k 0 0 180)
+Ic 0 i6  50u
+XM11 i6  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM12 i2  i6  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+.tran 1u 300u
+.control
+run
+plot v(i1) v(i0)
+plot v(out1) v(out2)
+.endc
+.end
+```
+![Diagram](docs/ip_tran_cmfb.png)
+![Diagram](docs/op_cmfb_tran.png)
