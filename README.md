@@ -831,9 +831,9 @@ run
 Vdd d 0 1.8
 XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
 XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
-XM4 n1  n3  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
-Vn  n3 0 1.25 ac
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM4 n1  n3  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+Vn  n3 0 1.25 
 Iref 0 n4  50u
 XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
 XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
@@ -856,7 +856,7 @@ print i(v3)
 .endc
 .end
 ```
-![Diagram](docs/dc_diffential.png)
+![Diagram](docs/DC_diff.png)
 ## AC Analysis
 ```
 * ac analysis differntial amplifier
@@ -865,8 +865,8 @@ print i(v3)
 Vdd d 0 1.8
 XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
 XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
-XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
 Vn  n3 0 1.25 ac 0.5
 Vp  n5 0 1.25 ac -0.5
 Iref 0 n4  50u
@@ -884,7 +884,7 @@ plot vdb(n1)
 .endc
 .end
 ```
-![Diagram](docs/gain_differ.png)
+![Diagram](docs/gain_diff.png)
 ![Diagram](docs/phase_differ.png)
 ## Transient Analysis
 ```
@@ -894,8 +894,8 @@ plot vdb(n1)
 Vdd d 0 1.8
 XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
 XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
-XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.15 W=.42
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM4 n1  n5  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=.42
 Vn  n3 0 sin(1.25 5m 10k)
 Vp  n5 0 sin(1.25 5m 10k 0 0 180)
 Iref 0 n4  50u
