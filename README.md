@@ -915,7 +915,10 @@ plot v(n1)
 ```
 ![Diagram](docs/ip_ac_differ.png)
 ![Diagram](docs/op_ac_differn.png)
-
+# 8. Common mode feedback Amplifier
+### Circuit Diagram
+![Diagram](docs/cktdesign_cmfb.jpeg)
+## DC Analysis
 ```
 * DC analysis of common mode feedback amplifier
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -968,7 +971,9 @@ print i(V6)
 .endc
 .end
 ```
+### DC output of CMFB
 ![Diagram](docs/DC_cmfb.png)
+## AC Analysis
 ```
 *AC analysis of common mode feedback amplifier
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -1009,9 +1014,13 @@ plot vdb(out1) - vdb(out2)
 .endc
 .end
 ```
+### Phase of CMFB
 ![Diagram](docs/phase_cmfb.png)
+### gain of CMFB
 ![Diagram](docs/gain_cmfb.png)
+### Differential gain of CMFB
 ![Diagram](docs/diff_gain_cmfb.png)
+## Transient Analysis
 ```
 *Trnasient analysis of common mode feedback amplifier
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -1045,5 +1054,7 @@ plot v(out1) v(out2)
 .endc
 .end
 ```
+### Input of CMFB
 ![Diagram](docs/ip_tran_cmfb.png)
+### Amplified output of CMFB
 ![Diagram](docs/op_cmfb_tran.png)
