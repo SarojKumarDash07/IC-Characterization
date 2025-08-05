@@ -1067,3 +1067,141 @@ plot v(out1) v(out2)
 ![Diagram](docs/ip_tran_cmfb.png)
 ### Amplified output of CMFB
 ![Diagram](docs/op_cmfb_tran.png)
+
+# 9.Two stage Amplifier
+## Circuit Diagram
+![Diagram]()
+## DC Analysis
+```
+* opamp
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d 0  1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM3 g1  o1  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM4 n1  n3  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+Vn  n3 0 1
+V1 n2 n6 0
+V2 n7 n6 0
+Iref d n4  50u
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+V3 n6 n8 0
+XM7 o1  n1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=80
+XM8 n5  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=78
+V4  o1 n5  0
+C1 o1 0 10p
+C2 n1 o1 5p
+.op
+.control
+run
+print v(n6)
+print v(g1)
+print v(n1)
+print v(o1)
+print i(vdd)
+print i(V1)
+print i(V2)
+print i(v3)
+print i(V4)
+.endc
+.end
+```
+### Output
+v(n6) = 3.386534e-01 
+v(g1) = 8.441351e-01
+v(n1) = 8.401575e-01
+v(o1) = 9.999348e-01
+i(vdd) = -4.98328e-04
+i(v1) = 2.453168e-05
+i(v2) = 2.453254e-05
+i(v3) = 4.906422e-05
+i(v4) = 3.992633e-04
+## AC Analysis
+```
+* opamp
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d 0  1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM3 g1  n3  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM4 n1  i1  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+Vn  n3 0 1 ac 0.5
+Vp  i1 0 1 ac -0.5
+V1 n2 n6 0
+V2 n7 n6 0
+Iref d n4  50u
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+V3 n6 n8 0
+XM7 o1  n1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=80
+XM8 n5  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=78
+V4  o1 n5  0
+C1 o1 0 10p
+C2 n1 o1 5p
+.ac dec 10 1 10e13
+.control
+run
+let gain = vdb(o1)
+let phase = 180/3.141*ph(o1)
+plot gain phase
+* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+meas ac phase_margin find phase when gain=0
+* Find unity-gain bandwidth
+meas ac unity_freq when gain=0
+* Find gain margin (gain at phase = -180 deg)
+meas ac gain_margin find gain  when phase=-180
+* Find the frequency where phase=-180 deg
+meas ac phase180_freq when phase=-180
+* Find DC gain (at 1Hz)
+meas ac dc_gain find gain at=1
+.endc
+.end
+```
+### Output
+phase_margin        =  3.740598e+00
+unity_freq          =  5.263136e+06
+gain_margin         =  -7.844505e+01
+phase180_freq       =  2.148937e+13
+dc_gain             =  7.239162e+01
+### Phase and phase plot
+![Diagram]()
+## Stability Analysis
+```
+* opamp
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+Vdd d 0  1.8
+XM1 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM3 g1  o1  n2  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+XM4 n1  i1  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=.5 W=7
+Vp  i1  0  dc 0 pulse(0.2 1.2 0 0 0 1 1 )
+V1 n2 n6 0
+V2 n7 n6 0
+Iref d n4  50u
+XM5 n4  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+XM6 n8  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=10
+V3 n6 n8 0
+XM7 o1  n1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=80
+XM8 n5  n4  0  0 sky130_fd_pr__nfet_01v8_lvt  L=4 W=5 m=78
+V4  o1 n5  0
+C1 o1 0 10p
+C2 n1 o1 5p
+
+.tran 0.1u 10u
+.control
+run
+plot v(i1)  v(o1)
+.endc
+.end
+```
+### Stability plot
+![Diagram]()
+
+
+
+
