@@ -1166,7 +1166,7 @@ meas ac dc_gain find gain at=1
 - gain_margin         =  -7.844505e+01
 - phase180_freq       =  2.148937e+13
 - dc_gain             =  7.239162e+01
-### Phase and phase plot
+### Gain and phase plot
 ![Diagram](docs/ac_opamp.png)
 ## Stability Analysis
 ```
@@ -1201,6 +1201,158 @@ plot v(i1)  v(o1)
 ```
 ### Stability plot
 ![Diagram](docs/stability_opamp.png)
+# 9.Balanced Amplifier
+## Circuit Diagram
+![Diagram]()
+## DC Analysis
+```
+* balanced opamp
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d 0  1.8
+XM1 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 n2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4 g2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+V1 n1 n3 0
+V2 n2 n4 0
+V3 g1 n5 0
+V4 g2 n6 0
+XM5 n5  n2  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM6 n6  ip  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+Vp  ip 0 1
+Iref 0 n8  10u
+V5 n7 n9 0
+XM7 n8  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM8 n9  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM9 n3  n3  i1  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM10 n4  n3  i2  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+V6 i1 0 0
+V7 i2 0 0
+C1 n4 0 20p
+.op
+.control
+run
+print v(n1)
+print v(g1)
+print v(g2)
+print v(n2)
+print v(n7)
+print i(vdd)
+print i(V1)
+print i(V2)
+print i(v3)
+print i(V4)
+print i(V5)
+print i(V6)
+print i(V7)
+.endc
+.end
+```
+###Output
+- v(n1) = 6.855037e-01
+- v(g1) = 1.176956e+00
+- v(g2) = 1.175200e+00
+- v(n2) = 9.991082e-01
+- v(n7) = 4.177139e-01
+- i(vdd) = -1.97622e-05
+- i(v1) = 4.923365e-06
+- i(v2) = 4.988042e-06
+- i(v3) = 4.879419e-06
+- i(v4) = 4.971387e-06
+- i(v5) = 9.850802e-06
+- i(v6) = 4.923364e-06
+- i(v7) = 4.988041e-06
+## AC Analysis
+```
+* balance opamp
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d 0  1.8
+XM1 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 n2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4 g2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+V1 n1 n3 0
+V2 n2 n4 0
+V3 g1 n5 0
+V4 g2 n6 0
+XM5 n5  in  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM6 n6  ip  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+Vn  in 0 1 ac 0.5
+Vp  ip 0 1 ac -0.5
+Iref 0 n8  10u
+V5 n7 n9 0
+XM7 n8  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM8 n9  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM9 n3  n3  i1  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM10 n4  n3  i2  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+V6 i1 0 0
+V7 i2 0 0
+C1 n4 0 20p
+.ac dec 10 1 10e13
+.control
+run
+let gain = vdb(n2)
+let phase = 180/3.141*ph(n2)
+plot gain phase
+* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+meas ac phase_margin find phase when gain=0
+* Find unity-gain bandwidth
+meas ac unity_freq when gain=0
+* Find gain margin (gain at phase = -180 deg)
+meas ac gain_margin find gain  when phase=-180
+* Find the frequency where phase=-180 deg
+meas ac phase180_freq when phase=-180
+* Find DC gain (at 1Hz)
+meas ac dc_gain find gain at=1
+.endc
+.end
+```
+###Output
+- phase_margin        =  6.725095e+01
+- unity_freq          =  7.751922e+05
+- gain_margin         =  -8.939128e+01
+- phase180_freq       =  9.879422e+12
+- dc_gain             =  5.047292e+01
+### Gain and phase plot
+![Diagram]()
+## Stability Analysis
+```
+* balance opamp
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+Vdd d 0  1.8
+XM1 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 n2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4 g2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+V1 n1 n3 0
+V2 n2 n4 0
+V3 g1 n5 0
+V4 g2 n6 0
+XM5 n5  n2  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM6 n6  ip  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+*Vn  in 0 sin(1 0.1m 10k)
+*Vp  ip 0 sin(1 0.1m 10k 0 0 180)
+Vp  ip 0 dc 0 pulse(0.2 1.2 0 0 0 1 1 )
+Iref 0 n8  10u
+XM7 n8  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM8 n7  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM9 n3  n3  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM10 n4  n3  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+C1 n4 0 20p
+
+.tran 0.1u 10u
+.control
+run
+plot v(ip) v(n2)
+.endc
+.end
+```
+### Stability plot
+![Diagram]()
 
 
 
