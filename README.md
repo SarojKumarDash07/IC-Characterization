@@ -1109,15 +1109,15 @@ print i(V4)
 .end
 ```
 ### Output
-v(n6) = 3.386534e-01 
-v(g1) = 8.441351e-01
-v(n1) = 8.401575e-01
-v(o1) = 9.999348e-01
-i(vdd) = -4.98328e-04
-i(v1) = 2.453168e-05
-i(v2) = 2.453254e-05
-i(v3) = 4.906422e-05
-i(v4) = 3.992633e-04
+- v(n6) = 3.386534e-01
+- v(g1) = 8.441351e-01
+- v(n1) = 8.401575e-01
+- v(o1) = 9.999348e-01
+- i(vdd) = -4.98328e-04
+- i(v1) = 2.453168e-05
+- i(v2) = 2.453254e-05
+- i(v3) = 4.906422e-05
+- i(v4) = 3.992633e-04
 ## AC Analysis
 ```
 * opamp
@@ -1161,13 +1161,13 @@ meas ac dc_gain find gain at=1
 .end
 ```
 ### Output
-phase_margin        =  3.740598e+00
-unity_freq          =  5.263136e+06
-gain_margin         =  -7.844505e+01
-phase180_freq       =  2.148937e+13
-dc_gain             =  7.239162e+01
+- phase_margin        =  3.740598e+00
+- unity_freq          =  5.263136e+06
+- gain_margin         =  -7.844505e+01
+- phase180_freq       =  2.148937e+13
+- dc_gain             =  7.239162e+01
 ### Phase and phase plot
-![Diagram]()
+![Diagram](docs/ac_opamp.png)
 ## Stability Analysis
 ```
 * opamp
@@ -1200,7 +1200,8 @@ plot v(i1)  v(o1)
 .end
 ```
 ### Stability plot
-![Diagram]()
+![Diagram](docs/stability_opamp.png)
+
 
 
 
