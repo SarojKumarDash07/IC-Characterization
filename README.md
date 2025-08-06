@@ -737,6 +737,7 @@ plot abs(i(Vt))
 | Types | ss | tt | ff | fs | sf | 
 | Input Impedence |  9.93k  |  8.79k  |  7.61k  |  10.28k  |  7.94k  |
 | Output Impedence | 130.27k | 83.31k | 101.45k | 69.18k | 124.86k |
+
 ![Diagram](docs/pmoscascadecurntmirror.png)
 ```
 *Gain of pmos current mirror
