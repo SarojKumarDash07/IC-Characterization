@@ -881,7 +881,7 @@ plot v(n2) v(n3)
 .end
 ```
 ```
-*output impedence of pmos wide swing cascode current mirror
+*output impedence of pmos self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
 .temp 25
 V1      n1      0       dc      1.8
@@ -894,8 +894,25 @@ plot abs(i(V1))
 .endc
 .end
 ```
-
-
+```
+*Gain of pmos self bias current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+V1      n1      0       dc      1.8
+XM1     n4      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n2      n3    n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+V2      n5      0       1.8
+XM3     n6      n2    n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4     0      n3    n6      n5      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+.control
+run
+dc I1 0 50u  0.01u
+plot abs(i(V2))
+.endc
+.end
+```
 
 # 7. Single Stage Amplifiers
 
@@ -1513,7 +1530,6 @@ meas ac dc_gain find gain at=1
 * balance opamp
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
 .temp 25
-
 Vdd d 0  1.8
 XM1 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
 XM2 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
@@ -1525,8 +1541,6 @@ V3 g1 n5 0
 V4 g2 n6 0
 XM5 n5  n2  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
 XM6 n6  ip  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
-*Vn  in 0 sin(1 0.1m 10k)
-*Vp  ip 0 sin(1 0.1m 10k 0 0 180)
 Vp  ip 0 dc 0 pulse(0.2 1.2 0 0 0 1 1 )
 Iref 0 n8  10u
 XM7 n8  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
