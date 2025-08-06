@@ -508,6 +508,8 @@ plot v(n2)
 .endc
 .end
 ```
+![Diagram](docs/pmossimple1inpimp.png)
+
 ```
 *Output impedence of pmos current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -522,6 +524,8 @@ plot abs(i(Vdd))
 .endc
 .end
 ```
+![Diagram](docs/pmossimpleoutputimp.png)
+
 ```
 *Gain of pmos current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -538,6 +542,8 @@ plot  abs(i(V1))
 .endc
 .end
 ```
+![Diagram](docs/pmossimplegain.png)
+
 ### Calculation of input and output impedence
 
 | Temperature | <-- | <-- | 25 &#8451; | --> | --> | 
