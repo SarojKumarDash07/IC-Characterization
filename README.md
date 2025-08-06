@@ -492,6 +492,8 @@ plot abs(i(V1))
 | Types | ss | tt | ff | fs | sf | 
 | Input Impedence |  3.22k  |  2.86k  |  2.63k  |  3.38k  |  2.55k  |
 | Output Impedence | 140.16k | 124.35k | 97.48k | 121.08k | 94.89k |
+
+![Diagram](docs/pmossimplecm.png)
 ```
 * Input impedence of pmos current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
