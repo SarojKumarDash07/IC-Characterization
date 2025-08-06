@@ -636,6 +636,8 @@ plot  v(n2) v(n3)
 .endc
 .end
 ```
+![Diagram](docs/pmosinpimpcascode.png)
+
 ```
 *Output impedence of pmos cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -650,6 +652,8 @@ plot  abs(i(Vdd))
 .endc
 .end
 ```
+![Diagram](docs/pmosoutputimpcascode.png)
+
 ```
 *Gain of pmos cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -668,6 +672,8 @@ plot abs(i(V1))
 .endc
 .end
 ```
+![Diagram](docs/pmoscascodegain.png)
+
 
 ## 6.3 Wide Swing Cascode Current Mirror
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
