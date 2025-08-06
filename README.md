@@ -613,6 +613,8 @@ plot  abs(i(Vd))
 | Input Impedence |  10.5k  |  8.73k  |  7.75k  |  10.3k  |  7.84k  |
 | Output Impedence | 230.65k | 130.67k | 81.66k | 159.34k | 157.08k |
 
+![Diagram](docs/pmoscascadecurntmirror.png)
+
 ```
 *input impedence of pmos cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
