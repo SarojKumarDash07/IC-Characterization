@@ -898,6 +898,8 @@ plot v(n2) v(n3)
 .endc
 .end
 ```
+![Diagram](docs/pmosselfbiasedinpimp.png)
+
 ```
 *output impedence of pmos self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -912,6 +914,8 @@ plot abs(i(V1))
 .endc
 .end
 ```
+![Diagram](docs/pmosselfbioasedopimp.png)
+
 ```
 *Gain of pmos self bias current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -931,6 +935,7 @@ plot abs(i(V2))
 .endc
 .end
 ```
+![Diagram](docs/pmosselfbiasedgain.png)
 
 # 7. Single Stage Amplifiers
 
