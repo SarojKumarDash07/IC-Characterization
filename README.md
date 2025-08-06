@@ -605,7 +605,7 @@ plot  abs(i(Vd))
 | Output Impedence | 230.65k | 130.67k | 81.66k | 159.34k | 157.08k |
 
 ```
-*input impedence of pmos current mirror
+*input impedence of pmos cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
 .temp 25
 Vdd     n1      0       dc      1.8
@@ -620,7 +620,7 @@ plot  v(n2) v(n3)
 .end
 ```
 ```
-*Output impedence of pmos current mirror
+*Output impedence of pmos cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
 .temp 25
 Vdd     n1      0       dc      1.8
@@ -634,7 +634,7 @@ plot  abs(i(Vdd))
 .end
 ```
 ```
-*Gain of pmos current mirror
+*Gain of pmos cascode current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
 .temp 25
 Vdd     n1      0       dc      1.8
