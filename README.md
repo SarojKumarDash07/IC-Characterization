@@ -864,6 +864,37 @@ plot  -i(Vm)
 | Output Impedence | 102.79k | 84.82k | 82.11k | 92.34k | 128.03k |
 
 ![Diagram](docs/pmosselfbiascm.png)
+```
+*input impedence of pmos self bias current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+V1      n1      0       dc      1.8
+XM1     n4      n2     n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n2      n3     n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+.control
+run
+dc I1 0 50u  0.01u
+plot v(n2) v(n3)
+.endc
+.end
+```
+```
+*output impedence of pmos wide swing cascode current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+V1      n1      0       dc      1.8
+XM1     n4     0.494     n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     0      0.492     n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+.control
+run
+dc V1 0 1.8  0.01
+plot abs(i(V1))
+.endc
+.end
+```
+
 
 
 # 7. Single Stage Amplifiers
