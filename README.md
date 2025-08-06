@@ -536,6 +536,13 @@ plot  abs(i(V1))
 .endc
 .end
 ```
+### Calculation of input and output impedence
+
+| Temperature | <-- | <-- | 25 &#8451; | --> | --> | 
+| - | - | - | - | - | - |
+| Types | ss | tt | ff | fs | sf | 
+| Input Impedence |  4.6k  |  5.7k  |  4.7k  |  4.8k  |  4.2k  |
+| Output Impedence | 77k | 215k | 205k | 348k | 180k |
 
 
 ## 6.2 Cascode Current Mirror
