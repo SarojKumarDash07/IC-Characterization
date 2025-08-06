@@ -862,6 +862,7 @@ plot  -i(Vm)
 | Types | ss | tt | ff | fs | sf | 
 | Input Impedence |  8.71k  |  7.46k  |  6.67k  |  8.86k  |  6.58k  |
 | Output Impedence | 102.79k | 84.82k | 82.11k | 92.34k | 128.03k |
+
 ![Diagram](docs/pmosselfbiascm.png)
 
 
