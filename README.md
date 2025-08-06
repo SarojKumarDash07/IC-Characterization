@@ -1162,7 +1162,7 @@ plot v(out1) v(out2)
 
 # 9.Two stage Amplifier
 ## Circuit Diagram
-![Diagram]()
+![Diagram](docs/ckt_dia_twostageopamp.jpeg)
 ## DC Analysis
 ```
 * opamp
