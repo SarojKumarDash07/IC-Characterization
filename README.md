@@ -759,6 +759,20 @@ plot v(n3)
 .end
 ```
 ```
+*output impedence of pmos wide swing cascode current mirror
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+V1      n1      0       dc      1.8
+XM1     n4      0.531     n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     0       0.492     n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+.control
+run
+dc V1 0 1.8 0.01
+plot abs(i(V1))
+.endc
+.end
+```
+```
 *Gain of pmos current mirror
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
 .temp 25
