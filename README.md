@@ -683,6 +683,14 @@ plot abs(i(V1))
 ```
 ![Diagram](docs/pmoscascodegain.png)
 
+### Calculation of input and output impedence
+
+| Temperature | <-- | <-- | 25 &#8451; | --> | --> | 
+| - | - | - | - | - | - |
+| Types | ss | tt | ff | fs | sf | 
+| Input Impedence |  2.9k  |  2.5k  |  3k  |  3.3k  |  2.7k  |
+| Output Impedence | 103k | 459k | 104k | 777k | 119k |
+
 
 ## 6.5 Wide Swing Cascode Current Mirror using NMOS
 ![Diagram](docs/wideswing_cascode_nmos.JPG)
