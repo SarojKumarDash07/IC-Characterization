@@ -1554,6 +1554,7 @@ print i(V7)
 - i(v5) = 9.850802e-06
 - i(v6) = 4.923364e-06
 - i(v7) = 4.988041e-06
+  
 ## AC Analysis
 ```
 * AC analysis of balance opamp using NMOS
@@ -1708,6 +1709,60 @@ print onoise_spectrum inoise_spectrum
 ### Noise plot
 ![Diagram](docs/noise_balanceckt.png)
 
+## Montecarlo simulation 
+```
+*montecarlo simulation of balance amplifier using NMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+* Define nominal parameters for device W and L
+.param Wpfet = 7
+.param Lpfet = 8
+.param Wnfet = 7
+.param Lnfet = 4
+.param Wnlvfet = 7
+.param Lnlvfet = 0.5
+.param muln = 10
+Vdd d 0 1.8
+Vp ip 0 1         ; Input voltage fixed 1V
+Iref 0 n8 10u
+* PFET devices with param for W and L
+xm1 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+xm2 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+xm3 n2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+xm4 g2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+* NFET devices with param for W and L
+xm5 g1  n2  n7  0 sky130_fd_pr__nfet_01v8_lvt  L={Lnlv} W={Wnlv}
+xm6 g2  ip  n7  0 sky130_fd_pr__nfet_01v8_lvt  L={Lnlv} W={Wnlv}
+xm7 n8  n8  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+xm8 n7  n8  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+xm9 n1  n1  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+xm10 n2  n1  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+C1 n2 0 20p
+* Randomize transistor widths only (±10%)
+.param Wp = Wpfet*(1+ agauss(0, 0.10, 1))
+.param Wn = Wnfet*(1+ agauss(0, 0.09, 2))
+.param Ln = Lnfet*(1+ agauss(0, 0.08, 3))
+.param Lp = Lpfet*(1+ agauss(0, 0.07, 4))
+.param Wnlv = Wnfet*(1+ agauss(0, 0.06,5))
+.param Lnlv = Lnfet*(1+ agauss(0, 0.05,6))
+.param mn=int((muln*(1 + agauss(0,0.1,7))) + 0.5)
+.control
+let run = 0
+echo Run,Output_Voltage > mc_output.csv
+while run <1000
+reset
+op
+let vout=v(n2)
+print  $run vout >> mc_output.csv
+print vout
+let run = run + 1
+end
+.endc
+```
+### Montecarlo plot
+![Diagram]()
+
+
 ## 11.2 Balanced Amplifier using PMOS
 ## Circuit Diagram
 ![Diagram](docs/pmos_balanceckt.jpeg)
@@ -1764,7 +1819,8 @@ print i(V5)
 - i(v3) = 5.086798e-06
 - i(v4) = 4.892859e-06
 - i(v5) = 5.023960e-06
-
+  
+## AC analysis
 ```
 *AC analysis balance opamp using PMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
@@ -1905,6 +1961,53 @@ print onoise_spectrum inoise_spectrum
 ### Noise plot
 ![Diagram](docs/noise_pmosbalance.png)
 
-
+## Montecarlo simulation
+```
+* Montecarlo simukation of balance opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+.param Wpfet = 7
+.param Lpfet = 8
+.param Wnfet = 7
+.param Lnfet = 2
+.param Wplvfet = 7
+.param Lplvfet = 1
+.param muln = 5
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+I1      n2      0       dc     10u
+XM3     g      g      d      d      sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+XM4     n4      g     d      d      sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m={mn}
+XM5     o1      n4      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L={Lplv} W={Wplv}
+XM6     o2      i2      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L={Lplv} W={Wplv}
+V6   i2 0 0.8
+XM7  o1  o1  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+XM8  o2  o2  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+XM9  g  o1  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+XM10 n4  o2  0  0 sky130_fd_pr__nfet_01v8  L={Ln} W={Wn}
+C1  n4 0 10p
+.param Wp = Wpfet*(1+ agauss(0, 0.10, 1))
+.param Wn = Wnfet*(1+ agauss(0, 0.09, 2))
+.param Ln = Lnfet*(1+ agauss(0, 0.08, 3))
+.param Lp = Lpfet*(1+ agauss(0, 0.07, 4))
+.param Wplv = Wplvfet*(1+ agauss(0, 0.06,5))
+.param Lplv = Lplvfet*(1+ agauss(0, 0.05,6))
+.param mn=int((muln*(1 + agauss(0,0.1,7))) + 0.5)
+.control
+let run = 0
+echo Run,Output_Voltage > mc_output_pmos.csv
+while run <1000
+reset
+op
+let vout=v(n4)
+print  $run vout >> mc_output_pmos.csv
+print vout
+let run = run + 1
+end
+.endc
+```
+### Montecarlo plot
+![Diagram]()
 
 
