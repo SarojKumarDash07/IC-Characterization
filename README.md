@@ -47,6 +47,9 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [8. Differential Amplifier](#8-Differential-Amplifier)
   - [8.1 Differential Amplifier using NMOS](#81-Differential-Amplifier-using-NMOS)
   - [8.2 Differential Amplifier using PMOS](#82-Differential-Amplifier-using-PMOS)
+- [9. Common mode feedback Amplifier](#9-Common-mode-feedback-Amplifier)
+  - [9.1 Common mode feedback Amplifier using NMOS](#91-Common-mode-feedback-Amplifier-using-NMOS)
+  - [9.2 Common mode feedback Amplifier using PMOS](#92-Common-mode-feedback-Amplifier-using-PMOS)
   
 # 1. Tools and PDK setup
 
