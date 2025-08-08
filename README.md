@@ -44,6 +44,9 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [7.1 Common Source Amplifier](#71-common-source-amplifier)
   - [7.2 Common Drain Amplifier](#72-common-drain-amplifier)
   - [7.3 Common Gate Amplifier](#73-common-gate-amplifier)
+- [8. Differential Amplifier](#8-Differential-Amplifier)
+  -[8.1 Differential Amplifier using NMOS](#81-Differential-Amplifier-using-NMOS)
+  -[8.2 Differential Amplifier using PMOS](#82-Differential-Amplifier-using-PMOS)
   
 # 1. Tools and PDK setup
 
@@ -1085,8 +1088,9 @@ run
 | Input Impedence | 13.28k | 10.94k | 9.08k | 16.43k | 12.73k | 9.938k | 25.94k | 20.12k | 15.36k |
 | Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 
-# 7. Differential Amplifier
+# 8. Differential Amplifier
 
+## 8.1 Differential Amplifier using NMOS
 ## DC Analysis
 ```
 *dc analysis differntial amplifier
@@ -1184,11 +1188,16 @@ plot v(n1)
 ![Diagram](docs/ip_ac_differ.png)
 ### Amplified output of differntial amplifier
 ![Diagram](docs/op_ac_differn.png)
-# 8. Common mode feedback Amplifier
+
+## 8.2 Differential Amplifier using PMOS
+
+
+# 9. Common mode feedback Amplifier
 - A Common Mode Feedback (CMFB) amplifier is used in fully differential amplifiers to control the common mode output voltage ensuring it stays at a desired level (typically mid supply) while allowing differential signals to pass.
 - Why it's needed: In fully differential amplifiers, there are two outputs (Vout1 and Vout2). The differential signal is the difference between them but without feedback their common mode level can drift due to mismatches or noise.
 - CMFB keeps: (Vout1 + Vout2)/2 = Vref (a stable reference)
-  
+
+## 9.1 Common mode feedback Amplifier using NMOS
 ## Circuit Diagram
 ![Diagram](docs/cktdesign_cmfb.jpeg)
 ## DC Analysis
@@ -1332,7 +1341,11 @@ plot v(out1) v(out2)
 ### Amplified output of CMFB
 ![Diagram](docs/op_cmfb_tran.png)
 
-# 9.Two stage Amplifier
+## 9.2 Common mode feedback Amplifier using PMOS
+
+# 10.Two stage Amplifier  
+
+## 10.1Two stage Amplifier using NMOS
 ## Circuit Diagram
 ![Diagram](docs/ckt_dia_twostageopamp.jpeg)
 ## DC Analysis
@@ -1466,7 +1479,11 @@ plot v(i1)  v(o1)
 ### Stability plot
 ![Diagram](docs/stability_opamp.png)
 
-# 9.Balanced Amplifier using NMOS
+## 10.2Two stage Amplifier using PMOS 
+
+# 11.Balanced Amplifier
+
+## 11.1Balanced Amplifier using NMOS
 ## Circuit Diagram
 ![Diagram](docs/nmos_balanceckt.jpeg)
 ## DC Analysis
@@ -1682,7 +1699,7 @@ print onoise_spectrum inoise_spectrum
 ### Noise plot
 ![Diagram](docs/noise_balanceckt.png)
 
-# 9.Balanced Amplifier using PMOS
+## 11.2Balanced Amplifier using PMOS
 ## Circuit Diagram
 ![Diagram](docs/pmos_balanceckt.jpeg)
 ## DC Analysis
