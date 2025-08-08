@@ -33,13 +33,13 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [4.2 PMOS Analysis](#42-pmos-analysis)
 - [6. Current Mirror](#5-current-mirror)
   - [6.1 Simple Current Mirror using NMOS](#61-simple-current-mirror-using-nmos)
-  - [6.2 Simple Current Mirror using PMOS]
-  - [6.3 Cascode Current Mirror using NMOS]
-  - [6.4 Cascode Current Mirror using PMOS]
-  - [6.5 Wide Swing Cascode Current Mirror using NMOS]
-  - [6.6 Wide Swing Cascode Current Mirror using PMOS]
-  - [6.7 Self Biased Wide Swing Cascode Current Mirror using NMOS]
-  - [6.8 Self Biased Wide Swing Cascode Current Mirror using PMOS]
+  - [6.2 Simple Current Mirror using PMOS](#62-simple-current-mirror-using-pmos)
+  - [6.3 Cascode Current Mirror using NMOS](#63-cascode-current-mirror-using-nmos)
+  - [6.4 Cascode Current Mirror using PMOS](#64-cascode-current-mirror-using-pmos)
+  - [6.5 Wide Swing Cascode Current Mirror using NMOS](#65-wide-swing-cascode-current-mirror-using-nmos)
+  - [6.6 Wide Swing Cascode Current Mirror using PMOS](#66-wide-swing-cascode-current-mirror-using-pmos)
+  - [6.7 Self Biased Wide Swing Cascode Current Mirror using NMOS](#67-self-biased-wide-swing-cascode-current-mirror-using-nmos)
+  - [6.8 Self Biased Wide Swing Cascode Current Mirror using PMOS](#68-self-biased-wide-swing-cascode-current-mirror-using-pmos)
 - [7. Single Stage Amplifiers](#7-single-stage-amplifiers)
   - [7.1 Common Source Amplifier](#71-common-source-amplifier)
   - [7.2 Common Drain Amplifier](#72-common-drain-amplifier)
