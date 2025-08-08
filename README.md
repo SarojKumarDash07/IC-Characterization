@@ -53,9 +53,9 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [10. Two stage Amplifier](#10-Two-stage-Amplifier)
   - [10.1 Two stage Amplifier using NMOS](#101-Two-stage-Amplifier-using-NMOS)
   - [10.2 Two stage Amplifier using PMOS](#102-Two-stage-Amplifier-using-PMOS)
-- [11. Balanced Amplifier](#11Balanced-Amplifier)
-   - [11.1 Balanced Amplifier using NMOS](#111Balanced-Amplifier-using-NMOS)
-   - [11.2 Balanced Amplifier using PMOS](#112Balanced-Amplifier-using-PMOS)
+- [11. Balanced Amplifier](#11-Balanced-Amplifier)
+   - [11.1 Balanced Amplifier using NMOS](#111-Balanced-Amplifier-using-NMOS)
+   - [11.2 Balanced Amplifier using PMOS](#112-Balanced-Amplifier-using-PMOS)
   
 # 1. Tools and PDK setup
 
