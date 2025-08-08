@@ -1540,7 +1540,7 @@ print i(V7)
 .endc
 .end
 ```
-###Output
+### Output
 - v(n1) = 6.855037e-01
 - v(g1) = 1.176956e+00
 - v(g2) = 1.175200e+00
@@ -1600,7 +1600,7 @@ meas ac dc_gain find gain at=1
 .endc
 .end
 ```
-###Output
+### Output
 - phase_margin        =  6.725095e+01
 - unity_freq          =  7.751922e+05
 - gain_margin         =  -8.939128e+01
@@ -1752,7 +1752,7 @@ print i(V5)
 .endc
 .end
 ```
-###Output
+### Output
 - v(n6) = 1.354561e+00
 - v(n3) = 1.149925e+00
 - v(o1) = 6.226082e-01
@@ -1803,12 +1803,13 @@ meas ac dc_gain find gain at=1
 .endc
 .end
 ```
-###Output
-phase_margin        =  8.161813e+01
-unity_freq          =  7.135962e+05
-gain_margin         =  -8.121685e+01
-phase180_freq       =  1.826696e+13
-dc_gain             =  4.154253e+01
+### Output
+- phase_margin        =  8.161813e+01
+- unity_freq          =  7.135962e+05
+- gain_margin         =  -8.121685e+01
+- phase180_freq       =  1.826696e+13
+- dc_gain             =  4.154253e+01
+- 
 ### Gain and phase plot
 ![Diagram](docs/ac_pmos_balance.png)
 
