@@ -1461,12 +1461,13 @@ plot v(i1)  v(o1)
 ```
 ### Stability plot
 ![Diagram](docs/stability_opamp.png)
-# 9.Balanced Amplifier
+
+# 9.Balanced Amplifier using NMOS
 ## Circuit Diagram
 ![Diagram]()
 ## DC Analysis
 ```
-* balanced opamp
+* DC analysis of balanced opamp using NMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
 .temp 25
 Vdd d 0  1.8
@@ -1525,7 +1526,7 @@ print i(V7)
 - i(v7) = 4.988041e-06
 ## AC Analysis
 ```
-* balance opamp
+* AC analysis of balance opamp using NMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
 .temp 25
 Vdd d 0  1.8
@@ -1577,9 +1578,10 @@ meas ac dc_gain find gain at=1
 - dc_gain             =  5.047292e+01
 ### Gain and phase plot
 ![Diagram]()
+
 ## Stability Analysis
 ```
-* balance opamp
+* Stability analysis of balance opamp using NMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
 .temp 25
 Vdd d 0  1.8
@@ -1605,6 +1607,204 @@ C1 n4 0 20p
 .control
 run
 plot v(ip) v(n2)
+.endc
+.end
+```
+### Stability plot
+![Diagram]()
+
+## PSRR analysis
+```
+* PSRR analysis of balance opamp using NMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd d 0  1.8 ac 1
+XM1 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 n2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4 g2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM5 g1  n2  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM6 g2  ip  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+Vp  ip 0 1
+Iref 0 n8  10u
+V5 n7 n9 0
+XM7 n8  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM8 n9  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM9 n1  n1  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM10 n2  n1  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+C1 n2 0 20p
+.ac dec 10 1 10e9
+.control
+run
+let gain = vdb(n2)
+plot gain
+.endc
+.end
+```
+### PSRR plot
+![Diagram]()
+
+## Noise analysis
+```
+* balance opamp noise analysis using NMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd d 0  1.8
+XM1 n1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2 g1  g1 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3 n2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4 g2  g2 d  d sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM5 g1  n2  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+XM6 g2  ip  n7  0 sky130_fd_pr__nfet_01v8_lvt  L=0.5 W=7
+Vp  ip 0 dc 1 ac 1
+Iref 0 n8  10u
+V5 n7 n9 0
+XM7 n8  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM8 n9  n8  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM9 n1  n1  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+XM10 n2  n1  0  0 sky130_fd_pr__nfet_01v8  L=4 W=7
+C1 n2 0 20p
+.op
+.control
+run
+noise v(n2) vp dec 100 10 1MEG
+setplot noise1
+display
+plot onoise_spectrum  inoise_spectrum
+print onoise_spectrum inoise_spectrum
+.endc
+.end
+```
+### Noise plot
+![Diagram]()
+
+# 9.Balanced Amplifier using PMOS
+## Circuit Diagram
+![Diagram]()
+## DC Analysis
+```
+* balance opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+I1      n2      0       dc     10u
+V1      n5      n6       dc      0
+XM3     g      g      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM4     n4      g     d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+V2      g       n3      dc      0
+V3      n4      n7      dc      0
+XM5     o1      n7      n6      n6      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+XM6     o2      i2      n6      n6      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+V6   i2 0 0.8
+XM7  o1  o1  o4  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM8  o2  o2  o5  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM9  n3  o1  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM10 n7  o2  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+V4  o4 0 0
+V5  o5 0 0
+C1  n4 0 10p
+.op
+.control
+run
+print v(n6)
+print v(n3)
+print v(o1)
+print v(o2)
+print v(n4)
+print i(vdd)
+print i(V1)
+print i(V2)
+print i(v3)
+print i(V4)
+print i(V5)
+.endc
+.end
+```
+###Output
+- v(n6) = 1.354561e+00
+- v(n3) = 1.149925e+00
+- v(o1) = 6.226082e-01
+- v(o2) = 6.246689e-01
+- v(n4) = 8.029053e-01
+- i(vdd) = -3.00672e-05
+- i(v1) = 9.916820e-06
+- i(v2) = 5.063573e-06
+- i(v3) = 5.086798e-06
+- i(v4) = 4.892859e-06
+- i(v5) = 5.023960e-06
+
+```
+*AC analysis balance opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+I1      n2      0       dc     10u
+XM3     g      g      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM4     n4      g     d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM5     o1      in      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+XM6     o2      ip      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+Vn  in 0 0.8 ac 0.5
+Vp  ip 0 0.8 ac -0.5
+XM7  o1  o1  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM8  o2  o2  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM9  g  o1  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM10 n4  o2  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+C1  n4 0 10p
+.ac dec 10 1 10e24
+.control
+run
+let gain = vdb(n4)
+let phase = 180/3.141*ph(n4)
+plot gain phase
+* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+meas ac phase_margin find phase when gain=0
+* Find unity-gain bandwidth
+meas ac unity_freq when gain=0
+* Find gain margin (gain at phase = -180 deg)
+meas ac gain_margin find gain  when phase= -180
+* Find the frequency where phase=-180 deg
+meas ac phase180_freq when phase= -180
+* Find DC gain (at 1Hz)
+meas ac dc_gain find gain at=1
+.endc
+.end
+```
+###Output
+phase_margin        =  8.161813e+01
+unity_freq          =  7.135962e+05
+gain_margin         =  -8.121685e+01
+phase180_freq       =  1.826696e+13
+dc_gain             =  4.154253e+01
+### Gain and phase plot
+![Diagram]()
+
+## Stability Analysis
+```
+* Stability analysis of balance opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+I1      n2      0       dc     10u
+XM3     g      g      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM4     n4      g     d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM5     o1      n4      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+XM6     o2      ip      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+Vp  ip 0 dc 0 pulse(0.2 1.4 0 0 0 1 1 )
+XM7  o1  o1  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM8  o2  o2  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM9  g  o1  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM10 n4  o2  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+C1  n4 0 10p
+.tran 0.1u 10u
+.control
+run
+plot v(ip) v(n4)
 .endc
 .end
 ```
