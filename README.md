@@ -1815,6 +1815,68 @@ plot v(ip) v(n4)
 ### Stability plot
 ![Diagram]()
 
+## PSRR analysis
+```
+*PSRR analysis balance opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+I1      n2      0       dc     10u
+XM3     g      g      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM4     n4      g     d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM5     o1      n4      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+XM6     o2      ip      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+Vp  ip 0 0.8
+XM7  o1  o1  g1  g1 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM8  o2  o2  g1  g1 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM9  g  o1   g1  g1 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM10 n4  o2  g1  g1 sky130_fd_pr__nfet_01v8  L=2 W=7
+C1  n4 0 10p
+Vg  0 g1  0 ac 1
+.ac dec 10 1 10e5
+.control
+run
+plot vdb(n4)
+.endc
+.end
+```
+### PSRR plot
+![Diagram]()
+
+## Noise analysis
+```
+*noise analysis balance opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+I1      n2      0       dc     10u
+XM3     g      g      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM4     n4      g     d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=5
+XM5     o1      n4      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+XM6     o2      ip      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=1 W=7
+Vp  ip 0 0.8 ac 1
+XM7  o1  o1  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM8  o2  o2  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM9  g  o1   0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+XM10 n4  o2  0  0 sky130_fd_pr__nfet_01v8  L=2 W=7
+C1  n4 0 10p
+.op
+.control
+run
+noise v(n4) vp dec 100 10 1MEG
+setplot noise1
+display
+plot onoise_spectrum  inoise_spectrum
+print onoise_spectrum inoise_spectrum
+.endc
+.end
+```
+### Noise plot
+![Diagram]()
 
 
 
