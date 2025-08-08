@@ -1646,7 +1646,7 @@ plot gain
 .end
 ```
 ### PSRR plot
-![Diagram]()
+![Diagram](docs/psrr_balanceckt.png)
 
 ## Noise analysis
 ```
@@ -1680,7 +1680,7 @@ print onoise_spectrum inoise_spectrum
 .end
 ```
 ### Noise plot
-![Diagram]()
+![Diagram](docs/noise_balanceckt.png)
 
 # 9.Balanced Amplifier using PMOS
 ## Circuit Diagram
@@ -1784,7 +1784,7 @@ gain_margin         =  -8.121685e+01
 phase180_freq       =  1.826696e+13
 dc_gain             =  4.154253e+01
 ### Gain and phase plot
-![Diagram]()
+![Diagram](docs/ac_pmos_balance.png)
 
 ## Stability Analysis
 ```
@@ -1813,7 +1813,7 @@ plot v(ip) v(n4)
 .end
 ```
 ### Stability plot
-![Diagram]()
+![Diagram](docs/stability_pmosbalance.png)
 
 ## PSRR analysis
 ```
@@ -1843,7 +1843,7 @@ plot vdb(n4)
 .end
 ```
 ### PSRR plot
-![Diagram]()
+![Diagram](docs/psrr_pmos_balance.png)
 
 ## Noise analysis
 ```
@@ -1876,7 +1876,7 @@ print onoise_spectrum inoise_spectrum
 .end
 ```
 ### Noise plot
-![Diagram]()
+![Diagram](docs/noise_pmosbalance.png)
 
 
 
