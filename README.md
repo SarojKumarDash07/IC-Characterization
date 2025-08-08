@@ -1468,7 +1468,7 @@ plot v(i1)  v(o1)
 
 # 9.Balanced Amplifier using NMOS
 ## Circuit Diagram
-![Diagram]()
+![Diagram](docs/nmos_balanceckt.jpeg)
 ## DC Analysis
 ```
 * DC analysis of balanced opamp using NMOS
@@ -1581,7 +1581,7 @@ meas ac dc_gain find gain at=1
 - phase180_freq       =  9.879422e+12
 - dc_gain             =  5.047292e+01
 ### Gain and phase plot
-![Diagram]()
+![Diagram](docs/ac_balanceckt.png)
 
 ## Stability Analysis
 ```
@@ -1615,7 +1615,7 @@ plot v(ip) v(n2)
 .end
 ```
 ### Stability plot
-![Diagram]()
+![Diagram](docs/stability_balanceckt.png)
 
 ## PSRR analysis
 ```
@@ -1684,7 +1684,7 @@ print onoise_spectrum inoise_spectrum
 
 # 9.Balanced Amplifier using PMOS
 ## Circuit Diagram
-![Diagram]()
+![Diagram](docs/pmos_balanceckt.jpeg)
 ## DC Analysis
 ```
 * balance opamp using PMOS
