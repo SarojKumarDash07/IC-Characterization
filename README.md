@@ -50,6 +50,12 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [9. Common mode feedback Amplifier](#9-Common-mode-feedback-Amplifier)
   - [9.1 Common mode feedback Amplifier using NMOS](#91-Common-mode-feedback-Amplifier-using-NMOS)
   - [9.2 Common mode feedback Amplifier using PMOS](#92-Common-mode-feedback-Amplifier-using-PMOS)
+- [10. Two stage Amplifier](#10-Two-stage-Amplifier)
+  - [10.1 Two stage Amplifier using NMOS](#101-Two-stage-Amplifier-using-NMOS)
+  - [10.2 Two stage Amplifier using PMOS](#102-Two-stage-Amplifier-using-PMOS)
+- [11. Balanced Amplifier](#11Balanced-Amplifier)
+   - [11.1 Balanced Amplifier using NMOS](#111Balanced-Amplifier-using-NMOS)
+   - [11.2 Balanced Amplifier using PMOS](#112Balanced-Amplifier-using-PMOS)
   
 # 1. Tools and PDK setup
 
@@ -1346,9 +1352,9 @@ plot v(out1) v(out2)
 
 ## 9.2 Common mode feedback Amplifier using PMOS
 
-# 10.Two stage Amplifier  
+# 10. Two stage Amplifier  
 
-## 10.1Two stage Amplifier using NMOS
+## 10.1 Two stage Amplifier using NMOS
 ## Circuit Diagram
 ![Diagram](docs/ckt_dia_twostageopamp.jpeg)
 ## DC Analysis
@@ -1482,11 +1488,11 @@ plot v(i1)  v(o1)
 ### Stability plot
 ![Diagram](docs/stability_opamp.png)
 
-## 10.2Two stage Amplifier using PMOS 
+## 10.2 Two stage Amplifier using PMOS 
 
-# 11.Balanced Amplifier
+# 11. Balanced Amplifier
 
-## 11.1Balanced Amplifier using NMOS
+## 11.1 Balanced Amplifier using NMOS
 ## Circuit Diagram
 ![Diagram](docs/nmos_balanceckt.jpeg)
 ## DC Analysis
@@ -1702,7 +1708,7 @@ print onoise_spectrum inoise_spectrum
 ### Noise plot
 ![Diagram](docs/noise_balanceckt.png)
 
-## 11.2Balanced Amplifier using PMOS
+## 11.2 Balanced Amplifier using PMOS
 ## Circuit Diagram
 ![Diagram](docs/pmos_balanceckt.jpeg)
 ## DC Analysis
