@@ -45,8 +45,8 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [7.2 Common Drain Amplifier](#72-common-drain-amplifier)
   - [7.3 Common Gate Amplifier](#73-common-gate-amplifier)
 - [8. Differential Amplifier](#8-Differential-Amplifier)
-  -[8.1 Differential Amplifier using NMOS](#81-Differential-Amplifier-using-NMOS)
-  -[8.2 Differential Amplifier using PMOS](#82-Differential-Amplifier-using-PMOS)
+  - [8.1 Differential Amplifier using NMOS](#81-Differential-Amplifier-using-NMOS)
+  - [8.2 Differential Amplifier using PMOS](#82-Differential-Amplifier-using-PMOS)
   
 # 1. Tools and PDK setup
 
