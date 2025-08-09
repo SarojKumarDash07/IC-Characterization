@@ -1994,7 +1994,7 @@ meas ac dc_gain find gain at=1
 - gain_margin         =  -8.121685e+01
 - phase180_freq       =  1.826696e+13
 - dc_gain             =  4.154253e+01
-- 
+  
 ### Gain and phase plot
 ![Diagram](docs/ac_pmos_balance.png)
 
