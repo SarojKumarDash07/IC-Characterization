@@ -1490,6 +1490,133 @@ plot v(i1)  v(o1)
 
 ## 10.2 Two stage Amplifier using PMOS 
 
+## DC Analysis
+```
+* DC analysis of opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3     o1      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=80
+I1      n2      0       dc     50u
+V1      n5      n6       dc      0
+XM4     n1      o1      n6      n6      sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=5
+XM5     n3      i1      n6      n6      sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=5
+V2   i1 0 0.8
+XM6  n1  n1  i2  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=5
+XM7  n3  n1  i3  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=5
+XM8  o1  n3  i4  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=80
+V3      i2      0      dc      0
+V4      i3      0      dc      0
+V5      i4      0      dc      0
+C1  o1 0 10p
+C2  n3 o1 5p
+.op
+.control
+run
+print v(n6)
+print v(n1)
+print v(n3)
+print v(o1)
+print i(vdd)
+print i(V1)
+print i(v3)
+print i(V4)
+print i(V5)
+.endc
+.end
+```
+### Output
+- v(n6) = 1.366238e+00
+- v(n1) = 7.847250e-01
+- v(n3) = 7.871332e-01
+- v(o1) = 8.002205e-01
+- i(vdd) = -4.99232e-04
+- i(v1) = 4.909509e-05
+- i(v3) = 2.454686e-05
+- i(v4) = 2.454822e-05
+- i(v5) = 4.001372e-04
+  
+## AC Analysis
+```
+* AC analysis of opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3     o1      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=80
+I1      n2      0       dc     50u
+XM4     n1      o2      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=5
+XM5     n3      i1      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=5
+Vn   o2 0 0.8 ac 0.5
+V2   i1 0 0.8 ac -0.5
+XM6  n1  n1  0  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=5
+XM7  n3  n1  0  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=5
+XM8  o1  n3  0  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=80
+C1  o1 0 10p
+C2  n3 o1 5p
+.ac dec 10 1 10e15
+.control
+run
+let gain = vdb(o1)
+let phase = 180/3.141*ph(o1)
+plot gain phase
+* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+meas ac phase_margin find phase when gain=0
+* Find unity-gain bandwidth
+meas ac unity_freq when gain=0
+* Find gain margin (gain at phase = -180 deg)
+meas ac gain_margin find gain  when phase=-179.9
+* Find the frequency where phase=-180 deg
+meas ac phase180_freq when phase=-179.9
+* Find DC gain (at 1Hz)
+meas ac dc_gain find gain at=1
+.endc
+.end
+```
+### Output
+- phase_margin        =  5.495842e+01
+- unity_freq          =  3.212512e+06
+- gain_margin         =  -8.436149e+01
+- phase180_freq       =  9.715676e+12
+- dc_gain             =  4.773053e+01
+  
+### Gain and phase plot
+![Diagram](docs/ac_pmos_opamp.png)
+
+## Stability Analysis
+```
+* Stability analysis of opamp using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd     d      0       dc      1.8
+XM1     n2      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM3     o1      n2      d      d      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=80
+I1      n2      0       dc     50u
+XM4     n1      o1      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=5
+XM5     n3      i1      n5      n5      sky130_fd_pr__pfet_01v8_lvt  L=0.35 W=5
+V2   i1 0  dc 0 pulse(0.2 1.4 0 0 0 1 1 )
+XM6  n1  n1  0  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=5
+XM7  n3  n1  0  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=5
+XM8  o1  n3  0  0 sky130_fd_pr__nfet_01v8  L=8 W=5 m=80
+C1  o1 0 10p
+C2  n3 o1 5p
+
+.tran 0.1u 10u
+.control
+run
+plot v(i1)  v(o1)
+.endc
+.end
+```
+### Stability plot
+![Diagram](docs/stability_pmos_opamp.png)
+
+
 # 11. Balanced Amplifier
 
 ## 11.1 Balanced Amplifier using NMOS
