@@ -1489,6 +1489,8 @@ plot v(i1)  v(o1)
 ![Diagram](docs/stability_opamp.png)
 
 ## 10.2 Two stage Amplifier using PMOS 
+## Circuit Diagram
+![Diagram](docs/ckt_dia_pmos_opamp.jpeg)
 
 ## DC Analysis
 ```
