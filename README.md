@@ -56,6 +56,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [11. Balanced Amplifier](#11-Balanced-Amplifier)
    - [11.1 Balanced Amplifier using NMOS](#111-Balanced-Amplifier-using-NMOS)
    - [11.2 Balanced Amplifier using PMOS](#112-Balanced-Amplifier-using-PMOS)
+- [12 Telescopic amplifier](#12-Telescopic-amplifier)
   
 # 1. Tools and PDK setup
 
@@ -2139,7 +2140,7 @@ end
 ### Montecarlo plot
 ![Diagram]()
 
-## 11.2 Telescopic amplifier
+## 12 Telescopic amplifier
 ## Circuit Diagram
 ![Diagram](docs/ckt_dia_telescopic_amp.jpeg)
 ## DC Analysis
