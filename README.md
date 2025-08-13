@@ -31,6 +31,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [4. MOSFET Circuits](#4-mosfet-circuits)
   - [4.1 NMOS Analysis](#41-nmos-analysis)
   - [4.2 PMOS Analysis](#42-pmos-analysis)
+- [5. Inverter](#5-Inverter)
 - [6. Current Mirror](#5-current-mirror)
   - [6.1 Simple Current Mirror using NMOS](#61-simple-current-mirror-using-nmos)
   - [6.2 Simple Current Mirror using PMOS](#62-simple-current-mirror-using-pmos)
@@ -442,6 +443,78 @@ save all
 ![Diagram](docs/pmos_id_vds.JPG)
 
 ### Parameters across PVT
+
+# 5. Inverter
+## Static power
+```
+******INVERTER-STATIC******
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+.global VDD  GND
+**PMOS**
+VDD      VDD     GND     DC      1.8
+VIN      in      GND     DC      0
+XP1      out     in      VDD     VDD    sky130_fd_pr__pfet_01v8_lvt L=0.35  W=7
+XM1      out     in      GND     GND    sky130_fd_pr__nfet_01v8_lvt L=0.15  W=7
+C1      out     0       1a
+
+*NMOS*
+Vns     n1      0       DC      1.8
+V1      i1      0       DC      1.8
+XP2     o1     i1       n1       n1    sky130_fd_pr__pfet_01v8_lvt L=0.35  W=7
+XM2     o1     i1       0        0    sky130_fd_pr__nfet_01v8_lvt L=0.15  W=7
+C2      o1      0       1a
+.OP
+.control
+run
+print abs(I(VDD))
+print abs(I(Vns))
+let static_power=((I(VDD)) + (I(Vns)))*1.8
+print abs(static_power)
+.endc
+```
+### Output
+- abs(i(vdd)) = 2.153271e-09
+- abs(i(vns)) = 1.285865e-07
+- abs(static_power) = 2.353315e-07
+
+## Dynamic power
+```
+*  Dynamic power calculation of CMOS Inverter
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
+.temp 125
+Vdd Vdd 0 1.8
+Vin In 0 PULSE(0 1.8 0 10n 10n 60n 120n)
+XM1 Out In Vdd Vdd sky130_fd_pr__pfet_01v8_lvt w=7 l=.35
+XM2 Out In 0   0   sky130_fd_pr__nfet_01v8_lvt w=7 l=.15
+C1 out 0 1a
+.tran 0.1n 240n               ; Transient analysis: step size and total simulation time
+.op
+.control
+run
+plot V(in)  V(Out)
+plot abs(i(Vdd))
+meas tran i(avg) AVG  i(Vdd)
+meas tran rise_time TRIG v(out) VAL=0.18 RISE=1 TARG v(out) VAL=1.62 RISE=1
+meas tran fall_time TRIG v(out) VAL=1.62 FALL=1 TARG v(out) VAL=0.18 FALL=1
+meas tran delay_time TRIG v(in) VAL=0.9 RISE=1 TARG v(out) VAL=0.9 RISE=1
+meas tran vmax MAX v(out)
+meas tran vmin MIN v(out)
+let  power = i(avg)*1.8
+print power
+.endc
+.end
+```
+### Output
+- i(avg)              =  -1.040382e-05   from=  0.000000e+00   to=  2.400000e-07
+- rise_time           =  1.105302e-09    targ=  7.625172e-08   trig=  7.514641e-08
+- fall_time           =  1.073558e-09    targ=  4.883824e-09   trig=  3.810266e-09
+- delay_time          =  7.061907e-08    targ=  7.561907e-08   trig=  5.000000e-09
+- vmax                =  1.801978e+00    at=  1.328000e-09
+- vmin                =  -1.456401e-04   at=  1.900300e-07
+- power = -1.87269e-05
+![Diagram](docs/inverter_output.png)
+![Diagram](docs/dynamicpower_inverter.png)
 
 # 6. Current Mirror
 
