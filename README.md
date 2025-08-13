@@ -2139,4 +2139,209 @@ end
 ### Montecarlo plot
 ![Diagram]()
 
+## 11.2 Telescopic amplifier
+## Circuit Diagram
+![Diagram]()
+## DC Analysis
+```
+* DC analysis of telescopic amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+XM1     n4      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+XM3     n2      n3    n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4     n6      n3    n5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+R2      n6      n7      1k
+XM5     n7      n6    n8    0       sky130_fd_pr__nfet_01v8  L=8 W=7 m=5
+XM6     n8      n7    o1    0       sky130_fd_pr__nfet_01v8  L=8 W=7 m=5
+V1      o1      0       0
+XM7     i4      n7      0       0      sky130_fd_pr__nfet_01v8  L=8 W=3 m=9
+V2      i1      i4      0
+XM8     i2      in     s1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM9     i3      in     s2      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM10     o3     n6     i2      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM11     o4     n6     i3      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+Vn      in      0       1.2
+V3      s1      i1      0
+V4      s2      i1      0
+XM12      o3      n3    o5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM13      o4      n3    o6      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM14      o5      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM15      o6      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+.op
+.control
+run
+print v(i1)
+print v(o4)
+print i(vdd)
+print i(V1)
+print i(V2)
+print i(v3)
+print i(v4)
+.endc
+.end
+```
+
+## AC analysis
+```
+* AC analysis of telescopic amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+XM1     n4      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+XM3     n2      n3    n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4     n6      n3    n5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+R2      n6      n7      1k
+XM5     n7      n6    n8       0      sky130_fd_pr__nfet_01v8  L=8 W=5 m=7
+XM6     n8      n7     0       0      sky130_fd_pr__nfet_01v8  L=8 W=5 m=7
+XM7     i1      n7     0       0      sky130_fd_pr__nfet_01v8  L=8 W=3 m=9
+XM8     i2      in     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM9     i3      ip     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM10     o3     n6     i2      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM11     o4     n6     i3      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+Vn      in      0       1.2  ac  -1
+Vp      ip      0       1.2  ac  1
+XM12      o3      n3    o5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM13      o4      n3    o6      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM14      o5      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM15      o6      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+C1      o4      0       20p
+.ac dec 10 1 10e14
+.control
+run
+let gain = vdb(o4)
+let phase = 180/3.141*ph(o4)
+plot gain phase
+* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+meas ac phase_margin find phase when gain=0
+* Find unity-gain bandwidth
+meas ac unity_freq when gain=0
+* Find gain margin (gain at phase = -180 deg)
+meas ac gain_margin find gain  when phase=-180
+* Find the frequency where phase=-180 deg
+meas ac phase180_freq when phase=-180
+* Find DC gain (at 1Hz)
+meas ac dc_gain find gain at=1
+.endc
+.end
+```
+### Gain and phase plot
+![Diagram]()
+
+## Stability analysis
+```
+* Stability analysis of telescopic amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+XM1     n4      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+XM3     n2      n3    n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4     n6      n3    n5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+R2      n6      n7      1k
+XM5     n7      n6    n8    0       sky130_fd_pr__nfet_01v8  L=8  W=7 m=5
+XM6     n8      n7     0    0       sky130_fd_pr__nfet_01v8  L=8  W=7 m=5
+XM7     i1      n7     0       0      sky130_fd_pr__nfet_01v8  L=8 W=3 m=9
+XM8     i2      ip     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM9     i3      o4     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM10     o3     n6     i2      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM11     o4     n6     i3      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+Vp      ip      0       dc 0 pulse(0.6 1.4 0 0 0 1 1 )
+XM12      o3      n3    o5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM13      o4      n3    o6      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM14      o5      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM15      o6      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+C1      o4      0       20p
+.tran 0.1u 10u
+.control
+run
+plot v(ip) v(o4)
+.endc
+.end
+```
+### Stability plot
+![Diagram]()
+
+## CMRR analysis
+```
+* CMRR analysis of telescopic amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+XM1     n4      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+XM3     n2      n3    n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4     n6      n3    n5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+R2      n6      n7      1k
+XM5     n7      n6    n8       0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=5
+XM6     n8      n7     0       0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=5
+XM7     i1      n7     0       0      sky130_fd_pr__nfet_01v8  L=8 W=3 m=9
+XM8     i2      in     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM9     i3      in     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM10     o3     n6     i2      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM11     o4     n6     i3      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+Vn      in      0       1.2  ac  1
+XM12      o3      n3    o5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM13      o4      n3    o6      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM14      o5      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM15      o6      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+C1      o4      0       20p
+.ac dec 10 1 10e14
+.control
+run
+let gain = vdb(o4)
+plot gain
+.endc
+.end
+```
+### CMRR plot
+![Diagram]()
+
+## PSRR analysis
+```
+*PSRR analysis of telescopic amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8 ac 1
+XM1     n4      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+XM3     n2      n3    n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4     n6      n3    n5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+R2      n6      n7      1k
+XM5     n7      n6    n8    0       sky130_fd_pr__nfet_01v8  L=8 W=7 m=5
+XM6     n8      n7    0    0       sky130_fd_pr__nfet_01v8  L=8 W=7 m=5
+XM7     i1      n7      0       0      sky130_fd_pr__nfet_01v8  L=8 W=3 m=9
+XM8     i2      in     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM9     i3      o4     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM10     o3     n6     i2      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM11     o4     n6     i3      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+Vn      in      0       1.2
+XM12      o3      n3    o5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM13      o4      n3    o6      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM14      o5      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM15      o6      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+C1      o4      0       20p
+.ac dec 10 1 10e9
+.control
+run
+let gain = vdb(o4)
+plot gain
+.endc
+.end
+```
+### PSRR plot
+![Diagram]()
+
 
