@@ -2141,7 +2141,7 @@ end
 
 ## 11.2 Telescopic amplifier
 ## Circuit Diagram
-![Diagram]()
+![Diagram](docs/ckt_dia_telescopic_amp.jpeg)
 ## DC Analysis
 ```
 * DC analysis of telescopic amplifier
@@ -2174,6 +2174,8 @@ XM15      o6      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=1
 .op
 .control
 run
+*dc Vn 0 1.8 0.01
+*plot v(o4)
 print v(i1)
 print v(o4)
 print i(vdd)
@@ -2184,6 +2186,16 @@ print i(v4)
 .endc
 .end
 ```
+### Output
+- v(i1) = 2.467236e-01
+- v(o4) = 9.962116e-01
+- i(vdd) = -1.49052e-04
+- i(v1) = 4.973116e-05
+- i(v2) = 4.932079e-05
+- i(v3) = 2.466040e-05
+- i(v4) = 2.466040e-05
+## DC plot
+![Diagram](docs/DC_telescopic_amp.png)
 
 ## AC analysis
 ```
@@ -2231,8 +2243,14 @@ meas ac dc_gain find gain at=1
 .endc
 .end
 ```
+### Output
+- phase_margin        =  8.118482e+01
+- unity_freq          =  4.355617e+05
+- gain_margin         =  -3.040954e+01
+- phase180_freq       =  1.482782e+14
+- dc_gain             =  4.044838e+01
 ### Gain and phase plot
-![Diagram]()
+![Diagram](docs/ac_telescopic_amp.png)
 
 ## Stability analysis
 ```
@@ -2268,7 +2286,7 @@ plot v(ip) v(o4)
 .end
 ```
 ### Stability plot
-![Diagram]()
+![Diagram](docs/stability_telescopic_amp.png)
 
 ## CMRR analysis
 ```
@@ -2305,7 +2323,7 @@ plot gain
 .end
 ```
 ### CMRR plot
-![Diagram]()
+![Diagram](docs/CMRR_telescopic_amp.png)
 
 ## PSRR analysis
 ```
@@ -2342,6 +2360,47 @@ plot gain
 .end
 ```
 ### PSRR plot
-![Diagram]()
+![Diagram](docs/PSRR_telescopic_amp.png)
+
+## Noise analysis
+```
+*Noise analysis of telescopic amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+XM1     n4      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM2     n5      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+I1      n3      0       50u
+R1      n2      n3      1k
+XM3     n2      n3    n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM4     n6      n3    n5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+R2      n6      n7      1k
+XM5     n7      n6    n8       0      sky130_fd_pr__nfet_01v8  L=8 W=5 m=7
+XM6     n8      n7     0       0      sky130_fd_pr__nfet_01v8  L=8 W=5 m=7
+XM7     i1      n7     0       0      sky130_fd_pr__nfet_01v8  L=8 W=3 m=9
+XM8     i2      in     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM9     i3      o4     i1      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM10     o3     n6     i2      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+XM11     o4     n6     i3      0      sky130_fd_pr__nfet_01v8  L=8 W=7 m=8
+Vn      in      0       1.2  ac  -1
+XM12      o3      n3    o5      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM13      o4      n3    o6      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM14      o5      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM15      o6      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+C1      o4      0       20p
+.op
+.control
+run
+noise v(o4) Vn dec 100 10 1MEG
+setplot noise1
+display
+plot onoise_spectrum  inoise_spectrum
+print onoise_spectrum inoise_spectrum
+.endc
+.end
+```
+### Noise plot
+![Diagram](docs/noise_telescopic_amp.png)
+
 
 
