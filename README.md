@@ -1834,7 +1834,7 @@ run
 let gain = vdb(n2)
 let phase = 180/3.141*ph(n2)
 plot gain phase
-* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+* Find phase margin (phase at unity gain, i.e., vdb(n2) = 0dB)
 meas ac phase_margin find phase when gain=0
 * Find unity-gain bandwidth
 meas ac unity_freq when gain=0
@@ -2092,7 +2092,7 @@ run
 let gain = vdb(n4)
 let phase = 180/3.141*ph(n4)
 plot gain phase
-* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+* Find phase margin (phase at unity gain, i.e., vdb(n4) = 0dB)
 meas ac phase_margin find phase when gain=0
 * Find unity-gain bandwidth
 meas ac unity_freq when gain=0
@@ -2347,7 +2347,7 @@ run
 let gain = vdb(o4)
 let phase = 180/3.141*ph(o4)
 plot gain phase
-* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+* Find phase margin (phase at unity gain, i.e., vdb(o4) = 0dB)
 meas ac phase_margin find phase when gain=0
 * Find unity-gain bandwidth
 meas ac unity_freq when gain=0
@@ -2518,6 +2518,295 @@ print onoise_spectrum inoise_spectrum
 ```
 ### Noise plot
 ![Diagram](docs/noise_telescopic_amp.png)
+
+## 13 Folded cascode amplifier
+## Circuit Diagram
+![Diagram]()
+## DC Analysis
+```
+ *DC analysis of folded cascode  amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+I1       n1      n2      10u
+R1       n2      n3      20k
+R2       n6      n5      20k
+V1       n9      0       0
+V2       s1      d3      0
+V3       s2      d3      0
+V4       d3      d4      0
+V5       n1      d7      0
+V6       n1      d8      0
+V7       s3       0      0
+V8       s4       0      0
+V9       in       0      1.6
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM4      n7      n3    n9      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM7      d1      in    s1      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM8      d2      in    s2      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM9      d4      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
+XM10     d1      o2    d7      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM11     d2      o2    d8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM16     d5      n3    s3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM17     d6      n3    s4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+.op
+.control
+run
+'dc V9 0 1.8 0.01
+'plot v(o1)
+print v(d3)
+print v(o1)
+print i(vdd)
+print i(v1)
+print i(v2)
+print i(v3)
+print i(v4)
+print i(v5)
+print i(v6)
+print i(v7)
+print i(v8)
+.endc
+.end
+```
+### Output 
+- v(d3) = 3.959074e-01
+- v(o1) = 8.920648e-01
+- i(vdd) = -1.39705e-04
+- i(v1) = 1.000892e-05
+- i(v2) = 2.481925e-05
+- i(v3) = 2.481925e-05
+- i(v4) = 4.963850e-05
+- i(v5) = 5.984806e-05
+- i(v6) = 5.984806e-05
+- i(v7) = 3.502881e-05
+- i(v8) = 3.502881e-05
+
+### DC plot
+![Diagram](docs/dc_folded_amp.png)
+
+## AC analysis
+```
+*AC analysis of folded cascode  amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+I1       n1      n2      10u
+R1       n2      n3      20k
+R2       n6      n5      20k
+Vn       in       0      1.6   ac    -1
+Vp       ip       0      1.6   ac     1
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM8      d2      ip    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+C1       o1      0      20p
+.ac dec 10 1 10e14
+.control
+run
+let gain = vdb(o1)
+let phase = 180/3.141*ph(o1)
+plot gain phase
+* Find phase margin (phase at unity gain, i.e., vdb(o1) = 0dB)
+meas ac phase_margin find phase when gain=0
+* Find unity-gain bandwidth
+meas ac unity_freq when gain=0
+* Find gain margin (gain at phase = -180 deg)
+meas ac gain_margin find gain  when phase=-180
+* Find the frequency where phase=-180 deg
+meas ac phase180_freq when phase=-180
+* Find DC gain (at 1Hz)
+meas ac dc_gain find gain at=1
+.endc
+.end
+```
+### Output
+- phase_margin        =  6.475696e+01
+- unity_freq          =  5.347634e+05
+- gain_margin         =  -5.318692e+01
+- phase180_freq       =  1.258904e+12
+- dc_gain             =  4.813511e+01
+
+### Gain and phase plot
+![Diagram](docs/ac_folded_amp.png)
+
+## Stability analysis
+```
+*Stability analysis of folded cascode  amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+I1       n1      n2      10u
+R1       n2      n3      20k
+R2       n6      n5      20k
+Vn       in       0      dc    0      pulse(0.4 1.4 0 0 0 1 1 )
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM8      d2      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+C1       o1      0      20p
+.tran 0.1u 10u
+.control
+run
+plot v(in) v(o1)
+.endc
+.end
+```
+### Stability plot
+![Diagram](docs/stability_folded_amp.png)
+
+## PSRR analysis
+```
+*PSRR of folded cascode  amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8 ac 1
+I1       n1      n2      10u
+R1       n2      n3      20k
+R2       n6      n5      20k
+Vn       in       0      1.6
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM7      d1      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM8      d2      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+C1       o1      0      20p
+.ac dec 10 1 10e9
+.control
+run
+let gain = vdb(o1)
+plot gain
+.endc
+.end
+```
+### PSRR plot
+![Diagram](docs/PSRR_folded_amp.png)
+
+## CMRR analysis
+```
+*CMRR analysis of folded cascode  amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+I1       n1      n2      10u
+R1       n2      n3      20k
+R2       n6      n5      20k
+Vn       in       0      1.6   ac    -1
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM8      d2      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+C1       o1      0      20p
+.ac dec 10 1 10e14
+.control
+run
+let gain = vdb(o1)
+plot gain
+.endc
+.end
+```
+### CMRR plot
+![Diagram](docs/CMRR_folded_amp.png)
+
+## Noise analysis
+```
+*Noise analysis of folded cascode  amplifier
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+I1       n1      n2      10u
+R1       n2      n3      20k
+R2       n6      n5      20k
+Vn       in       0      1.6   ac    -1
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM8      d2      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+C1       o1      0      20p
+.op
+.control
+run
+noise v(o1) vn dec 100 10 1MEG
+setplot noise1
+display
+plot onoise_spectrum  inoise_spectrum
+*print onoise_spectrum inoise_spectrum
+.endc
+.end
+```
+### Noise plot
+![Diagram](docs/noise_folded_amp.png)
 
 
 
