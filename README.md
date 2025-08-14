@@ -2258,6 +2258,16 @@ end
 ![Diagram]()
 
 ## 12. Telescopic amplifier
+- A telescopic amplifier is a type of cascode amplifier where the input stage and cascode stage are stacked directly on top of each other.
+- It’s called telescopic because the transistors are stacked vertically.
+### Advantages
+- Low noise
+- Better bandwidth
+- Very high DC gain
+- Lower power consumption
+### Disadvantages
+- Limited output swing
+- Limited input common-mode range
 ## Circuit Diagram
 ![Diagram](docs/ckt_dia_telescopic_amp.jpeg)
 ## DC Analysis
