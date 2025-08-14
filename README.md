@@ -58,6 +58,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    - [11.1 Balanced Amplifier using NMOS](#111-Balanced-Amplifier-using-NMOS)
    - [11.2 Balanced Amplifier using PMOS](#112-Balanced-Amplifier-using-PMOS)
 - [12 Telescopic amplifier](#12-Telescopic-amplifier)
+- [13 Folded cascode amplifier](#13-Folded-cascode-amplifier)
   
 # 1. Tools and PDK setup
 
