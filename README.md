@@ -2258,6 +2258,15 @@ end
 ![Diagram]()
 
 ## 12. Telescopic amplifier
+- A folded cascode amplifier is a variation of the cascode amplifier topology that’s designed to combine high gain, wide output swing, and improved input common-mode range.
+### Advantages
+- High gain
+- Better output swing
+- Higher input common-mode range
+### Disadvantages
+- More area
+- More complex biasing
+- Higher power consumption
 ## Circuit Diagram
 ![Diagram](docs/ckt_dia_telescopic_amp.jpeg)
 ## DC Analysis
