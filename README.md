@@ -1738,6 +1738,16 @@ plot v(i1)  v(o1)
 
 
 # 11. Balanced Amplifier
+- A balanced amplifier is an amplifier configuration designed so that its output (or input) is symmetrical with respect to a reference point.
+### Why Balanced?
+- The signals are balanced in amplitude and anti-phase (180° apart).
+- This symmetry provides better common-mode noise rejection — any interference picked up equally on both lines is canceled out when taking the difference.
+### Advantages
+- High CMRR
+- Lower distortion
+### Disadvantages
+- More complex design
+- Consumes more power than a single-ended stage.
 
 ## 11.1 Balanced Amplifier using NMOS
 ## Circuit Diagram
