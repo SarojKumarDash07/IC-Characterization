@@ -32,7 +32,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [4.1 NMOS Analysis](#41-nmos-analysis)
   - [4.2 PMOS Analysis](#42-pmos-analysis)
 - [5. Inverter](#5-Inverter)
-- [6. Current Mirror](#5-current-mirror)
+- [6. Current Mirror](#6-current-mirror)
   - [6.1 Simple Current Mirror using NMOS](#61-simple-current-mirror-using-nmos)
   - [6.2 Simple Current Mirror using PMOS](#62-simple-current-mirror-using-pmos)
   - [6.3 Cascode Current Mirror using NMOS](#63-cascode-current-mirror-using-nmos)
@@ -561,6 +561,44 @@ meas tran vmin MIN v(out)
 - vmin                =  -1.311942e-04 at=  7.015000e-08
 
 # 6. Current Mirror
+- A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
+- It’s widely used in biasing circuits, active loads, and current-mode logic.
+- Implemented using matched transistors (BJTs or MOSFETs).
+- Key Idea : If two transistors are perfectly matched and have the same VGS then they will conduct the same drain/collector current.
+### Advantages
+- Accurate current replication (when devices are matched and well-designed).
+- High output impedance - good for biasing and active loads.
+- Compact design — no need for large resistors.
+- Scalable — easy to generate multiple identical or scaled currents.
+- Temperature tracking — matched devices track each other’s thermal changes.
+### Disadvantages
+- Device mismatch causes current errors.
+- Finite output resistance leads to current variation.
+- Voltage headroom requirement (especially in cascode types).
+- Temperature dependence — though better than resistors, still affected.
+- Limited accuracy at very low currents due to leakage and mismatch.
+### feature of different type of current mirror
+
+| **Feature**                             | **Simple Current Mirror**                | **Cascode Current Mirror**                    | **Wide-Swing Cascode Current Mirror**           | **Self-Biased Current Mirror**                  |
+| --------------------------------------- | ---------------------------------------- | --------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| **Output Resistance (r<sub>out</sub>)** | Low   | Very High  | Very High    | High                   |
+| **Accuracy (Current Matching)**         | Low–Medium | High                                          | High                                            | Medium–High                                     |
+| **Voltage Headroom Requirement**        | Low (\~V<sub>DS(sat)</sub>)              | High (\~2 × V<sub>DS(sat)</sub>)              | Medium (\~V<sub>DS(sat)</sub> + V<sub>ov</sub>) | Medium–High (depends on topology)               |
+| **Output Voltage Swing**                | Large (good swing)                       | Small (limited due to cascoding)              | Large (improved over normal cascode)            | Medium                                          |
+| **Channel Length Modulation Effect**    | High (bad)                               | Very Low (good)                               | Very Low (good)                                 | Low–Medium                                      |
+| **Power Consumption**                   | Low                                      | Medium                                        | Medium                                          | Medium                                          |
+| **Design Complexity**                   | Very Low                                 | Medium                                        | Medium–High                                     | High                                            |
+| **Best Use Case**                       | Simple biasing, low supply voltage       | High-accuracy bias, high supply voltage       | High-accuracy bias with better swing            | On-chip bias network without external reference |
+
+### Advantages and disadvantages of different types of current mirror
+
+| **Type**                              | **Advantages**                                                                                                                                                         | **Disadvantages**                                                                                                                                                                          |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Simple Current Mirror**             | - Very simple design<br>- Requires minimum components (2 matched transistors)<br>- Low area and power consumption                                                      | - Low output resistance (poor current matching for varying V<sub>OUT</sub>)<br>- Sensitive to channel length modulation<br>- Accuracy depends heavily on device matching                   |
+| **Cascode Current Mirror**            | - Very high output resistance → better current matching<br>- Reduced channel length modulation effect<br>- Improved accuracy over simple mirror                        | - Requires higher voltage headroom (\~2 × V<sub>DS(sat)</sub>)<br>- Slightly more complex design (4 transistors)<br>- Larger area                                                          |
+| **Wide-Swing Cascode Current Mirror** | - High output resistance like cascode<br>- Allows larger output voltage swing compared to standard cascode<br>- Better for low supply voltage than standard cascode    | - Still more complex than simple mirror<br>- Requires careful biasing for correct operation<br>- Voltage headroom still higher than simple mirror (but less than normal cascode)           |
+| **Self-Biased Current Mirror**        | - No need for an external bias voltage (bias generated internally)<br>- Compact bias network for multiple mirrors<br>- Good matching due to internal reference sharing | - More complex circuit than basic mirror<br>- Output resistance depends on internal bias design<br>- Less flexible if different bias currents are needed in different parts of the circuit |
+
 
 ## 6.1 Simple Current Mirror using NMOS
 ![Diagram](docs/Simp_nmos.JPG)
