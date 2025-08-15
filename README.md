@@ -1101,6 +1101,17 @@ plot abs(i(V2))
 ![Diagram](docs/pmosselfbiasedgain.png)
 
 # 7. Single Stage Amplifiers
+- A single-stage amplifier is the simplest form of amplifier — it uses just one active device (like a BJT, MOSFET, or JFET) along with biasing and load components to amplify a weak input signal into a stronger output signal.
+- The term single stage means the signal passes through only one amplifying device before reaching the output.
+### Advantages
+- Simple design — easy to understand and build.
+- Low cost — fewer components.
+- Foundation for multi-stage amplifiers.
+### Disadvantages
+- Limited gain — can’t amplify very weak signals to large values in one stage.
+- Lower input/output impedance control — may not match all sources/loads.
+- Limited bandwidth — affected by transistor parasitics and load capacitance.
+- Noisy — more susceptible to noise compared to differential stages.
 
 ## 7.1 Common Source Amplifier
 ```
@@ -1208,7 +1219,6 @@ run
 ![Diagram](docs/outputimpedencecg.png)
 
 ### Calculation of input and output impedence
-
 | Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
 | - | - | - | - | - | - | - | - | - | - | 
 | Types | ss | tt | ff | ss | tt | ff | ss | tt | ff |
@@ -1216,6 +1226,14 @@ run
 | Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 
 # 8. Differential Amplifier
+- A differential amplifier is a type of electronic amplifier that amplifies the difference between two input signals while rejecting any voltage common to both inputs (called common-mode signals).
+- It’s one of the most fundamental building blocks in analog and mixed-signal circuits.
+### Advantages
+- High CMRR
+- Better stability
+### Disadvantages
+- Requires matched components for ideal operation.
+- More complex biasing compared to single-ended amplifiers.
 
 ## 8.1 Differential Amplifier using NMOS
 ## DC Analysis
