@@ -1470,7 +1470,41 @@ plot v(out1) v(out2)
 
 ## 9.2 Common mode feedback Amplifier using PMOS
 
-# 10. Two stage Amplifier  
+# 10. Two stage Amplifier
+- A two-stage op-amp is one of the most common CMOS amplifier topologies used in analog IC design, especially when you need high gain and reasonable output swing.
+- It’s called “two-stage” because the signal passes through two cascaded gain stages before reaching the output.
+### Structure
+- A typical two-stage op-amp consists of:
+### I.Stage 1 – Differential Amplifier with Active Load
+- Purpose: Provides high input impedance, large differential gain, and converts differential input to a single-ended output.
+- Often implemented with NMOS differential pair and PMOS current-mirror load.
+- This stage sets much of the DC gain.
+### II.Stage 2 – Common-Source Gain Stage
+- Purpose: Further amplifies the single-ended signal from Stage 1 to the final output level.
+- Usually an NMOS common-source transistor with a PMOS current-source load.
+- This stage provides extra gain and helps drive moderate loads.
+### III.Compensation Network
+- Usually a Miller compensation capacitor between Stage-1 output and Stage-2 output.
+- Sometimes includes a series resistor to move the zero to the left half-plane for stability.
+- Ensures adequate phase margin for closed-loop stability.
+### Advantages
+- High DC Gain
+- High Input Impedance
+- Moderate Output Swing
+### Disadvantages
+- Larger Area
+- Stability Issues
+- Slew Rate Limitation
+- More Power Consumption
+- Lower Speed than Single-Stage
+### Summary Table
+| Feature          | Two-Stage Op-Amp                   |
+| ---------------- | ---------------------------------- |
+| **Gain**         | Very high (60–90 dB)               |
+| **Bandwidth**    | Moderate (set by Miller C)         |
+| **Load Drive**   | Moderate (pF range)                |
+| **Complexity**   | Higher than single-stage           |
+| **Stability**    | Requires compensation              |
 
 ## 10.1 Two stage Amplifier using NMOS
 ## Circuit Diagram
