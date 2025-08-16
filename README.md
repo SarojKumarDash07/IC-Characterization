@@ -1211,9 +1211,9 @@ run
 .end
 ```
 ### Input impedence
-![Diagram]()
+![Diagram](docs/ip_cs_pmos.png)
 ### Output impedence
-![Diagram]()
+![Diagram](docs/op_cs_pmos.png)
 
 ## 7.3 Common Drain Amplifier using NMOS
 ```
@@ -1261,17 +1261,19 @@ XM1 d  g  n1  n1  sky130_fd_pr__pfet_01v8_lvt  L=8 W=7
 R1  n1 0  1k
 .control
 run
+* high input impedence infinity between gate and drain
 *dc Vg 0 1.8 0.01
 *plot  i(Vg)
+*low output impedence between source and drain
 dc Vdd 0 1.8 0.01
 plot abs(i(Vdd))
 .endc
 .end
 ```
 ### Input impedence
-![Diagram]()
+![Diagram](docs/ip_cd_pmos.png)
 ### Output impedence
-![Diagram]()
+![Diagram](docs/op_cd_pmos.png)
 
 ## 7.5 Common Gate Amplifier using NMOS
 ```
@@ -1316,17 +1318,19 @@ Vg  g   0  dc  0
 XM1 0   g  s   s   sky130_fd_pr__pfet_01v8_lvt  L=8 W=7
 .control
 run
+* low input impedence between source and gate
 *dc Vdd 0 1.8 0.01
 *plot  abs(i(Vdd))
+*high output impedence infinity between drain and gate
 *dc Vdd 0 1.8 0.01
 *plot i(Vg)
 .endc
 .end
 ```
 ### Input impedence
-![Diagram]()
+![Diagram](docs/ip_cg_pmos.png)
 ### Output impedence
-![Diagram]()
+![Diagram](docs/op_cg_pmos.png)
 
 # 8. Differential Amplifier
 - A differential amplifier is a type of electronic amplifier that amplifies the difference between two input signals while rejecting any voltage common to both inputs (called common-mode signals).
