@@ -42,9 +42,12 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [6.7 Self Biased Wide Swing Cascode Current Mirror using NMOS](#67-self-biased-wide-swing-cascode-current-mirror-using-nmos)
   - [6.8 Self Biased Wide Swing Cascode Current Mirror using PMOS](#68-self-biased-wide-swing-cascode-current-mirror-using-pmos)
 - [7. Single Stage Amplifiers](#7-single-stage-amplifiers)
-  - [7.1 Common Source Amplifier](#71-common-source-amplifier)
-  - [7.2 Common Drain Amplifier](#72-common-drain-amplifier)
-  - [7.3 Common Gate Amplifier](#73-common-gate-amplifier)
+  - [7.1 Common Source Amplifier using NMOS](#71-common-source-amplifier-using-NMOS)
+  - [7.2 Common Source Amplifier using PMOS](#72-common-source-amplifier-using-PMOS)
+  - [7.3 Common Drain Amplifier using NMOS](#73-common-drain-amplifier-using-NMOS)
+  - [7.4 Common Drain Amplifier using PMOS](#74-common-drain-amplifier-using-PMOS)
+  - [7.5 Common Gate Amplifier using NMOS](#75-common-gate-amplifier-using-NMOS)
+  - [7.6 Common Gate Amplifier using PMOS](#76-common-gate-amplifier-using-PMOS)
 - [8. Differential Amplifier](#8-Differential-Amplifier)
   - [8.1 Differential Amplifier using NMOS](#81-Differential-Amplifier-using-NMOS)
   - [8.2 Differential Amplifier using PMOS](#82-Differential-Amplifier-using-PMOS)
@@ -1151,19 +1154,16 @@ plot abs(i(V2))
 - Limited bandwidth — affected by transistor parasitics and load capacitance.
 - Noisy — more susceptible to noise compared to differential stages.
 
-## 7.1 Common Source Amplifier
+## 7.1 Common Source Amplifier using NMOS
 ```
-* common source
-
+* common source using NMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" sf
 .temp 125
-
 Vdd n1 0 dc 1.8
 R1 n1 n2 1k
 V1 n2 n3 dc 0
 XM1 n3  gate 0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42
 vg gate 0 dc 1.8
-
 .control
 run
 * high input impedence infinity between gate and source
@@ -1189,19 +1189,42 @@ run
 | Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 | Output Impedence | 289.49k | 278.26k | 266.32k | 395.56k | 198.03k | 156.9k | 492.17k | 326.21k | 285.06k |
 
-## 7.2 Common Drain Amplifier
+## 7.2 Common Source Amplifier using PMOS
+```
+* common source using PMOS
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 125
+Vdd n1 0 dc 1.8
+R1 n2 n3  1k
+V1 n3 0 dc 0
+XM1 n2  gate n1  n1 sky130_fd_pr__pfet_01v8_lvt  L=8 W=7
+vg gate 0 dc 1.2
+.control
+run
+* high input impedence infinity between gate and source
+*dc Vg 0 1.8 0.01
+*plot i(Vg)
+*high output impedence between drain and source
+*dc Vdd 0 1.8 0.01
+*plot  i(V1)
+.endc
+.end
+```
+### Input impedence
+![Diagram]()
+### Output impedence
+![Diagram]()
+
+## 7.3 Common Drain Amplifier using NMOS
 ```
 * common drain
-
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
 .temp 25
-
 Vdd drain 0 dc 1.8
 Vg gate 0 dc 1.8
 XM1 drain  gate n1 0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42
 R1 n1 0 1k
 V1 drain n1 dc 0
-
 .control
 run
 * high input impedence infinity between gate and drain
@@ -1227,18 +1250,38 @@ run
 | Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 | Output Impedence | 1.006k | 1.027k | 0.99k | 1.018k | 0.995k | 0.999k | 1.003k | 1.028k | 1.014k |
 
-## 7.3 Common Gate Amplifier
+## 7.4 Common Drain Amplifier using PMOS
+```
+* common drain
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd d  0  dc 1.8
+Vg  g  0  dc 0.9
+XM1 d  g  n1  n1  sky130_fd_pr__pfet_01v8_lvt  L=8 W=7
+R1  n1 0  1k
+.control
+run
+*dc Vg 0 1.8 0.01
+*plot  i(Vg)
+dc Vdd 0 1.8 0.01
+plot abs(i(Vdd))
+.endc
+.end
+```
+### Input impedence
+![Diagram]()
+### Output impedence
+![Diagram]()
+
+## 7.5 Common Gate Amplifier using NMOS
 ```
 * common gate
-
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
 .temp 25
-
 Vdd drain 0 dc 1.8
 Vg gate 0 dc 1.8
 XM1 drain  gate 0  0 sky130_fd_pr__nfet_01v8_lvt  L=1 W=0.42
 *V1 n1 0  dc 1.8
-
 .control
 run
 * low input impedence between source and gate
@@ -1262,6 +1305,28 @@ run
 | Types | ss | tt | ff | ss | tt | ff | ss | tt | ff |
 | Input Impedence | 13.28k | 10.94k | 9.08k | 16.43k | 12.73k | 9.938k | 25.94k | 20.12k | 15.36k |
 | Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+
+## 7.6 Common Gate Amplifier using PMOS
+```
+* common gate
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+Vdd s   0  dc  1.8
+Vg  g   0  dc  0
+XM1 0   g  s   s   sky130_fd_pr__pfet_01v8_lvt  L=8 W=7
+.control
+run
+*dc Vdd 0 1.8 0.01
+*plot  abs(i(Vdd))
+*dc Vdd 0 1.8 0.01
+*plot i(Vg)
+.endc
+.end
+```
+### Input impedence
+![Diagram]()
+### Output impedence
+![Diagram]()
 
 # 8. Differential Amplifier
 - A differential amplifier is a type of electronic amplifier that amplifies the difference between two input signals while rejecting any voltage common to both inputs (called common-mode signals).
