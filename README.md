@@ -356,17 +356,13 @@ plot v(in) v(out)
 
 ![Diagram](docs/cr_tran.JPG)
 
-### Calculation of Rise, Fall and Propagation Delay
-
-![Diagram](docs/CR_tran_PVT.JPG)
-
 ## 3.4.2 AC Analysis
 
 ```
 
 ```
 
-![Diagram](docs/CR_ac.JPG)
+![Diagram](docs/cr_ac.JPG)
 
 ### Calculation of Cutoff Frequency (Hz)
 
