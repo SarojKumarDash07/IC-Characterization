@@ -478,7 +478,7 @@ save all
 
 # 5. Inverter
 
-- A **CMOS inverter** using the open-source **SkyWater SKY130 PDK**, with `sky130_fd_pr__pfet_01v8_lvt` (pMOS) and `sky130_fd_pr__nfet_01v8_lvt` (nMOS) transistors. The inverter is designed and simulated in **Xschem + Ngspice**, showing correct switching behavior from 0 V to 1.8 V. Key performance aspects such as transfer characteristics, switching threshold, and rise/fall times are verified.  
+A **CMOS inverter** using the open-source **SkyWater SKY130 PDK**, with `sky130_fd_pr__pfet_01v8_lvt` (pMOS) and `sky130_fd_pr__nfet_01v8_lvt` (nMOS) transistors. The inverter is designed and simulated in **Xschem + Ngspice**, showing correct switching behavior from 0 V to 1.8 V. Key performance aspects such as transfer characteristics, switching threshold, and rise/fall times are verified.  
 
 ## Key Points  
 - **Technology:** SKY130 (1.8 V low-Vt devices)  
@@ -487,7 +487,7 @@ save all
 - **Input:** Pulse source (0 → 1.8 V)  
 - **Output:** Clean digital inversion with sharp transition near VDD/2
   
-## 5.1 Static power
+## 5.1 Static Power
 ```
 ******INVERTER-STATIC******
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
@@ -520,7 +520,7 @@ print abs(static_power)
 - abs(i(vns)) = 1.285865e-07
 - abs(static_power) = 2.353315e-07
 
-## 5.2 Dynamic power
+## 5.2 Dynamic Power
 ```
 *  Dynamic power calculation of CMOS Inverter
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
