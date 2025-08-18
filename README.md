@@ -1215,6 +1215,14 @@ run
 ### Output impedence
 ![Diagram](docs/op_cs_pmos.png)
 
+### Calculation of input and output impedence
+
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
+| - | - | - | - | - | - | - | - | - | - | 
+| Types | ss | tt | ff | ss | tt | ff | ss | tt | ff | 
+| Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+| Output Impedence | 862.8k | 175.2k | 354k | 117k | 473.6k | 188.3k | 240.1k | 195.2k | 151k |
+
 ## 7.3 Common Drain Amplifier using NMOS
 ```
 * common drain
