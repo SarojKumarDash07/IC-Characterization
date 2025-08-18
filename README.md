@@ -323,10 +323,35 @@ where `τ` (tau) represents the **time constant** in seconds, indicating how qui
 ## 3.4.1 Transient Analysis
 
 ```
+* Title: CR Ckt Simulation using SKY130 model
 
+.lib "/home/sdash/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+
+Vin     in      0       PULSE(0 1.8 0 0 0 100p 200p)
+XC1     in      out     sky130_fd_pr__cap_mim_m3_1 w=1 l=1
+XR1     out     0       0       sky130_fd_pr__res_high_po_0p35 l =3.5
+
+.tran 1p 300p
+
+.control
+run
+plot v(in) v(out)
+.endc
+
+*Measure Time delays
+.meas tran rise TRIG V(out) VAL=0.14 RISE=1 TARG V(out) VAL=1.29 RISE=1
+.meas tran fall TRIG V(out) VAL=1.29 FALL=1 TARG V(out) VAL=0.14 FALL=1
+.meas tran rise_delay TRIG V(in) VAL=0.7 RISE=1 TARG V(out) VAL=0.7 RISE=1
+.meas tran fall_delay TRIG V(in) VAL=0.7 FALL=1 TARG V(out) VAL=0.7 FALL=1
+
+*Measure Max Voltage
+.meas tran VMAX MAX V(out)
+
+.end
 ```
 
-![Diagram](docs/CR_tran.JPG)
+![Diagram](docs/cr_tran.JPG)
 
 ### Calculation of Rise, Fall and Propagation Delay
 
