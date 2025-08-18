@@ -1349,6 +1349,14 @@ run
 ### Output impedence
 ![Diagram](docs/op_cg_pmos.png)
 
+### Calculation of input and output impedence
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
+| - | - | - | - | - | - | - | - | - | - | 
+| Types | ss | tt | ff | ss | tt | ff | ss | tt | ff |
+| Input Impedence | 15.4k | 12.9k | 12.1k | 17.2k | 15.5k | 13.7k | 22.2k | 17.6k | 16.3k |
+| Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+
+
 # 8. Differential Amplifier
 - A differential amplifier is a type of electronic amplifier that amplifies the difference between two input signals while rejecting any voltage common to both inputs (called common-mode signals).
 - It’s one of the most fundamental building blocks in analog and mixed-signal circuits.
