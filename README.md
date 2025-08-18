@@ -2861,7 +2861,7 @@ print onoise_spectrum inoise_spectrum
 - More complex biasing
 - Higher power consumption
 ## Circuit Diagram
-![Diagram]()
+![Diagram](docs/ckt_dia_foldedcascode.jpeg)
 ## DC Analysis
 ```
  *DC analysis of folded cascode  amplifier
