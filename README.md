@@ -2293,7 +2293,7 @@ end
 .endc
 ```
 ### Montecarlo plot
-![Diagram]()
+![Diagram](docs/mc_nmos.png)
 
 
 ## 11.2 Balanced Amplifier using PMOS
@@ -2541,7 +2541,7 @@ end
 .endc
 ```
 ### Montecarlo plot
-![Diagram]()
+![Diagram](docs/mc_pmos.png)
 
 ## 12. Telescopic amplifier
 - A telescopic amplifier is a type of cascode amplifier where the input stage and cascode stage are stacked directly on top of each other.
