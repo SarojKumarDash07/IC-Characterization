@@ -1283,6 +1283,15 @@ plot abs(i(Vdd))
 ### Output impedence
 ![Diagram](docs/op_cd_pmos.png)
 
+### Calculation of input and output impedence
+
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> | 
+| - | - | - | - | - | - | - | - | - | - | 
+| Types | ss | tt | ff | ss | tt | ff | ss | tt | ff | 
+| Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
+| Output Impedence | 1.05k | 1.05k | 1.05k | 1.10k | 1.05k | 1.05k | 1.11k | 1.12k | 1.10k |
+
+
 ## 7.5 Common Gate Amplifier using NMOS
 ```
 * common gate
