@@ -1226,7 +1226,7 @@ run
 | Output Impedence | 289.49k | 278.26k | 266.32k | 395.56k | 198.03k | 156.9k | 492.17k | 326.21k | 285.06k |
 
 ## 7.2 Common Source Amplifier using PMOS
-![Diagram]()
+![Diagram](docs/ckt_dia_cs_pmos.jpeg)
 ```
 * common source using PMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -1261,7 +1261,7 @@ run
 | Output Impedence | 862.8k | 175.2k | 354k | 117k | 473.6k | 188.3k | 240.1k | 195.2k | 151k |
 
 ## 7.3 Common Drain Amplifier using NMOS
-![Diagram]()
+![Diagram](docs/ckt_dia_cd_nmos.jpeg)
 ```
 * common drain
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
@@ -1332,7 +1332,7 @@ plot abs(i(Vdd))
 
 
 ## 7.5 Common Gate Amplifier using NMOS
-![Diagram]()
+![Diagram](docs/ckt_dia_cg_nmos.jpeg)
 ```
 * common gate
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
