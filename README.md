@@ -55,8 +55,6 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [8.1 Differential Amplifier using NMOS](#81-Differential-Amplifier-using-NMOS)
   - [8.2 Differential Amplifier using PMOS](#82-Differential-Amplifier-using-PMOS)
 - [9. Common mode feedback Amplifier](#9-Common-mode-feedback-Amplifier)
-  - [9.1 Common mode feedback Amplifier using NMOS](#91-Common-mode-feedback-Amplifier-using-NMOS)
-  - [9.2 Common mode feedback Amplifier using PMOS](#92-Common-mode-feedback-Amplifier-using-PMOS)
 - [10. Two stage Amplifier](#10-Two-stage-Amplifier)
   - [10.1 Two stage Amplifier using NMOS](#101-Two-stage-Amplifier-using-NMOS)
   - [10.2 Two stage Amplifier using PMOS](#102-Two-stage-Amplifier-using-PMOS)
@@ -1610,8 +1608,6 @@ plot v(n3)
 - A Common Mode Feedback (CMFB) amplifier is used in fully differential amplifiers to control the common mode output voltage ensuring it stays at a desired level (typically mid supply) while allowing differential signals to pass.
 - Why it's needed: In fully differential amplifiers, there are two outputs (Vout1 and Vout2). The differential signal is the difference between them but without feedback their common mode level can drift due to mismatches or noise.
 - CMFB keeps: (Vout1 + Vout2)/2 = Vref (a stable reference)
-
-## 9.1 Common mode feedback Amplifier using NMOS
 ## Circuit Diagram
 ![Diagram](docs/cktdesign_cmfb.jpeg)
 ## DC Analysis
@@ -1754,8 +1750,6 @@ plot v(out1) v(out2)
 ![Diagram](docs/ip_tran_cmfb.png)
 ### Amplified output of CMFB
 ![Diagram](docs/op_cmfb_tran.png)
-
-## 9.2 Common mode feedback Amplifier using PMOS
 
 # 10. Two stage Amplifier
 - A two-stage op-amp is one of the most common CMOS amplifier topologies used in analog IC design, especially when you need high gain and reasonable output swing.
