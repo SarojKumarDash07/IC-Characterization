@@ -1402,6 +1402,8 @@ run
 - More complex biasing compared to single-ended amplifiers.
 
 ## 8.1 Differential Amplifier using NMOS
+## Circuit Diagram
+![Diagram](docs/ckt_dia_differ_amp.jpeg)
 ## DC Analysis
 ```
 *dc analysis differntial amplifier using NMOS
@@ -1501,6 +1503,8 @@ plot v(n1)
 ![Diagram](docs/op_ac_differn.png)
 
 ## 8.2 Differential Amplifier using PMOS
+## Circuit Diagram
+![Diagram](docs/ckt_dia_differamp_pmos.jpeg)
 ## DC Analysis
 ```
 *DC analysis of differntial amplifier using PMOS
