@@ -1190,6 +1190,7 @@ plot abs(i(V2))
 - Noisy — more susceptible to noise compared to differential stages.
 
 ## 7.1 Common Source Amplifier using NMOS
+![Diagram](docs/ckt_dia_cs_nmos.jpeg)
 ```
 * common source using NMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" sf
@@ -1225,6 +1226,7 @@ run
 | Output Impedence | 289.49k | 278.26k | 266.32k | 395.56k | 198.03k | 156.9k | 492.17k | 326.21k | 285.06k |
 
 ## 7.2 Common Source Amplifier using PMOS
+![Diagram]()
 ```
 * common source using PMOS
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -1259,6 +1261,7 @@ run
 | Output Impedence | 862.8k | 175.2k | 354k | 117k | 473.6k | 188.3k | 240.1k | 195.2k | 151k |
 
 ## 7.3 Common Drain Amplifier using NMOS
+![Diagram]()
 ```
 * common drain
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
@@ -1294,6 +1297,7 @@ run
 | Output Impedence | 1.006k | 1.027k | 0.99k | 1.018k | 0.995k | 0.999k | 1.003k | 1.028k | 1.014k |
 
 ## 7.4 Common Drain Amplifier using PMOS
+![Diagram]()
 ```
 * common drain
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
@@ -1328,6 +1332,7 @@ plot abs(i(Vdd))
 
 
 ## 7.5 Common Gate Amplifier using NMOS
+![Diagram]()
 ```
 * common gate
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
@@ -1361,6 +1366,7 @@ run
 | Output Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 
 ## 7.6 Common Gate Amplifier using PMOS
+![Diagram]()
 ```
 * common gate
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
