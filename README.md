@@ -473,6 +473,7 @@ save all
 ### Parameters across PVT
 
 # 5. Inverter
+![Diagram](docs/inverter.jpeg)
 
 A **CMOS inverter** using the open-source **SkyWater SKY130 PDK**, with `sky130_fd_pr__pfet_01v8_lvt` (pMOS) and `sky130_fd_pr__nfet_01v8_lvt` (nMOS) transistors. The inverter is designed and simulated in **Xschem + Ngspice**, showing correct switching behavior from 0 V to 1.8 V. Key performance aspects such as transfer characteristics, switching threshold, and rise/fall times are verified.  
 
