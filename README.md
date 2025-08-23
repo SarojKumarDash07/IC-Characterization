@@ -64,6 +64,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    - [11.2 Balanced Amplifier using PMOS](#112-Balanced-Amplifier-using-PMOS)
 - [12. Telescopic amplifier](#12-Telescopic-amplifier)
 - [13. Folded cascode amplifier](#13-Folded-cascode-amplifier)
+- [14. StrongARM latch](#14-StrongARM-latch)
   
 # 1. Tools and PDK setup
 
@@ -3274,8 +3275,40 @@ let run = run + 1
 end
 .endc
 ```
-### Montecarlo plot
+## 14. StrongARM latch
+## Circuit Diagram
 ![Diagram]()
+```
+*modified strongARM Latch
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
+.temp 125
+Vdd      n1      0       dc      1.8
+VC       ck      0       PULSE(0 1.8 0 10n 10n 60n 120n)
+V1       in      0       1.2
+*V2       ip      0       1.6
+C1       o1      0       5p
+C2       o2      0       5p
+XM1      p       in      n4      0      sky130_fd_pr__nfet_01v8_lvt  L=.15 W=7
+XM2      q       o1      n4      0      sky130_fd_pr__nfet_01v8_lvt  L=.15 W=7
+XM3      o2      o1      p       0      sky130_fd_pr__nfet_01v8_lvt  L=.15 W=7
+XM4      o1      o2      q       0      sky130_fd_pr__nfet_01v8_lvt  L=.15 W=7
+XM5      o2      o1      n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=.35 W=7
+XM6      o1      o2      n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=.35 W=7
+XM7      o2      ck      n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=.35 W=7
+XM8      o1      ck      n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=.35 W=7
+XM9      n4      ck      0       0      sky130_fd_pr__nfet_01v8_lvt  L=.15 W=7
+XM10     p       ck      n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=.35 W=7
+XM11     q       ck      n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=.35 W=7
+.tran 0.1n 240n
+.op
+.control
+run
+plot v(ck) v(o1) v(o2)
+.endc
+.end
+```
+### Output
+![Diagram](docs/strongARM_latch.png)
 
 
 
