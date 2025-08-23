@@ -35,7 +35,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [5.1 Static Power](#51-static-power)
   - [5.2 Dynamic Power](#52-dynamic-power)
   - [5.3 Inverter Fanout](#53-inverter-fanout)
-  - [5.4 Inverter chain characteristics](#5.4-Inverter-chain-characteristics)
+  - [5.4 Inverter chain characteristics](#54-Inverter-chain-characteristics)
 - [6. Current Mirror](#6-current-mirror)
   - [6.1 Simple Current Mirror using NMOS](#61-simple-current-mirror-using-nmos)
   - [6.2 Simple Current Mirror using PMOS](#62-simple-current-mirror-using-pmos)
@@ -657,13 +657,13 @@ plot v(out)
 .end
 ```
 ### Output
-rise_time           =  6.928514e-10 targ=  1.767369e-09 trig=  1.074518e-09
-fall_time           =  3.375878e-10 targ=  7.349720e-09 trig=  7.012132e-09
-delay_time          =  8.196352e-10 targ=  1.319635e-09 trig=  5.000000e-10
-vmax                =  1.818931e+00 at=  2.692486e-08
-vmin                =  -9.521557e-03 at=  7.782723e-10
-i(avg)              =  -2.095249e-02 from=  0.000000e+00 to=  3.000000e-08
-power = -3.77145e-02
+- rise_time           =  6.928514e-10 targ=  1.767369e-09 trig=  1.074518e-09
+- fall_time           =  3.375878e-10 targ=  7.349720e-09 trig=  7.012132e-09
+- delay_time          =  8.196352e-10 targ=  1.319635e-09 trig=  5.000000e-10
+- vmax                =  1.818931e+00 at=  2.692486e-08
+- vmin                =  -9.521557e-03 at=  7.782723e-10
+- i(avg)              =  -2.095249e-02 from=  0.000000e+00 to=  3.000000e-08
+- power = -3.77145e-02
 ### Make and break ckt plot
 ![Diagram](docs/make_break_op.png)
 ### inverter chain plot
