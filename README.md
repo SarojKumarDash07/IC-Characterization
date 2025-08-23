@@ -35,6 +35,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
   - [5.1 Static Power](#51-static-power)
   - [5.2 Dynamic Power](#52-dynamic-power)
   - [5.3 Inverter Fanout](#53-inverter-fanout)
+  - [5.4 Inverter chain characteristics](#5.4-Inverter-chain-characteristics)
 - [6. Current Mirror](#6-current-mirror)
   - [6.1 Simple Current Mirror using NMOS](#61-simple-current-mirror-using-nmos)
   - [6.2 Simple Current Mirror using PMOS](#62-simple-current-mirror-using-pmos)
@@ -595,6 +596,78 @@ meas tran vmin MIN v(out)
 - delay_time          =  7.116898e-08 targ=  7.616898e-08 trig=  5.000000e-09
 - vmax                =  1.801976e+00 at=  1.213500e-07
 - vmin                =  -1.311942e-04 at=  7.015000e-08
+
+## 5.4 Inverter chain characteristics
+```
+*inverter chain characteristics
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+Vdd     n1      0     dc      1.8
+V1      a       0     PULSE(0 1.8 0 1n 1n 5n 10n)
+V2      b       0     dc      1
+C1      out     0     100p
+*enable
+XM9     c       b     n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7
+XM10    c       b     0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7
+*NAND gate
+XM1     n2      a     n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=2
+XM2     n2      b     n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=2
+XM3     n2      a     n3      0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7
+XM4     n3      b     0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7
+*NOR gate
+XM5     n4      a     n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7
+XM6     n5      c     n4      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7
+XM7     n5      a     0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=2
+XM8     n5      c     0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=2
+*input to PMOS
+XM11    o1      n2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=1
+XM12    o1      n2    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=1
+XM13    o2      o1    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=4
+XM14    o2      o1    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=4
+XM15    o3      o2    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=16
+XM16    o3      o2    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=16
+XM17    o4      o3    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=64
+XM18    o4      o3    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=64
+XM19    out     o4    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=256
+*input to NMOS
+XM20    o5      n5    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=1
+XM21    o5      n5    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=1
+XM22    o6      o5    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=2
+XM23    o6      o5    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=2
+XM24    o7      o6    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=8
+XM25    o7      o6    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=8
+XM26    o8      o7    n1      n1      sky130_fd_pr__pfet_01v8_lvt  L=.35  W=7 m=32
+XM27    o8      o7    0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15  W=7 m=32
+XM28    out     o8     0       0       sky130_fd_pr__nfet_01v8_lvt  L=.15 W=7 m=128
+.tran 1n 30n
+.op
+.control
+run
+meas tran rise_time TRIG v(out) VAL=0.18 RISE=1 TARG v(out) VAL=1.62 RISE=1
+meas tran fall_time TRIG v(out) VAL=1.62 FALL=1 TARG v(out) VAL=0.18 FALL=1
+meas tran delay_time TRIG v(a)  VAL=0.9 RISE=1 TARG v(out) VAL=0.9 RISE=1
+meas tran vmax MAX v(out)
+meas tran vmin MIN v(out)
+meas tran i(avg) AVG  i(Vdd)
+let  power = i(avg)*1.8
+print power
+plot V(n2)  V(n5)
+plot v(out)
+.endc
+.end
+```
+### Output
+rise_time           =  6.928514e-10 targ=  1.767369e-09 trig=  1.074518e-09
+fall_time           =  3.375878e-10 targ=  7.349720e-09 trig=  7.012132e-09
+delay_time          =  8.196352e-10 targ=  1.319635e-09 trig=  5.000000e-10
+vmax                =  1.818931e+00 at=  2.692486e-08
+vmin                =  -9.521557e-03 at=  7.782723e-10
+i(avg)              =  -2.095249e-02 from=  0.000000e+00 to=  3.000000e-08
+power = -3.77145e-02
+### Make and break ckt plot
+![Diagram](docs/make_break_op.png)
+### inverter chain plot
+![Diagram](docs/inverterchain_op.png)
 
 # 6. Current Mirror
 - A current mirror is an analog circuit that copies (or "mirrors") a reference current from one branch of a circuit into another branch, maintaining a constant output current regardless of the load resistance (within limits).
