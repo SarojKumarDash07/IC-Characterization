@@ -667,7 +667,10 @@ plot v(out)
 - power = -3.77145e-02
 ### Make and break ckt plot
 ![Diagram](docs/make_break_op.png)
-### inverter chain plot
+### Inverter chain Diagram
+![Diagram](docs/inverterchaindiagram.png)
+
+### Inverter chain plot
 ![Diagram](docs/inverterchain_op.png)
 
 # 6. Current Mirror
