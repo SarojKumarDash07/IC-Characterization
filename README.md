@@ -2959,23 +2959,23 @@ V6       n1      d8      0
 V7       s3       0      0
 V8       s4       0      0
 V9       in       0      1.6
-XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM4      n7      n3    n9      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM7      d1      in    s1      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM8      d2      in    s2      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM9      d4      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
-XM10     d1      o2    d7      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM11     d2      o2    d8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM16     d5      n3    s3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM17     d6      n3    s4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM4      n7      n3    n9      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=4 W=5 m=9
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=8
+XM7      d1      in    s1      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM8      d2      in    s2      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM9      d4      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=18
+XM10     d1      o2    d7      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM11     d2      o2    d8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM16     d5      n3    s3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM17     d6      n3    s4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
 .op
 .control
 run
@@ -2996,17 +2996,17 @@ print i(v8)
 .end
 ```
 ### Output 
-- v(d3) = 3.959074e-01
-- v(o1) = 8.920648e-01
-- i(vdd) = -1.39705e-04
-- i(v1) = 1.000892e-05
-- i(v2) = 2.481925e-05
-- i(v3) = 2.481925e-05
-- i(v4) = 4.963850e-05
-- i(v5) = 5.984806e-05
-- i(v6) = 5.984806e-05
-- i(v7) = 3.502881e-05
-- i(v8) = 3.502881e-05
+- v(d3) = 4.450271e-01
+- v(o1) = 1.100368e+00
+- i(vdd) = -1.40448e-04
+- i(v1) = 1.002578e-05
+- i(v2) = 2.506823e-05
+- i(v3) = 2.506823e-05
+- i(v4) = 5.013646e-05
+- i(v5) = 6.021098e-05
+- i(v6) = 6.021098e-05
+- i(v7) = 3.514276e-05
+- i(v8) = 3.514276e-05
 
 ### DC plot
 ![Diagram](docs/dc_folded_amp.png)
@@ -3022,23 +3022,23 @@ R1       n2      n3      20k
 R2       n6      n5      20k
 Vn       in       0      1.6   ac    -1
 Vp       ip       0      1.6   ac     1
-XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM8      d2      ip    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
-XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=4 W=5 m=9
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=8
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM8      d2      ip    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=41
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
 C1       o1      0      20p
 .ac dec 10 1 10e14
 .control
@@ -3060,11 +3060,11 @@ meas ac dc_gain find gain at=1
 .end
 ```
 ### Output
-- phase_margin        =  6.475696e+01
-- unity_freq          =  5.347634e+05
-- gain_margin         =  -5.318692e+01
-- phase180_freq       =  1.258904e+12
-- dc_gain             =  4.813511e+01
+- phase_margin        =  5.664060e+01
+- unity_freq          =  4.837716e+05
+- gain_margin         =  -5.415927e+01
+- phase180_freq       =  1.900169e+14
+- dc_gain             =  4.027395e+01
 
 ### Gain and phase plot
 ![Diagram](docs/ac_folded_amp.png)
@@ -3079,23 +3079,23 @@ I1       n1      n2      10u
 R1       n2      n3      20k
 R2       n6      n5      20k
 Vn       in       0      dc    0      pulse(0.4 1.4 0 0 0 1 1 )
-XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM8      d2      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
-XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=4 W=5 m=9
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=8
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM8      d2      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=41
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
 C1       o1      0      20p
 .tran 0.1u 10u
 .control
@@ -3117,23 +3117,23 @@ I1       n1      n2      10u
 R1       n2      n3      20k
 R2       n6      n5      20k
 Vn       in       0      1.6
-XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM7      d1      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM8      d2      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
-XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=4 W=5 m=9
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=8
+XM7      d1      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM8      d2      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=41
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
 C1       o1      0      20p
 .ac dec 10 1 10e9
 .control
@@ -3156,23 +3156,23 @@ I1       n1      n2      10u
 R1       n2      n3      20k
 R2       n6      n5      20k
 Vn       in       0      1.6   ac    -1
-XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM8      d2      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
-XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=4 W=5 m=9
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=8
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM8      d2      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=41
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
 C1       o1      0      20p
 .ac dec 10 1 10e14
 .control
@@ -3195,23 +3195,23 @@ I1       n1      n2      10u
 R1       n2      n3      20k
 R2       n6      n5      20k
 Vn       in       0      1.6   ac    -1
-XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=10
-XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=10
-XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM8      d2      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=1
-XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=48
-XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=22
-XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=35
-XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
-XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=7 m=35
+XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=4
+XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L=4 W=5 m=9
+XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=8
+XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM8      d2      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=3 m=2
+XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=41
+XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=7 m=57
+XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L=8 W=5 m=31
+XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
+XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L=8 W=5 m=14
 C1       o1      0      20p
 .op
 .control
@@ -3227,54 +3227,6 @@ plot onoise_spectrum  inoise_spectrum
 ### Noise plot
 ![Diagram](docs/noise_folded_amp.png)
 
-## Montecarlo simulation
-```
-*montecarlo simulation folded amplifier
-.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
-.temp 125
-* Define nominal parameters for device W and L
-.param Wpfet = 7
-.param Lpfet = 8
-.param Wnfet = 5
-Vdd      n1      0       dc      1.8
-I1       n1      n2      10u
-R1       n2      n3      20k
-R2       n6      n5      20k
-Vn       in       0      1.6
-XM1      n3      n2    n4      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=10
-XM2      n5      n2    n7      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=10
-XM3      n4      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=10
-XM4      n7      n3     0      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=10
-XM5      n6      n5    n8      n1     sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m=10
-XM6      n8      n6    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m=10
-XM7      d1      in    d3      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wn} m=1
-XM8      d2      o1    d3      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wn} m=1
-XM9      d3      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=48
-XM10     d1      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m=22
-XM11     d2      o2    n1      n1     sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m=22
-XM12     o2      n5    d1      n1     sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m=35
-XM13     o1      n5    d2      n1     sky130_fd_pr__pfet_01v8_lvt  L={Lp} W={Wp} m=35
-XM14     o2      n2    d5      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=35
-XM15     o1      n2    d6      0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=35
-XM16     d5      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=35
-XM17     d6      n3    0       0      sky130_fd_pr__nfet_01v8_lvt  L={Lp} W={Wp} m=35
-C1       o1      0      20p
-.param Wp = Wpfet*(1+ agauss(0, 0.10, 1))
-.param Wn = Wnfet*(1+ agauss(0, 0.09, 2))
-.param Lp = Lpfet*(1+ agauss(0, 0.08, 3))
-.control
-let run = 0
-echo Run,Output_Voltage > mc_folded_amp.csv
-while run <1000
-reset
-op
-let vout=v(o1)
-print  $run vout >> mc_folded_amp.csv
-print vout
-let run = run + 1
-end
-.endc
-```
 ## 14. StrongARM latch
 ## Circuit Diagram
 ![Diagram]()
