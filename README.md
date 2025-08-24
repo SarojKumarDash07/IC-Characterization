@@ -599,6 +599,8 @@ meas tran vmin MIN v(out)
 - vmin                =  -1.311942e-04 at=  7.015000e-08
 
 ## 5.4 Inverter chain characteristics
+### Circuit Diagram
+![Diagram](docs/inverterchaindiagram.png)
 ```
 *inverter chain characteristics
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -667,9 +669,6 @@ plot v(out)
 - power = -3.77145e-02
 ### Make and break ckt plot
 ![Diagram](docs/make_break_op.png)
-### Inverter chain Diagram
-![Diagram](docs/inverterchaindiagram.png)
-
 ### Inverter chain plot
 ![Diagram](docs/inverterchain_op.png)
 
