@@ -600,7 +600,7 @@ meas tran vmin MIN v(out)
 
 ## 5.4 Inverter chain characteristics
 ### Circuit Diagram
-![Diagram](docs/inverterchaindiagram.png)
+![Diagram](docs/inverter_chain_ckt_dia.jpeg)
 ```
 *inverter chain characteristics
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
@@ -3231,7 +3231,7 @@ plot onoise_spectrum  inoise_spectrum
 
 ## 14. StrongARM latch
 ## Circuit Diagram
-![Diagram]()
+![Diagram](docs/strongARM_latch_ckt_dia.jpeg)
 ```
 *modified strongARM Latch
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss"
