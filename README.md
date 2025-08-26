@@ -606,7 +606,7 @@ meas tran vmin MIN v(out)
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
 .temp 25
 Vdd     n1      0     dc      1.8
-V1      a       0     PULSE(0 1.8 0 1n 1n 5n 10n)
+V1      a       0     PULSE(0 1.8 0 1n 1n 4n 10n)
 V2      b       0     dc      1
 C1      out     0     100p
 *enable
