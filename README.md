@@ -3414,3 +3414,33 @@ plot v(xor_out) v(xnor_out)
 .endc
 .end
 ```
+
+```
+*CML XOR XNOR TRANSIENT AnalysiS
+.lib /home/abhi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.temp 125
+Vdd   vd       0       1.8
+Iref  vd       d1     400u
+R1    vd       xor_out     2k
+R2    vd       xnor_out    2k
+v1    abar     0       pulse(1.8 1 25n 10n 10n 50n 120n)
+v2    bbar     0       pulse(1.8 1 50n 10n 10n 50n 120n)
+v3    b        0       pulse(1 1.8 50n 10n 10n 50n 120n)
+v4    a        0       pulse(1 1.8 25n 10n 10n 50n 120n)
+c1    xor_out  0       1p
+c2    xnor_out 0       1p
+XM1   d1       d1      0   0 sky130_fd_pr__nfet_01v8  L=8      W=7   m=22
+XM2   d2       d1      0   0 sky130_fd_pr__nfet_01v8  L=8      W=7   m=22
+XM3   d3       b      d2   0 sky130_fd_pr__nfet_01v8  L=.15    W=7   m=10
+XM4   d4       bbar   d2   0 sky130_fd_pr__nfet_01v8  L=.15    W=7   m=10
+XM5   xor_out  abar   d4   0 sky130_fd_pr__nfet_01v8  L=.15    W=7   m=10
+XM6   xnor_out a      d4   0 sky130_fd_pr__nfet_01v8  L=.15    W=7   m=10
+XM7   xor_out  a      d3   0 sky130_fd_pr__nfet_01v8  L=.15    W=7   m=10
+XM8   xnor_out abar   d3   0 sky130_fd_pr__nfet_01v8  L=.15    W=7   m=10
+.tran  1n  240n
+.control
+run
+plot v(xor_out) v(xnor_out)
+.endc
+.end
+```
