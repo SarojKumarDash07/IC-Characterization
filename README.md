@@ -69,7 +69,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    - [15.1 Inverter and buffer using CML](#151-Inverter-and-buffer-using-CML)
    - [15.2 AND and NAND gate using CML](#152-AND-and-NAND-gate-using-CML)
    - [15.3 OR and NOR gate using CML](#153-OR-and-NOR-gate-using-CML)
-   - [15.4 XOR and XNOR gate using CML](#154XOR-and-XNOR-gate-using-CML)
+   - [15.4 XOR and XNOR gate using CML](#154-XOR-and-XNOR-gate-using-CML)
   
 # 1. Tools and PDK setup
 
