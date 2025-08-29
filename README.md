@@ -3264,6 +3264,55 @@ plot v(ck) v(o1) v(o2)
 ### Output
 ![Diagram](docs/strongARM_latch.png)
 
-
+## 15. Current mode logic
+## DC analysis
+```
+* CML inverter and buffer DC analysis
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.temp 125
+Vdd   d     0    1.8
+Iref  0     n4   400u
+R1    d     out  2k
+R2    d     out1 2k
+v1    in    0    1.8
+v2    ip    0    1
+XM1   n4    n4   0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=5   m=20
+XM2   n8    n4   0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=5   m=20
+XM3   out   in   n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+XM4   out1  ip   n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+.dc   v1    0    1.8   0.1
+.dc   v2    0    1.8   0.1
+.control
+run
+plot v(out) v(out1)
+.endc
+.end
+```
+## Transient analysis
+```
+* CML inverter and buffer transient analysis
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.temp 125
+Vdd   d     0    1.8
+Iref  0     n4   400u
+R1    d     out  2k
+R2    d     out1 2k
+v1    in    0    pulse(1 1.8 0 10n 10n 50n 120n)
+v2    ip    0    pulse(1.8 1 0 10n 10n 50n 120n)
+C1    out   0    1p
+c2    out1  0    1p
+XM1   n4    n4   0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=5   m=20
+XM2   n8    n4   0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=5   m=20
+XM3   out   in   n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+XM4   out1  ip   n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+.tran 0.1n 240n
+.control
+run
+let buf_op =  v(out)
+let inv_op =  v(out1)
+plot buf_op inv_op
+.endc
+.end
+```
 
 
