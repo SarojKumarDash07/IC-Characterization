@@ -3314,5 +3314,54 @@ plot buf_op inv_op
 .endc
 .end
 ```
+## DC analysis
+```
+* CML and and nand gate DC analysis
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.temp 125
+Vdd   d        0       1.8
+Iref  0        n4      400u
+R1    d        and_out     2k
+R2    d        nand_out    2k
+v1    abar     0       1.8
+v2    bbar     0       1
+XM1   n4       n4      0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=7   m=15
+XM2   n8       n4      0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=7   m=15
+XM3   nand_out and_out n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+XM4   and_out  abar    n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+XM5   and_out  bbar    n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+.dc   v1       0       1.8   0.1
+.dc   v2       0       1.8   0.1
+.control
+run
+plot v(and_out) v(nand_out)
+.endc
+.end
+```
+## Transient analysis
+```
+* CML and and nand gate transient analysis
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+.temp 125
+Vdd   d        0       1.8
+Iref  0        n4      400u
+R1    d        and_out     2k
+R2    d        nand_out    2k
+v1    abar     0       pulse(1.8 1 0 10n 10n 50n 120n)
+v2    bbar     0       pulse(1.8 1 0 10n 10n 50n 120n)
+c1    and_out  0       1p
+c2    nand_out 0       1p
+XM1   n4       n4      0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=7   m=15
+XM2   n8       n4      0   0 sky130_fd_pr__nfet_01v8_lvt  L=8    W=7   m=15
+XM3   nand_out and_out n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+XM4   and_out  abar    n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+XM5   and_out  bbar    n8  0 sky130_fd_pr__nfet_01v8_lvt  L=0.15 W=7   m=10
+.tran 1n  240n
+.control
+run
+plot v(and_out) v(nand_out)
+.endc
+.end
+```
 
 
