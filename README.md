@@ -65,6 +65,11 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [12. Telescopic amplifier](#12-Telescopic-amplifier)
 - [13. Folded cascode amplifier](#13-Folded-cascode-amplifier)
 - [14. StrongARM latch](#14-StrongARM-latch)
+- [15. Current mode logic](#15-Current-mode-logic)
+   - [15.1 Inverter and buffer using CML](#151-Inverter-and-buffer-using-CML)
+   - [15.2 AND and NAND gate using CML](#152-AND-and-NAND-gate-using-CML)
+   - [15.3 OR and NOR gate using CML](#153-OR-and-NOR-gate-using-CML)
+   - [15.4 XOR and XNOR gate using CML](#154XOR-and-XNOR-gate-using-CML)
   
 # 1. Tools and PDK setup
 
@@ -3265,7 +3270,9 @@ plot v(ck) v(o1) v(o2)
 ![Diagram](docs/strongARM_latch.png)
 
 ## 15. Current mode logic
+## 15.1 Inverter and buffer using CML
 ## DC analysis
+![Diagram](docs/CML_inv_dc.png)
 ```
 * CML inverter and buffer DC analysis
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3288,7 +3295,10 @@ plot v(out) v(out1)
 .endc
 .end
 ```
+### DC plot
+![Diagram](docs/dc_cml_inv_op.png)
 ## Transient analysis
+![Diagram](docs/CML_inv_tran.png)
 ```
 * CML inverter and buffer transient analysis
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3314,7 +3324,12 @@ plot buf_op inv_op
 .endc
 .end
 ```
+### transient plot
+![Diagram](docs/tran_cml_inv_op.png)
+
+## 15.2 AND and NAND gate using CML
 ## DC analysis
+![Diagram](docs/CML_and_dc.png)
 ```
 * CML and and nand gate DC analysis
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3338,7 +3353,10 @@ plot v(and_out) v(nand_out)
 .endc
 .end
 ```
+### DC plot
+![Diagram](docs/dc_op_cml_and.png)
 ## Transient analysis
+![Diagram](docs/CML_tran_and.png)
 ```
 * CML and and nand gate transient analysis
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3363,5 +3381,7 @@ plot v(and_out) v(nand_out)
 .endc
 .end
 ```
+### transient plot
+![Diagram](docs/tran_op_cml_and.png)
 
-
+## 15.3 OR and NOR gate using CML
