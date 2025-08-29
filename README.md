@@ -3385,7 +3385,24 @@ plot v(and_out) v(nand_out)
 ![Diagram](docs/tran_op_cml_and.png)
 
 ## 15.3 OR and NOR gate using CML
+## DC analysis
+![Diagram]()
+```
+
+```
+### DC plot
+![Diagram]()
+## Transient analysis
+![Diagram]()
+```
+
+```
+### transient plot
+![Diagram]()
+
 ## 15.4 XOR and XNOR gate using CML
+## DC analysis
+![Diagram](docs/dc_cml_xor.png)
 ```
 *CML XOR XNOR DC analysis
 .lib /home/abhi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3414,7 +3431,10 @@ plot v(xor_out) v(xnor_out)
 .endc
 .end
 ```
-
+### DC plot
+![Diagram](docs/dc_op_cml_xor.png)
+## Transient analysis
+![Diagram](docs/tran_cml_xor.png)
 ```
 *CML XOR XNOR TRANSIENT AnalysiS
 .lib /home/abhi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3444,3 +3464,5 @@ plot v(xor_out) v(xnor_out)
 .endc
 .end
 ```
+### transient plot
+![Diagram](docs/tran_op_cml_xor.png)
