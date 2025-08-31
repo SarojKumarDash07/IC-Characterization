@@ -3386,7 +3386,7 @@ plot v(and_out) v(nand_out)
 
 ## 15.3 OR and NOR gate using CML
 ## DC analysis
-![Diagram]()
+![Diagram](DCanalysisORnorCML.png)
 ```
 *CML OR NOR DC analysiS
 .lib /home/abhi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3416,9 +3416,9 @@ plot v(or_out) v(nor_out)
 .end
 ```
 ### DC plot
-![Diagram]()
+![Diagram](dcplotORnorCML.png)
 ## Transient analysis
-![Diagram]()
+![Diagram](transientORnorCML.png)
 ```
 
 *CML OR NOR tran analysiS
@@ -3451,7 +3451,7 @@ plot v(or_out) v(nor_out)
 
 ```
 ### transient plot
-![Diagram]()
+![Diagram](transientplotORnorcml.png)
 
 ## 15.4 XOR and XNOR gate using CML
 ## DC analysis
