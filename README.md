@@ -70,6 +70,11 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
    - [15.2 AND and NAND gate using CML](#152-AND-and-NAND-gate-using-CML)
    - [15.3 OR and NOR gate using CML](#153-OR-and-NOR-gate-using-CML)
    - [15.4 XOR and XNOR gate using CML](#154-XOR-and-XNOR-gate-using-CML)
+- [16. BGR](#16-BGR)
+   - [16.1 CTAT Simulation](#161-CTAT-Simulation)
+   - [16.2 PTAT Simulation](#162-CTAT-Simulation)
+   - [16.3 Resistance tempco.](#163-Resistance-tempco.)
+   - [16.4 BGR with SBCM](#164-BGR-with-SBCM)
   
 # 1. Tools and PDK setup
 
@@ -3519,3 +3524,206 @@ plot v(xor_out) v(xnor_out)
 ```
 ### transient plot
 ![Diagram](docs/tran_op_cml_xor.png)
+
+# 16. BGR
+## intoduction to BGR (Bandgap reference)
+ The Bandgap Reference (BGR) is a circuit which provides a stable voltage output which is independent of factors like temperature, supply voltage.
+## Why BGR
+- A battery is unsuitable for use as a reference voltage source.
+   - voltage drops over time
+- A typical power supply is also not suitable
+   - noisy output and/or residual ripple.
+- A voltage reference IC used buried Zener diode,
+   - Discrete design required additional components and high frequency filtering circuits due to higher thermal noise.
+   - Low voltage Zener diode is not available
+### Solution
+- A Bangap reference which can be integrated in bulk CMOS, Bi-CMOS or Bipolar technologies without the use of external components.
+## Features of BGR
+- Temp. independent voltage reference circuit widely used in Integrated Circuits
+- Produces constant voltage regardless of power supply variation, temp. Changes and circuit loading
+- Output voltage of 1.2v (close to the band gap energy of silicon at 0 deg kelvin)
+- All applications starting from analog, digital, mixed mode, RF and system-on-chip (SoC).
+## Applications of BGR
+- Low dropout regulators (LDO)
+- DC-to-DC buck converters
+- Analog-to-Digital Converter (ADC)
+- Digital-to-Analog Converter (DAC)
+
+## 16.1 CTAT Simulation
+![Diagram]()
+### CTAT Voltage generation with single BJT
+```
+*CTAT Voltage generation with single BJT
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0          1.8
+I0      d        ctat_op    10u
+xpq1    0        0          ctat_op   sky130_fd_pr__pnp_05v5_W3p40L3p40   m=1
+.dc     temp    -40         125       5
+.control
+run
+plot v(ctat_op)
+plot deriv(v(ctat_op))
+.endc
+.end
+```
+![Diagram]()
+
+### CTAT Voltage generation with Multiple BJT
+```
+*CTAT_ckt Voltage generation with Multiple BJT
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0          1.8
+I0      d        ctat_op    10u
+xpq1    0        0          ctat_op   sky130_fd_pr__pnp_05v5_W3p40L3p40   m=8
+.dc     temp    -40         125       5
+.control
+run
+plot v(ctat_op)
+plot deriv(v(ctat_op))
+.endc
+.end
+```
+![Diagram]()
+
+### CTAT Voltage generation with different current source values
+```
+*CTAT_ckt Voltage generation with different current source values
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0          1.8
+I0      d        ctat_op    10u
+xpq1    0        0          ctat_op   sky130_fd_pr__pnp_05v5_W3p40L3p40   m=8
+.dc     temp    -40         125       5      I0    1u    10u      1u
+.control
+run
+plot v(ctat_op)
+.endc
+.end
+```
+![Diagram]()
+
+## 16.2 PTAT Simulation
+![Diagram]()
+
+### PTAT Voltage generation with ideal current source
+```
+*Difference of ctat ckt is PTAT ckt
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           1.8
+I0      d        ctat_op     10u
+I1      d        ctat_op1    10u
+xpq1    0        0           ctat_op    sky130_fd_pr__pnp_05v5_W3p40L3p40   m=1
+xpq2    0        0           ctat_op1   sky130_fd_pr__pnp_05v5_W3p40L3p40   m=8
+.dc     temp    -40          125              5
+.control
+run
+plot v(ctat_op) v(ctat_op1)
+let ptat_op = v(ctat_op)-v(ctat_op1)
+plot ptat_op
+.endc
+.end
+```
+![Diagram]()
+
+```
+*Difference in resistor voltage is PTAT
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           1.8
+I0      d        ra1         10u
+xra1    ra1      na1         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra2    na1      na2         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra3    na2      na3         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra4    na2      na3         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xpq1    0        0           na3     sky130_fd_pr__pnp_05v5_W3p40L3p40   m=8
+.dc     temp    -40          125              5
+.control
+run
+let  ptat_op = v(ra1)-v(na3)
+plot v(na3) v(ra1)
+plot ptat_op
+.endc
+.end
+```
+![Diagram]()
+
+```
+* PTAT ckt verification and check voltage is equal or not
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           2
+XM1     g2       g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+XM2     g1       g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+XM3     g2       g2          op     0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=7 m=1
+XM4     g1       g2          ra1    0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=7 m=1
+xra5    ra1      na1         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra6    na1      na2         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra7    na2      na3         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra8    na2      na3         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xpq9    0        0           op            sky130_fd_pr__pnp_05v5_W3p40L3p40 m=1
+xpq10   0        0           na3           sky130_fd_pr__pnp_05v5_W3p40L3p40 m=8
+.dc     temp    -40          125              5
+.control
+run
+plot v(ra1) v(op)
+plot v(ra1)-v(na3)
+.endc
+.end
+```
+![Diagram]()
+
+## 16.3 Resistance tempco.
+```
+*Tempco variation
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           1.8
+I0      d        ra1         10u
+xra1    ra1      na1         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra2    na1      na2         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra3    na2      0           d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra4    na2      0           d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+.dc     temp    -40          125              5   I0    1u    10u   1u
+.control
+run
+plot v(ra1)
+.endc
+.end
+```
+![Diagram]()
+
+## 16.4 BGR with SBCM
+![Diagram]()
+```
+* BGR ckt using current mirror
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           2
+XM1     g2       g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+XM2     g1       g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+XM3     g2       g2          op     0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=7 m=1
+XM4     g1       g2          ra1    0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=7 m=1
+XM5     vref     g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+xra1    ra1      na1         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra2    na1      na2         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra3    na2      na3         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra4    na2      na3         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+
+xra5    vref     na4         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra6    na4      na5         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra7    na5      na6         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra8    na6      na7         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra9    na7      na8         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra10   na8      na9         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra11   na9      na10        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra12   na10     na11        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra13   na11     na12        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra14   na12     na13        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra15   na13     na14        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra16   na14     na15        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xp1     0        0           na15          sky130_fd_pr__pnp_05v5_W3p40L3p40 m=1
+xpq2    0        0           op            sky130_fd_pr__pnp_05v5_W3p40L3p40 m=1
+xpq3    0        0           na3           sky130_fd_pr__pnp_05v5_W3p40L3p40 m=8
+.dc     temp    -40          175              5
+.control
+run
+plot v(vref) v(na15) v(vref)-v(na15)
+.endc
+.end
+```
+![Diagram]()
