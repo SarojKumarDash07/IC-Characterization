@@ -73,7 +73,7 @@ Characterization is usually performed post-design (pre- and post-fabrication) to
 - [16. BGR](#16-BGR)
    - [16.1 CTAT Simulation](#161-CTAT-Simulation)
    - [16.2 PTAT Simulation](#162-PTAT-Simulation)
-   - [16.3 Resistance tempco.](#163-Resistance-tempco.)
+   - [16.3 Resistance tempco.](#163-Resistance-tempco)
    - [16.4 BGR with SBCM](#164-BGR-with-SBCM)
   
 # 1. Tools and PDK setup
