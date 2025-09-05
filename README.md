@@ -3550,7 +3550,7 @@ plot v(xor_out) v(xnor_out)
 - Digital-to-Analog Converter (DAC)
 
 ## 16.1 CTAT Simulation
-![Diagram]()
+![Diagram](docs/CTAT_ckt.png)
 ### CTAT Voltage generation with single BJT
 ```
 *CTAT Voltage generation with single BJT
@@ -3566,7 +3566,7 @@ plot deriv(v(ctat_op))
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/CTAT_ckt_op_m1.png)
 
 ### CTAT Voltage generation with Multiple BJT
 ```
@@ -3583,7 +3583,7 @@ plot deriv(v(ctat_op))
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/CTAT_ckt_op_m8.png)
 
 ### CTAT Voltage generation with different current source values
 ```
@@ -3599,12 +3599,11 @@ plot v(ctat_op)
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/CTAT_ckt_op_mr.png)
 
 ## 16.2 PTAT Simulation
-![Diagram]()
-
 ### PTAT Voltage generation with ideal current source
+![Diagram](docs/PTAT_ckt_s1.png)
 ```
 *Difference of ctat ckt is PTAT ckt
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3624,6 +3623,8 @@ plot ptat_op
 ```
 ![Diagram]()
 
+### PTAT voltage generation across resistor
+![Diagram](docs/PTAT_ckt_s2.png)
 ```
 *Difference in resistor voltage is PTAT
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3645,6 +3646,8 @@ plot ptat_op
 ```
 ![Diagram]()
 
+### PTAT ckt verification
+![Diagram](docs/PTAT_ckt_s3.png)
 ```
 * PTAT ckt verification and check voltage is equal or not
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3686,11 +3689,11 @@ plot v(ra1)
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/bgr_tempco.png)
 
 ## 16.4 BGR with SBCM
 ### BGR using current mirror
-![Diagram]()
+![Diagram](docs/bgr_cm.png)
 ```
 * BGR ckt using current mirror
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3727,10 +3730,10 @@ plot v(vref) v(na15) v(vref)-v(na15)
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/bgr_cm_op.png)
 
 ### BGR using current mirror and startup ckt
-![Diagram]()
+![Diagram](docs/bgr_startup.png)
 ```
 * BGR ckt using current mirror and startup ckt
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3774,5 +3777,5 @@ plot v(vref) v(na15) v(vref)-v(na15)
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/bgr_startup_op.png)
 
