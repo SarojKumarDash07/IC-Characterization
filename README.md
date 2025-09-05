@@ -3689,6 +3689,7 @@ plot v(ra1)
 ![Diagram]()
 
 ## 16.4 BGR with SBCM
+### BGR using current mirror
 ![Diagram]()
 ```
 * BGR ckt using current mirror
@@ -3727,3 +3728,51 @@ plot v(vref) v(na15) v(vref)-v(na15)
 .end
 ```
 ![Diagram]()
+
+### BGR using current mirror and startup ckt
+![Diagram]()
+```
+* BGR ckt using current mirror and startup ckt
+.lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           2
+*startup ckt
+XM6     net1     g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=2
+XM7     net2     g1          net1   d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=2
+XM8     g2       net2        g1     d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=1 m=1
+XM9     net2     net2        net3   0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=1 m=1
+XM10    net3     net3        0      0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=1 m=1
+*SBCM ckt
+XM1     g2       g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+XM2     g1       g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+XM3     g2       g2          op     0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=7 m=1
+XM4     g1       g2          ra1    0      sky130_fd_pr__nfet_01v8_lvt       L=8 W=7 m=1
+xra1    ra1      na1         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra2    na1      na2         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra3    na2      na3         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xra4    na2      na3         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=7.8
+xpq2    0        0           op            sky130_fd_pr__pnp_05v5_W3p40L3p40 m=1
+xpq3    0        0           na3           sky130_fd_pr__pnp_05v5_W3p40L3p40 m=8
+*reference branch
+XM5     vref     g1          d      d      sky130_fd_pr__pfet_01v8_lvt       L=8 W=5 m=8
+xra5    vref     na4         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra6    na4      na5         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra7    na5      na6         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra8    na6      na7         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra9    na7      na8         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra10   na8      na9         d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra11   na9      na10        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra12   na10     na11        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra13   na11     na12        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra14   na12     na13        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra15   na13     na14        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xra16   na14     na15        d             sky130_fd_pr__res_high_po_1p41    w=1.41  l=14.1
+xpq1     0        0           na15          sky130_fd_pr__pnp_05v5_W3p40L3p40 m=1
+.dc     temp    -40          125              5
+.control
+run
+plot v(vref) v(na15) v(vref)-v(na15)
+.endc
+.end
+```
+![Diagram]()
+
