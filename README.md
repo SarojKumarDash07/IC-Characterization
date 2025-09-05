@@ -3621,7 +3621,8 @@ plot ptat_op
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/PTAT_OP2.png)
+![Diagram](docs/PTAT_OP1.png)
 
 ### PTAT voltage generation across resistor
 ![Diagram](docs/PTAT_ckt_s2.png)
@@ -3644,7 +3645,7 @@ plot ptat_op
 .endc
 .end
 ```
-![Diagram]()
+![Diagram](docs/PTAT_OP3.png)
 
 ### PTAT ckt verification
 ![Diagram](docs/PTAT_ckt_s3.png)
@@ -3670,8 +3671,8 @@ plot v(ra1)-v(na3)
 .endc
 .end
 ```
-![Diagram]()
-
+![Diagram](docs/PTAT5.png)
+![Diagram](docs/PTAT4.png)
 ## 16.3 Resistance tempco.
 ```
 *Tempco variation
