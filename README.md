@@ -3550,6 +3550,8 @@ plot v(xor_out) v(xnor_out)
 - Digital-to-Analog Converter (DAC)
 
 ## 16.1 CTAT Simulation
+Usually semiconductor diodes shows CTAT behaviour. If we consider constant current is flowing through a forwrard biased diode, then with increase in temp. we can observe that the voltage across the diode is decreaseing. Generally, it is found that the slope of the V~Temp is -2mV/deg Centigarde.
+
 ![Diagram](docs/CTAT_ckt.png)
 ### CTAT Voltage generation with single BJT
 ```
@@ -3602,7 +3604,17 @@ plot v(ctat_op)
 ![Diagram](docs/CTAT_ckt_op_mr.png)
 
 ## 16.2 PTAT Simulation
+- Vt (Thermal Voltage) which is directly proportional to the temp. (order ~ 1)
+- Is (Reverse saturation current) which is directly proportional to the temp. (order ~ 2.5), as this Is term is in denominator so with increase in temp. the ln(Io/Is) decreases which is responsible for CTAT nature of the diode.
+So to get a PTAT Voltage generation circuit we have to find some way such that we can get the Vt separated from Is.
+```
+ra1= Combined Voltage across R1,R2,R3,R4 and Q1 (CTAT in nature but less sloppy)
+ptat_op= Voltage across Q1 (CTAT in nature but more sloppy)
+ra1-ptat_op= Voltage across R1,R2,R3,R4 (PTAT in nature)
+```
+From above we can see that the voltage ra1-ptat_op is PTAT in nature, but it's slope is very less as compared to the CTAT, so we have to increase the slope. In order to increase the slope we can use multiple BJTs as diode, so that current per individual diode will be less and it the slope of ra1-ptat_op will increase.
 ### PTAT Voltage generation with ideal current source
+
 ![Diagram](docs/PTAT_ckt_s1.png)
 ```
 *Difference of ctat ckt is PTAT ckt
@@ -3674,6 +3686,7 @@ plot v(ra1)-v(na3)
 ![Diagram](docs/PTAT5.png)
 ![Diagram](docs/PTAT4.png)
 ## 16.3 Resistance tempco.
+We know that resistor also behaves as PTAT, i.e the voltage across the resistor also increases with increase in the temp. In our BGR the PTAT voltage we are getting is not only by the virtue of Vt(Thermal voltgae) but with the additional PTAT voltage of the resistance.
 ```
 *Tempco variation
 .lib /home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
@@ -3693,6 +3706,16 @@ plot v(ra1)
 ![Diagram](docs/bgr_tempco.png)
 
 ## 16.4 BGR with SBCM
+BGR principle : The operation principle of BGR circuits is to sum a voltage with negative temprature coefficient with another one exhibiting opposite temperature dependancies. Generally semiconductor diode behave as CTAT i.e. Complement to absolute temp. which means with increase in temp. the voltage across the diode will decrease. So we need to find a PTAT circuit which can cancel out the CTAT nature i.e. with rise in temp. the voltage across that device will increase and thus we can get a constant voltage reference with respect to temp.
+### Advantages of SBCM BGR:
+- Simplest topology
+- Easy to design
+- Always stable
+### Limitations of SBCM BGR:
+- Low power supply rejection ratio (PSRR)
+- Cacode design needed to reduce PSRR
+- Voltage head-room issue
+- Need start-up circuit
 ### BGR using current mirror
 ![Diagram](docs/bgr_cm.png)
 ```
@@ -3734,6 +3757,8 @@ plot v(vref) v(na15) v(vref)-v(na15)
 ![Diagram](docs/bgr_cm_op.png)
 
 ### BGR using current mirror and startup ckt
+The start-up circuit is required to move out the self biased current mirror from degenerative bias point (zero current). The start-up circuit forecefully flows a slow amount of current through the self-biased current mirror when the current is 0 in the current mirror branches, as the current mirror is self biased this small current creats a disturbance and the current mirror auto biased to the desired current value
+
 ![Diagram](docs/bgr_startup.png)
 ```
 * BGR ckt using current mirror and startup ckt
