@@ -3659,7 +3659,7 @@ plot ptat_op
 ```
 ![Diagram](docs/PTAT_OP3.png)
 
-### PTAT ckt verification
+### PTAT circuit verification
 ![Diagram](docs/PTAT_ckt_s3.png)
 ```
 * PTAT ckt verification and check voltage is equal or not
@@ -3756,7 +3756,7 @@ plot v(vref) v(na15) v(vref)-v(na15)
 ```
 ![Diagram](docs/bgr_cm_op.png)
 
-### BGR using current mirror and startup ckt
+### BGR using current mirror and startup circuit
 The start-up circuit is required to move out the self biased current mirror from degenerative bias point (zero current). The start-up circuit forecefully flows a slow amount of current through the self-biased current mirror when the current is 0 in the current mirror branches, as the current mirror is self biased this small current creats a disturbance and the current mirror auto biased to the desired current value
 
 ![Diagram](docs/bgr_startup.png)
