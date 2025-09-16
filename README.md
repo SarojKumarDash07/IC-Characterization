@@ -480,7 +480,59 @@ A **CMOS inverter** using the open-source **SkyWater SKY130 PDK**, with `sky130_
 - **Input:** Pulse source (0 → 1.8 V)  
 - **Output:** Clean digital inversion with sharp transition near VDD/2
   
-## 5.1 Static Power
+## DC analysis
+```
+* CMOS Inverter DC Simulation
+
+.lib "/home/biswajit/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+VDD ps 0 DC 1.8
+VIN in 0 DC 0
+
+XM1 out in 0 0 sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+XM2 out in ps ps sky130_fd_pr__pfet_01v8 W=1.26 L=0.15
+
+.dc VIN 0 1.8 0.01
+
+.control
+run
+plot  v(in) v(out)
+.endc
+.end
+
+![Diagram](docs/INVERTER_dc.png)
+
+## Transient Analysis
+```
+
+* CMOS Inverter Transient Simulation
+
+.lib "/home/biswajit/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+.temp 25
+
+* Supply voltage
+VDD vdd 0 DC 1.2
+
+VIN in 0 PULSE(0 1.2 2n 0 0 100n 200n)
+
+XM1 out in 0 0 sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+XM2 out in vdd vdd sky130_fd_pr__pfet_01v8 W=1.26 L=0.15
+
+Cload out 0 100f
+.tran 0.1n 500n
+
+.control
+run
+plot v(in) v(out)
+plot v(out)
+.endc
+.end
+
+![Diagram](docs/INVERTER_transient.png)
+  
+## 5
+.1 Static Power
 ```
 ******INVERTER-STATIC******
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
