@@ -519,8 +519,7 @@ plot v(out)
 ```
 ![Diagram](docs/INVERTER_transient.png)
   
-## 5
-.1 Static Power
+## 5.1 Static Power
 ```
 ******INVERTER-STATIC******
 .lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice" ss
