@@ -366,26 +366,12 @@ plot v(in) v(out)
 
 ![Diagram](docs/cr_tran.JPG)
 
-## 3.4.2 AC Analysis
-
-```
-
-```
-
-![Diagram](docs/cr_ac.JPG)
-
-### Calculation of Cutoff Frequency (Hz)
-
-| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> |
-| - | - | - | - | - | - | - | - | - | - |
-| **Types** | hh | tt | ll | hh | tt | ll | hh | tt | ll |
-| sky130_fd_pr_cap_mim_m3_1 & sky130_fd_pr__res_high_po_0p35 |  |  |  |  |  |  |  |  |  |
-
 # 4. MOSFET Circuits
 
 - A MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a three-terminal active device used for switching and amplification. Its current is controlled by the voltage applied to the gate terminal.
 - The MOSFET operates in three regions: cutoff, linear, and saturation, depending on gate-source (V<sub>GS</sub>) and drain-source (V<sub>DS</sub>) voltages.
 - In the Skywater SKY130 PDK, MOSFETs like `sky130_fd_pr__nfet_01v8` (NMOS) and `sky130_fd_pr__pfet_01v8` (PMOS) are commonly used. These are essential in digital logic, analog amplifiers, and switching applications.
+- [MOSFET parameter extraction](https://www.dropbox.com/scl/fo/rvgcq8auvleyfdjhpd1iw/AEcyRvaafRv-gcav3MH0GGA?rlkey=mkijrvenaemf86jq2el99q39l&st=7h79l0d9&dl=0)
 
 ## 4.1 NMOS Analysis
 
