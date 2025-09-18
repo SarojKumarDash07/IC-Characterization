@@ -3300,6 +3300,9 @@ plot v(ck) v(o1) v(o2)
 ![Diagram](docs/strongARM_latch.png)
 
 ## 15. Current mode logic
+- Current Mode Logic (CML) is a high-speed & low-noise digital logic family known for its excellent performance in high-frequency applications.
+ ### Comparison
+ ![Diagram](docs/CML_cmos.png)
 ## 15.1 Inverter and buffer using CML
 ## DC analysis
 ![Diagram](docs/CML_inv_dc.png)
