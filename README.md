@@ -366,6 +366,24 @@ plot v(in) v(out)
 
 ![Diagram](docs/cr_tran.JPG)
 
+## 3.4.2 AC Analysis
+
+```
+* CR Charging Circuit with Pulse Input
+.lib "/home/manas6008/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"
+.temp 25
+V1       in     0           ac  1
+XC1     in     out          sky130_fd_pr__cap_mim_m3_1  w=1 l=1
+XR1     out     0       0   sky130_fd_pr__res_high_po_0p35  l=3.5
+.ac dec 10 1meg 10e13
+.control
+run
+plot vdb(out)
+.endc
+.end
+```
+![Diagram](docs/CR_ac.png)
+
 # 4. MOSFET Circuits
 
 - A MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor) is a three-terminal active device used for switching and amplification. Its current is controlled by the voltage applied to the gate terminal.
