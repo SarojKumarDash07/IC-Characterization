@@ -1371,6 +1371,52 @@ run
 | Input Impedence |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |  ∞  |
 | Output Impedence | 289.49k | 278.26k | 266.32k | 395.56k | 198.03k | 156.9k | 492.17k | 326.21k | 285.06k |
 
+## 7.1.1 Design and simulation of common source amplifier
+### Case 1 
+- Design a common source amplifier with the given specification.
+Specification :-
+- Length = 2u
+- Load cpacitor (CL) = 10PF
+- current = 100u
+- Gate voltage = 0.9V
+- Output voltage = 1V
+- Gain > 5 (Liner gain)
+- unity gain bandwidth = 10MHZ
+### Circuit design
+![Diagram](docs/CS_design1.png)
+![Diagram](docs/CS_design_ac.png)
+![Diagram](docs/op_ac_design1.png)
+
+### Case 2 
+- Design a common source amplifier with the given specification.
+Specification :-
+- Length = 2u
+- Load cpacitor (CL) = 10PF
+- current = 500u
+- Gate voltage = 0.9V
+- Output voltage = 1V
+- Gain > 5 (Liner gain)
+- unity gain bandwidth = 10MHZ
+### Circuit design
+![Diagram](docs/CS_design2.png)
+![Diagram](docs/ac_cs_design2.png)
+![Diagram](docs/op_ac_cs_d2.png)
+
+### Case 3 
+- Design a common source amplifier with the given specification.
+Specification :-
+ - Length = 2u
+ - Load cpacitor (CL) = 10PF
+ - Output voltage = 1V
+ - Gain > 5 (Liner gain)
+ - unity gain bandwidth = 10MHZ
+- To acheive the desired specification we have to adjust the gate voltage.
+### Circuit design
+![Diagram]()
+![Diagram]()
+![Diagram]()
+
+
 ## 7.2 Common Source Amplifier using PMOS
 ![Diagram](docs/ckt_dia_cs_pmos.jpeg)
 ```
