@@ -1374,7 +1374,7 @@ run
 ## 7.1.1 Design and simulation of common source amplifier
 ### Case 1 
 - Design a common source amplifier with the given specification.
-Specification :-
+#### Specification :-
 - Length = 2u
 - Load cpacitor (CL) = 10PF
 - current = 100u
@@ -1389,7 +1389,7 @@ Specification :-
 
 ### Case 2 
 - Design a common source amplifier with the given specification.
-Specification :-
+#### Specification :-
 - Length = 2u
 - Load cpacitor (CL) = 10PF
 - current = 500u
@@ -1404,12 +1404,13 @@ Specification :-
 
 ### Case 3 
 - Design a common source amplifier with the given specification.
-Specification :-
+#### Specification :-
  - Length = 2u
  - Load cpacitor (CL) = 10PF
  - Output voltage = 1V
  - Gain > 5 (Liner gain)
  - unity gain bandwidth = 10MHZ
+  
 - To acheive the desired specification we have to adjust the gate voltage.
 ### Circuit design
 ![Diagram]()
