@@ -1413,9 +1413,9 @@ run
   
 - To acheive the desired specification we have to adjust the gate voltage.
 ### Circuit design
-![Diagram]()
-![Diagram]()
-![Diagram]()
+![Diagram](docs/cs_gatevary.png)
+![Diagram](docs/ac_cs_gatevary.png)
+![Diagram](docs/op_ac_csgv.png)
 
 
 ## 7.2 Common Source Amplifier using PMOS
