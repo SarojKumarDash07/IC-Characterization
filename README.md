@@ -1534,6 +1534,7 @@ $$
 $$
 I \downarrow \to \text{Area} \downarrow, \quad \text{Power} \downarrow, \quad UGB \downarrow, \quad \text{gain} \to \text{same}, \quad g_m \downarrow
 $$
+
 Now let's vary $V_Gs$
 
 ### Circuit design
@@ -1554,7 +1555,7 @@ Now let's vary $V_Gs$
 
 ### Theroritical Calculation 
 
-$I_d$ = 100 \mu A $
+$I_d = 100 \mu A$
 
 The transconductance \( g_m \) of a MOSFET is given by:
 
