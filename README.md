@@ -1466,6 +1466,7 @@ $$
 UGB = \frac{578.03 \times 10^{-6}}{2 \pi \times 10 \times 10^{-12}} = 9.20 \ \text{MHz}
 $$
 
+
 ### Circuit design
 ![Diagram](docs/CS_design1.png)
 ![Diagram](docs/CS_design_ac.png)
@@ -1533,7 +1534,7 @@ $$
 $$
 I \downarrow \to \text{Area} \downarrow, \quad \text{Power} \downarrow, \quad UGB \downarrow, \quad \text{gain} \to \text{same}, \quad g_m \downarrow
 $$
-
+Now let's vary $V_Gs$
 
 ### Circuit design
 ![Diagram](docs/CS_design2.png)
@@ -1550,6 +1551,116 @@ $$
  - unity gain bandwidth = 10MHZ
   
 - To acheive the desired specification we have to adjust the gate voltage.
+
+### Theroritical Calculation 
+
+$I_d$ = 100 \mu A $
+
+The transconductance \( g_m \) of a MOSFET is given by:
+
+$$
+g_m = \frac{2 I_D}{V_{GS} - V_T}
+$$
+
+Given:
+
+$$
+g_m \times 7.71\, \text{k}\Omega = 5
+$$
+
+Solving for \( g_m \):
+
+$$
+g_m = \frac{5}{7.71 \times 10^3} = 648.50 \mu S \approx 650 \mu S
+$$
+
+Now let $V_Gs$ = 0.85 
+
+$$
+650 \times 10^{-6} = \frac{2 \times 100 \times 10^{-6}}{V_{GS} - V_T}
+$$
+$$
+V_{GS} - V_T = \frac{2 \times 100 \times 10^{-6}}{650 \times 10^{-6}}
+$$
+$$
+V_{GS} - V_T = 0.307 \approx 0.3
+$$
+$$
+I = 220 \times 10^{-6} \times \frac{W}{2L} \times 0.30^2 \times 1.05
+$$
+$$
+100 \times 10^{-6} = 220 \times 10^{-6} \times \frac{W}{2L} \times 0.09 \times 1.05
+$$
+$$
+\frac{W}{L} = \frac{2 \times 100 \times 10^{-6}}{220 \times 10^{-6} \times 0.09 \times 1.05} = 9.62 \approx 10
+$$
+$$
+I_{\text{new}} = 2208 \times 10^{-6} \times \frac{10}{2} \times 0.09 \times 1.05 = 103.45 \times 10^{-6} \ \text{A}
+$$
+
+$$
+g_{m\,\text{new}} = \frac{2 \times 103.45 \times 10^{-6}}{0.3} = 693 \times 10^{-6} = 693 \ \mu S
+$$
+
+$$
+R_{d\,\text{new}} = \frac{V_{DD} - 1}{I_{\text{new}}} = \frac{0.8}{103.45 \times 10^{-6}} = 7.7 \ \text{k}\Omega
+$$
+
+$$
+r_0 = \frac{1}{\mu_n C_{ox} \times \frac{W}{2L} \times (V_{GS} - V_T)^2 \times \lambda}
+$$
+$$
+\frac{1}{220 \times 10^{-6}} \times 5 \times 0.09 \times 0.05 = 202.02 \ \text{k}\Omega
+$$
+
+$$
+R_{out} = \frac{202.02 \times 7.7 \ \text{k}\Omega}{209.7 \ \text{k}\Omega} = 7.41 \ \text{k}\Omega
+$$
+
+New Gain:
+
+$$
+A_v = - g_m \times R_{out}
+$$
+
+Calculating gain:
+
+$$
+693 \times 10^{-6} \times 7.41 \times 10^{3} = 5.135
+$$
+
+Gain in dB:
+
+$$
+\text{gain}_{dB} = 20 \times \log_{10}(5.135) = 14.21 \ \text{dB}
+$$
+
+Unity Gain Bandwidth (UGB):
+
+$$
+UGB = \frac{g_m}{2 \pi C_L} = \frac{693 \times 10^{-6}}{2 \times 3.14 \times 10 \times 10^{-12}} = 11.02 \ \text{MHz}
+$$
+
+Bandwidth (BW):
+
+$$
+BW = 2.14 \ \text{MHz}
+$$
+
+Unity Gain Bandwidth from gain and bandwidth:
+
+$$
+UGB = \text{gain}_{\text{linear}} \times BW = 5.135 \times 2.14 = 10.98
+$$
+
+Constant \( sp_1 \) relates as:
+
+$$
+sp_1 = \frac{1}{2 \pi R_{out} C_L}
+$$
+
+
+
 ### Circuit design
 ![Diagram](docs/cs_gatevary.png)
 ![Diagram](docs/ac_cs_gatevary.png)
