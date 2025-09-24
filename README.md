@@ -1704,7 +1704,7 @@ $$
 
 ### Comparisons of different type of Common-Source Amplifier
 
-| Parameter | Id = 100 µA | Id = 500 µA | Vgs = 0.85v |
+| Parameter | Id = 100 µA | Id = 500 µA | Id = 100 µA |
 |-----------|-------------|-------------|-------------|
 | VGS (V)   |     0.9     |     0.9     |     0.85    |
 | Vth (V)   |     0.554   |     0.554   |     0.554   |
@@ -1713,8 +1713,8 @@ $$
 |  Rout(k)  |     250     |     50      |     202.2   |
 | gain(db)  |     12.95   |     12.90   |     14.4    |
 |    gm     |  573.13u    |     2.84m   |    704.06u  |
-|    sp1    |  441.87k    |     10m     |    2.01m    |
-|   ugb     |    8.81m    |     44m     |    10.08m   |
+|    sp1    |  441.87kHZ  |     10MHZ   |    2.01MHZ  |
+|   ugb     |   8.81MHZ   |     44MHZ   |    10.08MHZ |
 
 ## 7.2 Common Source Amplifier using PMOS
 ![Diagram](docs/ckt_dia_cs_pmos.jpeg)
