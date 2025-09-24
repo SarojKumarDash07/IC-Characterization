@@ -1569,13 +1569,13 @@ $$
 g_m \times 7.71\, \text{k}\Omega = 5
 $$
 
-Solving for \( g_m \):
+Solving for $g_m$:
 
 $$
 g_m = \frac{5}{7.71 \times 10^3} = 648.50 \mu S \approx 650 \mu S
 $$
 
-Now let $V_Gs$ = 0.85 
+Now let $V_{Gs}$ = 0.85 
 
 $$
 650 \times 10^{-6} = \frac{2 \times 100 \times 10^{-6}}{V_{GS} - V_T}
@@ -1654,10 +1654,10 @@ $$
 UGB = \text{gain}_{\text{linear}} \times BW = 5.135 \times 2.14 = 10.98
 $$
 
-Constant \( sp_1 \) relates as:
+Constant $Sp_1$ relates as:
 
 $$
-sp_1 = \frac{1}{2 \pi R_{out} C_L}
+Sp_1 = \frac{1}{2 \pi C_L R_{out}}
 $$
 
 
