@@ -1416,6 +1416,56 @@ run
 - Output voltage = 1V
 - Gain > 5 (Liner gain)
 - unity gain bandwidth = 10MHZ
+
+### Theoritical Calculation
+$$
+I_d = 100 \mu A
+$$
+$$
+UGB = \frac{g_m}{2 \pi C_L}
+$$
+$$
+gm = 10 \times 10^6 \times 3.14 \times 10 \times 10^{-12} = 628 \ \mu S
+$$
+But , In Practical ,
+$$
+g_m = \frac{2 I_d}{V_{gs} - V_t}
+$$
+$$
+    = \frac{2 \times 100 \times 10^{-6}}{0.9 - 0.554}
+$$
+$$
+    = 578.03 \ \mu S
+$$
+$\frac{W}{L}$ calculation 
+$$
+\frac{W}{L} = \frac{2 \times 100 \times 10^{-6}}{218 \times 10^{-6} \times 0.346^2}
+$$
+$$
+            =7.66 \approx 8
+$$
+$$
+\text{gain} = -g_m \times r_{out}
+$$
+$$
+V_{DC}      = 1.8 - 8k \times 100 \mu A = 1V
+$$
+$$
+r_0 = \frac{1}{\lambda \times I_D} = \frac{1}{0.04 \times 100 \times 10^{-6}}
+$$
+$$
+r_{out} = 8k \parallel 250k = 7.71 \text{ k}\Omega
+$$
+$$
+\text{linear gain} = 578.03 \times 10^{-6} \times 7.71 \times 10^{3} \approx 4.5
+$$
+$$
+\text{gain (dB)} = 20 \log_{10}(4.5) = 13.06 \ \text{dB}
+$$
+$$
+UGB = \frac{578.03 \times 10^{-6}}{2 \pi \times 10 \times 10^{-12}} = 9.20 \ \text{MHz}
+$$
+
 ### Circuit design
 ![Diagram](docs/CS_design1.png)
 ![Diagram](docs/CS_design_ac.png)
@@ -1431,6 +1481,60 @@ run
 - Output voltage = 1V
 - Gain > 5 (Liner gain)
 - unity gain bandwidth = 10MHZ
+### Theoritical Calculation
+When current is increased 
+
+$$
+I_0 = 500 \times 10^{-6} \mu A
+$$
+$$
+g_m = 2 \times 500 \times 10^{-6} = 2.9 \times 10^{-3} \ S = 2.9 \ mS
+$$
+For $V_dc$ = 1v 
+$$
+1 = 1.8 - R \times 500 \times 10^{-6}
+$$
+$$
+R = \frac{0.8}{500 \times 10^{-6}} = 1600 \ \Omega = 1.6 \ k\Omega
+$$
+$$
+r_0 = \frac{1}{\lambda \times I_D} = \frac{1}{0.04 \times 500 \times 10^{-6}} = 50 \ k\Omega
+$$
+$$
+R_{out} = 1.6 \, k\Omega \parallel 50 \ k\Omega = 1.55 \ k\Omega
+$$
+$$
+\text{gain} = 4.49 \approx 4.5 \ \text{volts}
+$$
+$$
+\text{gain (dB)} = 13.06 \ \text{dB}
+$$
+$$
+\frac{W}{L} = \frac{2 \times 500 \times 10^{-6}}{218 \times 10^{-6} \times 0.346^2} = 38.31 \approx 39
+$$
+$$
+UGB = \frac{g_m}{2 \pi C_L} = \frac{2.9 \times 10^{-3}}{2 \pi \times 10 \times 10^{-12}} = 46.17 \ \text{MHz}
+$$
+
+Still gain 
+
+$$
+\text{gain} \leq 5
+$$
+
+from case I & case III , 
+
+$$
+i \uparrow \quad \to \quad \text{Area} \uparrow \quad \text{Power} \uparrow \quad UGB \uparrow
+$$
+$$
+\text{gain} \to \text{constant}, \quad g_m \uparrow
+$$
+$$
+I \downarrow \to \text{Area} \downarrow, \quad \text{Power} \downarrow, \quad UGB \downarrow, \quad \text{gain} \to \text{same}, \quad g_m \downarrow
+$$
+
+
 ### Circuit design
 ![Diagram](docs/CS_design2.png)
 ![Diagram](docs/ac_cs_design2.png)
