@@ -1421,47 +1421,63 @@ run
 $$
 I_d = 100 \mu A
 $$
+
 $$
 UGB = \frac{g_m}{2 \pi C_L}
 $$
+
 $$
 gm = 10 \times 10^6 \times 3.14 \times 10 \times 10^{-12} = 628 \ \mu S
 $$
+
 But , In Practical ,
+
 $$
 g_m = \frac{2 I_d}{V_{gs} - V_t}
 $$
+
 $$
     = \frac{2 \times 100 \times 10^{-6}}{0.9 - 0.554}
 $$
+
 $$
     = 578.03 \ \mu S
 $$
+
 $\frac{W}{L}$ calculation 
+
 $$
 \frac{W}{L} = \frac{2 \times 100 \times 10^{-6}}{218 \times 10^{-6} \times 0.346^2}
 $$
+
 $$
             =7.66 \approx 8
 $$
+
 $$
 \text{gain} = -g_m \times r_{out}
 $$
+
 $$
 V_{DC}      = 1.8 - 8k \times 100 \mu A = 1V
 $$
+
 $$
 r_0 = \frac{1}{\lambda \times I_D} = \frac{1}{0.04 \times 100 \times 10^{-6}}
 $$
+
 $$
 r_{out} = 8k \parallel 250k = 7.71 \text{ k}\Omega
 $$
+
 $$
 \text{linear gain} = 578.03 \times 10^{-6} \times 7.71 \times 10^{3} \approx 4.5
 $$
+
 $$
 \text{gain (dB)} = 20 \log_{10}(4.5) = 13.06 \ \text{dB}
 $$
+
 $$
 UGB = \frac{578.03 \times 10^{-6}}{2 \pi \times 10 \times 10^{-12}} = 9.20 \ \text{MHz}
 $$
@@ -1502,17 +1518,21 @@ $$
 r_0 = \frac{1}{\lambda \times I_D} = \frac{1}{0.04 \times 500 \times 10^{-6}} = 50 \ k\Omega
 $$
 $$
-R_{out} = 1.6 \, k\Omega \parallel 50 \ k\Omega = 1.55 \ k\Omega
+R_{out} = 1.6 \ k\Omega \parallel 50 \ k\Omega = 1.55 \ k\Omega
 $$
+
 $$
 \text{gain} = 4.49 \approx 4.5 \ \text{volts}
 $$
+
 $$
 \text{gain (dB)} = 13.06 \ \text{dB}
 $$
+
 $$
 \frac{W}{L} = \frac{2 \times 500 \times 10^{-6}}{218 \times 10^{-6} \times 0.346^2} = 38.31 \approx 39
 $$
+
 $$
 UGB = \frac{g_m}{2 \pi C_L} = \frac{2.9 \times 10^{-3}}{2 \pi \times 10 \times 10^{-12}} = 46.17 \ \text{MHz}
 $$
