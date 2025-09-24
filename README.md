@@ -1419,7 +1419,7 @@ run
 
 ### Theoritical Calculation
 $$
-I_d = 100 \mu A
+I_D = 100 \mu A
 $$
 
 $$
@@ -1552,7 +1552,7 @@ $$
 from case I & case III , 
 
 $$
-i \uparrow \quad \to \quad \text{Area} \uparrow \quad \text{Power} \uparrow \quad UGB \uparrow
+I \uparrow \quad \to \quad \text{Area} \uparrow \quad \text{Power} \uparrow \quad UGB \uparrow
 $$
 
 $$
