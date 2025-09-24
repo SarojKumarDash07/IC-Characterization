@@ -1504,19 +1504,25 @@ When current is increased
 $$
 I_0 = 500 \mu A
 $$
+
 $$
 g_m = 2 \times 500 \times 10^{-6} = 2.9 \times 10^{-3} \ S = 2.9 \ mS
 $$
+
 For $V_{dc}$ = 1v 
+
 $$
 1 = 1.8 - R \times 500 \times 10^{-6}
 $$
+
 $$
 R = \frac{0.8}{500 \times 10^{-6}} = 1600 \ \Omega = 1.6 \ k\Omega
 $$
+
 $$
 r_0 = \frac{1}{\lambda \times I_D} = \frac{1}{0.04 \times 500 \times 10^{-6}} = 50 \ k\Omega
 $$
+
 $$
 R_{out} = 1.6 \ k\Omega \parallel 50 \ k\Omega = 1.55 \ k\Omega
 $$
@@ -1548,9 +1554,11 @@ from case I & case III ,
 $$
 i \uparrow \quad \to \quad \text{Area} \uparrow \quad \text{Power} \uparrow \quad UGB \uparrow
 $$
+
 $$
 \text{gain} \to \text{constant}, \quad g_m \uparrow
 $$
+
 $$
 I \downarrow \to \text{Area} \downarrow, \quad \text{Power} \downarrow, \quad UGB \downarrow, \quad \text{gain} \to \text{same}, \quad g_m \downarrow
 $$
@@ -1600,21 +1608,27 @@ Now let $V_{Gs}$ = 0.85
 $$
 650 \times 10^{-6} = \frac{2 \times 100 \times 10^{-6}}{V_{GS} - V_T}
 $$
+
 $$
 V_{GS} - V_T = \frac{2 \times 100 \times 10^{-6}}{650 \times 10^{-6}}
 $$
+
 $$
 V_{GS} - V_T = 0.307 \approx 0.3
 $$
+
 $$
 I = 220 \times 10^{-6} \times \frac{W}{2L} \times 0.30^2 \times 1.05
 $$
+
 $$
 100 \times 10^{-6} = 220 \times 10^{-6} \times \frac{W}{2L} \times 0.09 \times 1.05
 $$
+
 $$
 \frac{W}{L} = \frac{2 \times 100 \times 10^{-6}}{220 \times 10^{-6} \times 0.09 \times 1.05} = 9.62 \approx 10
 $$
+
 $$
 I_{\text{new}} = 2208 \times 10^{-6} \times \frac{10}{2} \times 0.09 \times 1.05 = 103.45 \times 10^{-6} \ \text{A}
 $$
@@ -1630,6 +1644,7 @@ $$
 $$
 r_0 = \frac{1}{\mu_n C_{ox} \times \frac{W}{2L} \times (V_{GS} - V_T)^2 \times \lambda}
 $$
+
 $$
 \frac{1}{220 \times 10^{-6}} \times 5 \times 0.09 \times 0.05 = 202.02 \ \text{k}\Omega
 $$
