@@ -1427,7 +1427,7 @@ UGB = \frac{g_m}{2 \pi C_L}
 $$
 
 $$
-gm = 10 \times 10^6 \times 3.14 \times 10 \times 10^{-12} = 628 \ \mu S
+g_m = 2 \times 10 \times 10^6 \times 3.14 \times 10 \times 10^{-12} = 628 \ \mu S
 $$
 
 But , In Practical ,
