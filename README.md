@@ -1486,12 +1486,12 @@ $$
 When current is increased 
 
 $$
-I_0 = 500 \times 10^{-6} \mu A
+I_0 = 500 \mu A
 $$
 $$
 g_m = 2 \times 500 \times 10^{-6} = 2.9 \times 10^{-3} \ S = 2.9 \ mS
 $$
-For $V_dc$ = 1v 
+For $V_{dc}$ = 1v 
 $$
 1 = 1.8 - R \times 500 \times 10^{-6}
 $$
@@ -1535,7 +1535,7 @@ $$
 I \downarrow \to \text{Area} \downarrow, \quad \text{Power} \downarrow, \quad UGB \downarrow, \quad \text{gain} \to \text{same}, \quad g_m \downarrow
 $$
 
-Now let's vary $V_Gs$
+Now let's vary $V_{Gs}$
 
 ### Circuit design
 ![Diagram](docs/CS_design2.png)
