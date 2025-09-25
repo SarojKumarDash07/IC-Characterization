@@ -1506,7 +1506,7 @@ I_0 = 500 \mu A
 $$
 
 $$
-g_m = 2 \times 500 \times 10^{-6} = 2.9 \times 10^{-3} \ S = 2.9 \ mS
+gm = \frac{2 I_d}{V_{gs} - V_t} = \frac{2 \times 500 \times 10^{-6}}{0.9 - 0.554} =2.9~\text{mS} 
 $$
 
 For $V_{dc}$ = 1v 
