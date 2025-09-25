@@ -1528,11 +1528,11 @@ R_{out} = 1.6 \ k\Omega \parallel 50 \ k\Omega = 1.55 \ k\Omega
 $$
 
 $$
-\text{gain} = 4.49 \approx 4.5 \ \text{volts}
+\text{gain} = 4.49 \approx 4.5 
 $$
 
 $$
-\text{gain (dB)} = 13.06 \ \text{dB}
+\text{gain (dB)} = 13.06 
 $$
 
 $$
