@@ -1668,7 +1668,7 @@ $$
 Gain in dB:
 
 $$
-\text{gain}_{dB} = 20 \times \log_{10}(5.135) = 14.21 \ \text{dB}
+\text{gain}_{dB} = 20 \times \log_{10}(5.135) = 14.21
 $$
 
 Unity Gain Bandwidth (UGB):
