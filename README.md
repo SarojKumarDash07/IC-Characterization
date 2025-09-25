@@ -1630,7 +1630,7 @@ $$
 $$
 
 $$
-I_{\text{new}} = 2208 \times 10^{-6} \times \frac{10}{2} \times 0.09 \times 1.05 = 103.45 \times 10^{-6} \ \text{A}
+I_{\text{new}} = 220 \times 10^{-6} \times \frac{10}{2} \times 0.09 \times 1.05 = 103.45 \times 10^{-6} \ \text{A}
 $$
 
 $$
