@@ -1677,16 +1677,16 @@ $$
 UGB = \frac{g_m}{2 \pi C_L} = \frac{693 \times 10^{-6}}{2 \times 3.14 \times 10 \times 10^{-12}} = 11.02 \ \text{MHz}
 $$
 
-Bandwidth (BW):
+First pole Frequency $S_p1$ :
 
 $$
-BW = 2.14 \ \text{MHz}
+S_p1 = 2.14 \ \text{MHz}
 $$
 
-Unity Gain Bandwidth from gain and bandwidth:
+Unity Gain Bandwidth from gain and First pole frequency :
 
 $$
-UGB = \text{gain}_{\text{linear}} \times BW = 5.135 \times 2.14 = 10.98
+UGB = \text{gain}_{\text{linear}} \times S_p1 = 5.135 \times 2.14 = 10.98
 $$
 
 Constant $Sp_1$ relates as:
