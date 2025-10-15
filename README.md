@@ -472,6 +472,10 @@ save all
 ![Diagram](docs/nmos_id_vds.JPG)
 
 ### Parameters across PVT
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> |
+| - | - | - | - | - | - | - | - | - | - |
+| **Types** | ff | tt | ss | ff | tt | ss | ff | tt | ss |
+| Threshold Voltage | 0.49v | 0.539v | 0.579v | 0.52v | 0.55v | 0.579v | 0.407v | 0.439v | 0.46v |
 
 ## 4.2 PMOS Analysis
 - A **PMOS** (P-type MOSFET) is a majority-carrier device where current flows between the source and drain when a negative voltage is applied to the gate. Like NMOS, it behaves as a voltage-controlled current source but with opposite polarity.
@@ -519,6 +523,10 @@ save all
 ![Diagram](docs/pmos_id_vds.JPG)
 
 ### Parameters across PVT
+| Temperature | <-- | - 40 &#8451; | --> | <-- | 25 &#8451; | --> | <-- | 125 &#8451; | --> |
+| - | - | - | - | - | - | - | - | - | - |
+| **Types** | ff | tt | ss | ff | tt | ss | ff | tt | ss |
+| Threshold Voltage | 0.85v | 0.83v | 0.87v | 0.951v | 0.96v | 0.97v | 1.02v | 1.04v | 1.09v |
 
 # 5. Inverter
 ![Diagram](docs/inverter.jpeg)
