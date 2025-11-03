@@ -131,7 +131,7 @@ Now we will share instructions for installing WSL2 on Winodws 10/11 and install 
 - `Press Windows Key → select Ubuntu 24.04.`
 - Update the system
 ```
-  sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 ```
 - Clone the Github Repository
 ```
