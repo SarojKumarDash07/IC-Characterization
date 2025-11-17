@@ -154,6 +154,10 @@ chmod +x install*.sh
 cat ~/SI-2025-AnalogIC/bashrc-eda >> ~/.bashrc
 source ~/.bashrc
 ```
+- Setup Xschem initialization
+```
+cp ~/share/xschemrc ~/.xschem/xschemrc
+```
 - Then type this command: 
 ``` 
 tree -L 2
